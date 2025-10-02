@@ -1,0 +1,94 @@
+<div class="propDetails-comp display-flex justify-content-center">
+  <div class="propDetails paddingBLRem1" *ngIf="propertyData">
+    <div class="image-sec">
+      <p-galleria 
+        [value]="propertyData.imageList"
+        [showItemNavigators]="true"
+        [circular]="true" 
+        [numVisible]="6"
+        [autoPlay]="true">
+            <ng-template pTemplate="item" let-item>
+              <div class="propDetails-img-div width100pc">
+                <img [src]="'../../../assets/images/'+item.imageUrl" class="propDetails-img height100pc width100pc"/>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+                <div class="propDetails-imgThum-div">
+                  <img [src]="'../../../assets/images/'+item.imageUrl" class="propDetails-imgThum height100pc width100pc"/>
+                </div>
+            </ng-template>
+    </p-galleria>
+    </div>
+    <div class="details-sec paddingLRem1">
+      <div class="propRight-details display-flex flex-direction-column gapRem1">
+        <div class="propDetails-headerTitle display-flex justify-content-space-between align-items-center">
+          <div class="propDetails-HTitle">{{propertyData.title}}</div>
+          <div class="propDetails-posted"><span>Posted on: </span>{{propertyData.posted}}</div>
+        </div>
+        <div class="propDetails-location">{{propertyData.location}}</div>
+        <div class="propDetails-price">
+          <span class="pi pi-indian-rupee rupee"></span>
+          <span class="propDetails-span"> {{propertyData.price}}</span>
+        </div>
+        <div class="bhk-propDetails paddingRem1">
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">BHK</div>
+            <div class="propDetails-details">{{propertyData.bhk}}</div>
+          </div>
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">Bedroom(s)</div>
+            <div class="propDetails-details">{{propertyData.bedrooms}}</div>
+          </div>
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">Bathroom(s)</div>
+            <div class="propDetails-details">{{propertyData.bathrooms}}</div>
+          </div>
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">Built Up Area</div>
+            <div class="propDetails-details">{{propertyData.sq_ft}}.ft</div>
+          </div>
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">Furnish</div>
+            <div class="propDetails-details">{{propertyData.furnish}}</div>
+          </div>
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">Lift</div>
+            <div class="propDetails-details">{{propertyData.lift}}</div>
+          </div>
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">Water Availability</div>
+            <div class="propDetails-details">{{propertyData.waterAvl}}</div>
+          </div>
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">Electricity Availability</div>
+            <div class="propDetails-details">{{propertyData.electricityAvl}}</div>
+          </div>
+          <div class="propDetails-div display-flex flex-direction-column align-items-center gapRem0-3">
+            <div class="propDetails-title marginBRem0-5">Car Parking</div>
+            <div class="propDetails-details">{{propertyData.carParking}}</div>
+          </div>
+        </div>
+        <p class="propDetails-desc">{{propertyData.description}}</p>
+      </div>
+      <div class="detail-btn-sec display-flex align-items-center">
+        <div class="detail-btn-wrapper display-flex gapRem1">
+          <p-button label="Contact"
+          class="contact-pBtn display-flex"  
+          severity="info" 
+          icon="pi pi-phone"
+          iconPos="left"
+          raised="true"
+          size="small"/>
+  
+          <p-button label="Get Phone No."
+          class="phoneNo-pBtn display-flex"
+          severity="info" 
+          icon="pi pi-mobile"
+          iconPos="left"
+          raised="true"
+          size="small"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

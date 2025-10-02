@@ -1,0 +1,63 @@
+.createAcc-title{
+    font-family: "poppins";
+    font-size: 1.3rem;
+    color: var(--primaryColor);
+}
+
+.createAcc-form-group{
+    width: 21vw;
+    gap: 0.3rem;
+}
+
+.createAcc-input,
+.createAcc-btn{
+    height: 2rem;
+}
+
+.createAcc-btn{
+    border: none;
+    background: #41c441;
+    color: white;
+    cursor: pointer;
+}
+
+.error-text {
+    color: red;
+    font-size: 12px;
+}
+
+::ng-deep.error-text .pi{
+    font-size: 0.7rem;
+}
+
+.login{
+    color: var(--primaryColor);
+    font-size: 0.8rem;
+    font-family: "system-ui";
+    font-weight: 500;
+    cursor: pointer;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+.term-condi-title{
+    font-size: 0.7rem;
+    color: var(--primaryColor);
+}
+
+.createAcc-member-input{
+    transform: scale(1.1);
+}
+
+.AdminMember,
+.userMember{
+    margin-top: 3px;
+    margin-left: 1px;
+}
+
+.member-container{
+    color: #515151;
+    font-size: 0.9rem;
+}

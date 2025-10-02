@@ -1,0 +1,68 @@
+.propDetails{
+    width:85%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.propDetails-imgThum-div{
+    height: 11vh;
+    overflow: hidden;
+}
+
+.propDetails-img{
+    height: 73vh;
+}
+
+.bhk-propDetails{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    row-gap: 1.5rem;
+}
+
+.propDetails-title{
+    color: #6f6f6f;
+}
+
+.propDetails-HTitle{
+    font-size: 1.5rem;
+}
+
+.propDetails-location,
+.propDetails-price{
+    font-size: 1.2rem;
+}
+
+.propDetails-location,
+.propDetails-desc{
+    color: #4b5563;
+}
+
+.propDetails-price{
+    color: var(--primaryColor);
+}
+
+.propDetails-posted{
+    color: #6f6f6f;
+    font-size: 0.8rem;
+    font-family: system-ui;
+}
+
+.propRight-details{
+    height: 87%;
+}
+
+.detail-btn-sec{
+    height: 13%;
+    border-top: 1px solid #d1d1d1;
+}
+
+::ng-deep.detail-btn-sec .p-button-label {
+    font-weight: 500;
+}
+
+::ng-deep.propDetails-price .pi{
+    font-size: 0.9rem;
+}

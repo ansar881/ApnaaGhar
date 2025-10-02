@@ -1,0 +1,80 @@
+.login-sec{
+    width:85%;
+    height: 77vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background: aliceblue;
+}
+.error-text {
+    color: red;
+    font-size: 12px;
+}
+
+.login-img-sec{
+    background-image: url('../../../assets/images/vecteezy-backgroundImg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.welcm-txt{
+    color: white;
+    font-family: poppins;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.login-form-group{
+    width: 21vw;
+    gap: 0.3rem;
+}
+
+.login-input,
+.login-btn{
+    height: 2rem;
+}
+
+.login-btn{
+    border: none;
+    background: #41c441;
+    color: white;
+    cursor: pointer;
+}
+
+.login-title{
+    font-family: "poppins";
+    font-size: 1.3rem;
+    color: var(--primaryColor);
+}
+
+.sign-up{
+    color: var(--primaryColor);
+    font-size: 0.8rem;
+    font-family: "system-ui";
+    font-weight: 500;
+    cursor: pointer;
+}
+
+::ng-deep.error-text .pi{
+    font-size: 0.7rem;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+.login-member-input{
+    transform: scale(1.1);
+}
+
+.AdminMember,
+.userMember{
+    margin-top: 3px;
+    margin-left: 1px;
+}
+
+.member-container{
+    color: #515151;
+    font-size: 0.9rem;
+}

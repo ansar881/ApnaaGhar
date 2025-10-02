@@ -1,0 +1,194 @@
+<div>
+    <div class="headerSearch-ImagePanel width100pc">
+        <p-image 
+        src="./../../../assets/images/buiding1.webp"
+        alt="Image" 
+        width="100%"
+        height="100%"/>
+        <div class="filter-container">
+            <div class="filter-title">Search Here</div>
+            <div class="filter-body">
+                <p-tabView class="filter-tab">
+                    <p-tabPanel *ngFor="let tab of searchTabDataSource" [header]="tab.title">
+                        <p-inputGroup>
+                            <input #searchInput type="text" pInputText placeholder="Search location here" class="headerInputText"/>
+                            <button type="button" pButton icon="pi pi-search" class="headerInputSerBtn"
+                            (click)="homeSearchClicked(tab, searchInput)">&nbsp;Search</button>
+                        </p-inputGroup>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </div>
+    </div>
+
+    <div class="notice-container paddingRem1" [ngClass]="!isNoticeExpanded? 'isNoticeExpanded' : ''" >
+        <span>⚠️ Important Notice: </span>
+        <span>{{ isNoticeExpanded ? noticeText : (noticeText | slice:0:189) }}{{ isNoticeExpanded ? '' : '...' }}</span>
+        <span (click)="toggleNotice()" style="text-decoration: underline; cursor: pointer;">
+            {{ isNoticeExpanded ? 'See less' : 'See more' }}
+        </span>
+    </div>
+
+    <div class="carousel-div display-flex justify-content-center align-items-center paddingTRem1-5">
+        <div class="card carousel-card">
+            <p-carousel 
+                [value]="propertiesData" 
+                [numVisible]="2" 
+                [numScroll]="2"
+                [circular]="true" 
+                [responsiveOptions]="responsiveOptions"
+                autoplayInterval="4000">
+                <ng-template let-property pTemplate="item">
+                    <div class="carousel-temp-div paddingRem0-5">
+                        <div class="carousel-temp-item height100pc">
+                            <p-image 
+                            [src]="'../../../assets/images/'+ property.imageUrl"
+                            alt="Image" 
+                            width="100%"
+                            height="71%"/>
+                            <div class="carousel-temp-details paddingILRem0-5 display-flex align-item-center justify-content-space-between">
+                                <div class="prop-detail-left display-flex flex-direction-column justify-content-space-evenly paddingLRem1">
+                                    <div class="propData title">{{property.title}}</div>
+                                    <div class="propData location">{{property.location}}</div>
+                                    <div class="propData sqft">{{property.sq_ft}}</div>
+                                </div>
+                                <div class="prop-detail-right display-flex flex-direction-column justify-content-space-evenly paddingRRem1 align-items-center">
+                                    <div class="propData price">
+                                        <span class="pi pi-indian-rupee rupee"></span>
+                                        {{property.price}}<span class="onWards"> onwards</span>
+                                    </div>
+                                    <p-button label="View Details"
+                                    class="prop-detail-pBtn display-flex" 
+                                    [rounded]="true" 
+                                    severity="info" 
+                                    icon="pi pi-arrow-right"
+                                    iconPos="right"
+                                    raised="true"
+                                    (onClick)="seePropertyDetails(property.id)"/>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+
+    <div *ngFor="let prop of propertiesCategory; index as i" [ngClass]="(i+1)%2!==0? 'oddClass':'evenClass'" 
+        class="carousel-div-topTrend display-flex justify-content-center align-items-center paddingBLRem1-5">
+        <div class="card carousel-card">
+            <p-carousel 
+                [value]="prop.propData"
+                [numVisible]="4" 
+                [numScroll]="1"
+                [circular]="false" 
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                indicatorStyleClass="styleIndcator">
+                <ng-template pTemplate="header">
+                    <div class="carousel-header-sec display-flex justify-content-space-between align-items-center paddingILRem3-5">
+                        <div class="carousel-header-name">{{prop.proptitle}}</div>
+                        <div class="seeAll">See all&nbsp;<span class="pi pi-arrow-right seeAllIcon"></span></div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-property pTemplate="item">
+                    <div class="carousel-temp-div paddingRem0-5">
+                        <p-card class="horizon-card height100pc">
+                            <ng-template pTemplate="header">
+                                <div class="card-image-div height100pc">
+                                    <img alt="Card" [src]="'../../../assets/images/'+ property.imageUrl" class="card-image height100pc"/>
+                                </div>
+                            </ng-template>
+                            <div class="card-body-div display-flex justify-content-space-between">
+                                <div class="card-body-left display-flex flex-direction-column">
+                                    <div class="propData cardTitle">{{property.title}}</div>
+                                    <div class="propData cardLocation">{{property.location}}</div> 
+                                    <div class="propData cardSqft">{{property.sq_ft}}</div>
+                                </div>
+                                <div class="card-body-right display-flex flex-direction-column gapRem1">
+                                    <div class="propData price">
+                                        <span class="pi pi-indian-rupee rupee"></span>
+                                        {{property.price}}<span class="onWards"> onwards</span>
+                                    </div>
+                                    <p-button label="View"
+                                    class="prop-detail-pBtn display-flex" 
+                                    [rounded]="true" 
+                                    severity="info" 
+                                    icon="pi pi-arrow-right"
+                                    iconPos="right"
+                                    raised="true"
+                                    (onClick)="seePropertyDetails(property.id)"/>
+                                </div>
+                            </div>
+                        </p-card>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+
+    <div *ngFor="let prop of multiShowProperties" class="carousel-div-topTrend multiCard-carousel paddingBLRem1-5 display-flex justify-content-center align-items-center">
+        <div class="card carousel-card multi-card-carousel">
+            <p-carousel 
+                [value]="prop.propData"
+                [numVisible]="1" 
+                [numScroll]="1"
+                [circular]="false" 
+                [responsiveOptions]="responsiveOptions"
+                [showIndicators]="false"
+                indicatorStyleClass="styleIndcator">
+                <ng-template pTemplate="header">
+                    <div class="carousel-header-sec display-flex justify-content-space-between align-items-center paddingILRem3-5">
+                        <div class="carousel-header-name">{{prop.proptitle}}</div>
+                        <div class="seeAll">See all&nbsp;<span class="pi pi-arrow-right seeAllIcon"></span></div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-property pTemplate="item">
+                    <div class="carousel-temp-div paddingRem0-5">
+                        <div class="multi-card-div height100pc display-flex flex-wrap justify-content-space-between align-content-space-between">
+                            <p-card *ngFor="let item of property.data" class="multi-card">
+                                <div class="mcard-items height100pc display-flex">
+                                    <div class="mcard-img-div height100pc">
+                                        <p-image 
+                                        [src]="'../../../assets/images/'+item.imageUrl"
+                                        alt="Image" 
+                                        width="100%"
+                                        height="100%"/>
+                                    </div>
+                                    <div class="mcard-prop-div display-flex flex-direction-column justify-content-space-between paddingBLRem0-5 paddingLRem1 paddingRRem0-5">
+                                        <div class="mcard-prop-top">
+                                            <div class="propData cardTitle">{{item.title}}</div>
+                                            <div class="propData cardLocation">{{item.location}}</div>
+                                        </div>
+                                        <div class="mcard-prop-bottom display-flex justify-content-space-between align-items-center gapRem0-5">
+                                            <div class="mcard-prop-bottom-left">
+                                                <div class="propData cardSqft mcardSqft marginBRem0-5">{{item.sq_ft}}</div>
+                                                <div class="propData price">
+                                                    <span class="pi pi-indian-rupee rupee"></span>
+                                                    {{item.price}}<span class="onWards"> onwards</span>
+                                                </div>
+                                            </div>
+                                            <div class="mcard-prop-bottom-right">
+                                                <p-button label="View"
+                                                class="prop-detail-pBtn display-flex" 
+                                                [rounded]="true" 
+                                                severity="info" 
+                                                icon="pi pi-arrow-right"
+                                                iconPos="right"
+                                                raised="true"
+                                                (onClick)="seePropertyDetails(item.id)"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </p-card>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</div>

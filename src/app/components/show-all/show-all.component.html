@@ -1,0 +1,155 @@
+
+<div class="showAll-comp">
+  <div class="filter-data-section display-flex flex-direction-column align-items-center width100pc">
+    <div class="filter-section display-flex justify-content-center align-items-center gapRem3 width100pc">
+      <div class="searched-container">
+        <p-inputGroup>
+          <input pInputText [value]="searchedValue"/>
+          <p-inputGroupAddon>
+            <i class="pi pi-search"></i>
+          </p-inputGroupAddon>
+        </p-inputGroup>
+      </div>
+      <div class="type-container">
+        <p-dropdown 
+          class="filter-type"
+          [options]="propCategory" 
+          [(ngModel)]="selectedPropCategory" 
+          optionLabel="type" 
+          placeholder="Category"/>
+      </div>
+      <p-button
+        *ngFor="let btn of filerBtns"
+        [rounded]="true"
+        (click)="popupToggle($event, btn.btnName, popup)">{{btn.btnName}}
+        <ng-container *ngIf="btn.badgeVal > 0">
+          <span class="p-badge">{{ btn.badgeVal }}</span>
+        </ng-container>
+      </p-button>
+      <p-overlayPanel #popup>
+        <ng-container *ngIf="popupUi !== 'Price'">
+          <div class="filter-div gapRem0-5">
+            <div *ngFor="let option of filterOptionsData">
+              <p-checkbox 
+              (onChange)="filterCheckBoxValueChanged($event, option)"
+              [label]="option.name"
+              [binary]="true"
+              [(ngModel)]="option.value"/>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="popupUi === 'Price'">
+          <div class="price-div display-flex align-items-center flex-direction-column">
+            <div class="slider-div">
+              <p-slider 
+              [(ngModel)]="priceRangeValues"
+              [range]="true" 
+              [min]="minPrice"
+              [max]="maxPrice"
+              [step]="1000000"
+              class="slider"
+              (onChange)="sliderValueChanged($event)"/>
+            </div>
+            <div class="priceMinMax-div display-flex align-items-center gapRem1">
+              <div class="minPrice-div display-flex align-items-center gapRem0-5">
+                <label for="minPrice">Min</label>
+                <p-inputNumber 
+                [(ngModel)]="minPrice" 
+                inputId="minPrice" 
+                mode="decimal" 
+                locale="en-IN"
+                (onInput)="priceValueChanged($event, 'minPrice')"/>
+              </div>
+              <div class="maxPrice-div display-flex align-items-center gapRem0-5">
+                <label for="maxPrice">Max</label>
+                <p-inputNumber 
+                [(ngModel)]="maxPrice"
+                inputId="maxPrice"
+                mode="decimal" 
+                locale="en-IN"
+                (onInput)="priceValueChanged($event, 'maxPrice')"/>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </p-overlayPanel>
+      <p-button
+        class="apply-btn">
+        Apply
+      </p-button>
+    </div>
+
+    <div class="all-data-container paddingBLRem1">
+      <div class="card-data-wrapper gapRem1">
+        <div class="filter-card-div" *ngFor="let cardData of multiPropertiesData">
+          <p-card class="filter-card">
+            <div class="filterCard-wrapper">
+              <div class="card-image-section">
+                <p-galleria
+                  class="gallery"
+                  [value]="cardData.imageList"
+                  [indicatorsPosition]="'bottom'" 
+                  [showIndicators]="true" 
+                  [showThumbnails]="false" 
+                  [showIndicatorsOnItem]="true"
+                  [autoPlay]="true"
+                  [circular]="true">
+                    <ng-template pTemplate="item" let-item>
+                        <img [src]="item.imageUrl"/>
+                    </ng-template>
+                </p-galleria>
+              </div>
+
+              <div class="card-data-section display-flex flex-direction-column justify-content-space-between paddingLRem1">
+                <div class="cardDatas display-flex flex-direction-column">
+                  <div class="cardDatas-title">{{cardData.title}}</div>
+                  <div class="cardDatas-bhk">{{cardData.bhk}}</div>
+                  <div class="cardDatas-price">
+                    <span class="pi pi-indian-rupee rupee"></span>
+                    <span class="price-span">{{cardData.price}}</span>
+                  </div>
+                  <div class="cardDatas-location">{{cardData.location}}</div>
+                  <div class="bhk-specification paddingBLRem0-2">
+                    <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
+                      <div class="spec-title">Bedroom(s)</div>
+                      <div class="spec-details">{{cardData.bedrooms}}</div>
+                    </div>
+                    <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
+                      <div class="spec-title">Bathroom(s)</div>
+                      <div class="spec-details">{{cardData.bathrooms}}</div>
+                    </div>
+                    <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
+                      <div class="spec-title">Built Up Area</div>
+                      <div class="spec-details">{{cardData.sq_ft}}.ft</div>
+                    </div>
+                  </div>
+                  <p class="bhk-desc">{{cardData.description}}</p>
+                </div>
+
+                <div class="cardContactsec display-flex justify-content-space-between">
+                  <p-button label="Get More Info"
+                  class="whatsapp-pBtn display-flex"  
+                  severity="info" 
+                  icon="pi pi-question-circle"
+                  iconPos="left"
+                  raised="true"
+                  size="small"/>
+
+                  <p-button label="See Details"
+                  class="details-pBtn display-flex"
+                  severity="info" 
+                  icon="pi pi-info-circle"
+                  iconPos="left"
+                  raised="true"
+                  size="small"
+                  (onClick)="seeDetailsOfProperty(cardData.id)"/>
+                </div>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 

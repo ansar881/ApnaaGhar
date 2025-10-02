@@ -1,0 +1,72 @@
+<div class="footer-comp">
+  <div class="propertyCity-section display-flex justify-content-center paddingBLRem2">
+    <div class="propertyCity-div display-flex justify-content-space-between">
+      <div class="prop-type" *ngFor="let cities of topCityPropertyData">
+        <div class="city-title marginBRem0-3">{{cities.title}}</div>
+        <div class="cities marginBRem0-2" *ngFor="let cityname of cities.city">
+          <span class="pi pi-angle-right"></span>
+          <span (click)="showSelectedData(cities.category, cities.type, cityname.city)">{{cities.type}} in {{cityname.city}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-section display-flex justify-content-center">
+    <div class="about-div display-flex justify-content-space-between align-items-center paddingBLRem1">
+      <div class="about">
+        <div class="about-title marginBRem2">ABOUT US</div>
+        <div class="about-details">
+          ApnaaGhar is India's largest Integrated real estate marketplace,
+          with category leadership presence across multiple touchpoints of consumer home ownership journey.
+          With Urbanisation and rising disposable incomes as the core theme,
+          ApnaaGhar, with 8mn+ monthly traffic and ~USD 5bn+ GTV,
+          is the largest and asset light proxy play to the growing residential demand story of India.
+          One of the few Indian start ups to taste global success with presence in 100+ cities across 9 countries,
+          ApnaaGhar is at the forefront of tech adoption in the sector, with multiple patents across VR/AI domains.
+        </div>
+      </div>
+      <div class="contact">
+        <div class="contact-title marginBRem2">CONTACT US</div>
+        <div class="email-sec marginBRem1">
+          <div class="email-title">Email us at</div>
+          <div class="email">anoansarkhan&#64;gmail.com</div>
+        </div>
+        <div class="num-sec">
+          <div class="num-title">Call us at</div>
+          <div class="num">+91 9861062015</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-media-section display-flex justify-content-center">
+    <div class="social-media">
+      <div class="social-media-div display-flex justify-content-space-between align-items-center paddingBLRem0-6 paddingILRem0-5">
+        <div class="follow">Follow on</div>
+        <div class="follow-icons display-flex align-items-center gapRem1">
+          <div class="icon-div facebook" (click)="socialLinkClicked('facebook')"><span class="pi pi-facebook"></span></div>
+          <div class="icon-div instagram" (click)="socialLinkClicked('instagram')"><span class="pi pi-instagram"></span></div>
+          <div class="icon-div linkedin" (click)="socialLinkClicked('linkedin')"><span class="pi pi-linkedin"></span></div>
+          <div class="icon-div twitter" (click)="socialLinkClicked('twitter')"><span class="pi pi-twitter"></span></div>
+          <div class="icon-div youtube" (click)="socialLinkClicked('youtube')"><span class="pi pi-youtube"></span></div>
+          <div class="icon-div pinterest" (click)="socialLinkClicked('pinterest')"><span class="pi pi-pinterest"></span></div>
+        </div>
+      </div>
+      <div class="disclamer-div paddingBLRem0-5">
+        Disclaimer: ApnaaGhar Realty Services Limited is only an intermediary offering its platform to advertise
+        properties of Seller for a Customer/Buyer/User coming on its Website and is not and cannot be a party to or privy
+        to or control in any manner any transactions between the Seller and the Customer/Buyer/User. All the offers and
+        discounts on this Website have been extended by various Builder(s)/Developer(s) who have advertised their
+        products. ApnaaGhar is only communicating the offers and not selling or rendering any of those products or
+        services. It neither warrants nor is it making any representations with respect to offer(s) made on the site.
+        ApnaaGhar Realty Services Limited shall neither be responsible nor liable to mediate or resolve any disputes or
+        disagreements between the Customer/Buyer/User and the Seller and both Seller and Customer/Buyer/User shall settle
+        all such disputes without involving ApnaaGhar Realty Services Limited in any manner.
+      </div>
+    </div>
+  </div>
+  <div class="copyRight-div">
+    <div style="font-size: 0.85rem;">Copyright &copy; 2007-2025. All rights reserved. Developed by <span
+      class="developerName">Ansar Khan</span>❤️</div>
+  </div>
+</div>

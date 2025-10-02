@@ -1,0 +1,122 @@
+.copyRight-div{
+    background: black;
+    color: white;
+    /* color: rgba(255, 255, 255, 0.7); */
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.developerName{
+    color: var(--primaryColor);
+    cursor: pointer;
+}
+
+.follow-icons .pi{
+    font-size: 1.3rem;
+}
+
+.icon-div{
+    padding: 0.5rem 0.5rem 0.3rem 0.5rem;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+}
+
+.facebook{
+    background: #316FF6;
+}
+
+.instagram{
+    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+.linkedin{
+    background: #0077B5;
+}
+
+.pinterest,
+.youtube{
+    background: red;
+}
+
+.twitter{
+    background: black;
+}
+
+.follow{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4b5563;
+    font-family: system-ui;
+}
+
+.disclamer-div,
+.about-details{
+    color: darkslategrey;
+    font-family: system-ui;
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.about-details,
+.email-sec,
+.num-sec{
+    color: white;
+    font-size: 0.9rem;
+}
+
+.social-media-div{
+    border-bottom: 1px solid #c8c8c8;
+}
+
+.social-media-section{
+    border-top: 1px solid #c8c8c8;
+}
+
+.propertyCity-div,
+.social-media,
+.about-div{
+    width: 85%;
+}
+
+.propertyCity-section{
+    background: black;
+    color: white;
+    border-bottom: 1px solid #393939;
+}
+
+.about-section{
+    background: black;
+    color: white;
+    border-bottom: 3px solid #c8c8c8;
+}
+
+.city-title{
+    font-size: 1.1rem;
+}
+
+.cities{
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.cities:hover{
+    color: white;
+    padding-left: 0.5rem;
+}
+
+.prop-type{
+    font-family: system-ui;
+    width: 15vw;
+}
+
+.about{
+    width: 80%;
+}
+
+.about-title,
+.contact-title{
+    font-family: system-ui;
+    font-weight: 500;
+}

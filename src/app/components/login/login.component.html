@@ -1,0 +1,86 @@
+<div class="login-comp display-flex justify-content-center paddingBLRem1">
+  <div class="login-sec">
+    <div class="login-img-sec display-flex justify-content-center align-items-center">
+      <div class="welcm-txt">
+        <span *ngIf="isloginPanel">Welcome Back</span>
+        <span *ngIf="!isloginPanel">Sign Up</span>
+      </div>
+    </div>
+    <div *ngIf="isloginPanel" class="login-container display-flex justify-content-center align-items-center flex-direction-column gapRem2">
+      <div class="login-title">Login</div>
+      <div class="login-form-group display-flex flex-direction-column" [formGroup]="loginForm">
+        <div class="form-group">
+          <div class="member-container display-flex align-items-center gapRem0-5">
+            <div class="category-title">Are you ?</div>
+            <div class="member-div display-flex align-items-center">
+              <input
+                class="login-member-input"
+                id="AdminMember"
+                type="radio"
+                value="Admin"
+                formControlName="member"
+                (input)="onInput($event)"
+              />
+              <div class="AdminMember">Admin</div>
+            </div>
+ 
+            <div class="member-div display-flex align-items-center">
+              <input
+                class="login-member-input"
+                id="userMember"
+                type="radio"
+                value="User"
+                formControlName="member"
+                (input)="onInput($event)"
+              />
+              <div class="userMember">User</div>
+            </div>
+          </div>
+          <div *ngIf="loginForm.get('member')?.touched && loginForm.get('member')?.invalid">
+            <small class="error-text">Please select category.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="login-input width100pc"
+            id="username"
+            type="text"
+            formControlName="username"
+            placeholder="Username, phone number or email"
+            (input)="onInput($event)"
+          />
+          <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">
+            <small class="error-text">Username is required.</small>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <input
+            class="login-input width100pc"
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+            (input)="onInput($event)"
+          />
+          <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+            <small class="error-text">Password is required.</small>
+          </div>
+          <small *ngIf="invalidUserPswd" class="error-text">
+            <span class="pi pi-times-circle"></span>
+            Invalid inputs please try again.
+          </small>
+        </div>
+    
+        <button type="submit" class="login-btn width100pc" (click)="onLogin()">Login</button>
+      </div>
+      <div class="sign-up" (click)="createAccount()">New to ApnaaGhar?Sign Up</div>
+    </div>
+    <div *ngIf="!isloginPanel" class="createAccount-container">
+      <app-create-account
+        (showLogin)="showloginPage($event)">
+      </app-create-account>
+    </div>
+  </div>
+</div>

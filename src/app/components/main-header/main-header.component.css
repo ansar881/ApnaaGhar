@@ -1,0 +1,62 @@
+.home-comp{
+    box-sizing: border-box;
+    height: 7vh;
+}
+
+.home-header{
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.home-btn-div{
+    background-color: var(--primaryColor);
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.headerInputText{
+    height: 2rem;
+    width: 33vw;
+}
+
+.headerInputSerBtn{
+    height: 2rem;
+}
+
+.user-div{
+    cursor: pointer;
+}
+
+::ng-deep.header-input .p-megamenu.p-component.p-megamenu-horizontal{
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+::ng-deep.header-input .p-megamenu .p-submenu-list{
+    height: 17rem;
+    overflow-y: scroll;
+}
+
+::ng-deep.header-input .p-megamenu .p-submenu-header {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+}
+
+::ng-deep.header-input .p-megamenu .p-menuitem > .p-menuitem-content .p-menuitem-link{
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+}
+
+.icon-div{
+    cursor: pointer;
+}
+
+.login{
+    color: var(--primaryColor);
+}
+
+.logout{
+    color: red;
+}

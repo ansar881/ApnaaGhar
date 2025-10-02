@@ -1,0 +1,263 @@
+.carousel-temp-div{
+    height: 39vh;
+    cursor: pointer;
+}
+
+.carousel-card{
+    width: 91vw;
+}
+
+::ng-deep .carousel-temp-item .p-image img{
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.carousel-temp-item{
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    background-color: aliceblue;
+}
+
+.carousel-temp-details{
+    height: 26%;
+}
+
+.prop-detail-pBtn{
+    height: 2rem;
+}
+
+.rupee{
+    font-size: 0.8rem;
+}
+
+.propData{
+    font-family: system-ui;
+    font-weight: 400;
+}
+
+.onWards{
+    font-family: system-ui;
+    font-weight: 300;
+    font-size: 0.9rem;
+}
+
+.title,
+.cardTitle{
+    font-weight: 500;
+}
+
+.location,
+.sqft,
+.cardLocation,
+.cardSqft{
+    color: darkslategrey;
+    font-size: 0.9rem;
+}
+
+.cardTitle,
+.cardLocation,
+.cardSqft{
+    width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+::ng-deep.carousel-temp-div .p-card.p-component{
+    height: 100%;
+}
+
+::ng-deep.carousel-temp-div .p-card.p-component .p-card-header{
+    height: 60%;
+}
+
+.card-image-div{
+    overflow: hidden;
+}
+
+.card-image{
+    border-radius: 5px 5px 0 0;
+    transition: transform 0.5s ease;
+}
+
+.card-image:hover {
+    transform: scale(2);
+}
+
+.carousel-header-name{
+    font-size: 1.5rem;
+    font-family: system-ui;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+::ng-deep.carousel-temp-div .p-card .p-card-body{
+    padding: 0 !important;
+}
+
+::ng-deep.carousel-temp-div .p-card .p-card-content{
+    padding: 0.5rem;
+}
+
+.card-body-left{
+    gap: 0.3rem;
+}
+
+.seeAll{
+    font-size: 0.8rem;
+    color: var(--primaryColor);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.seeAllIcon{
+    font-size: 0.6rem;
+    font-weight: 600;
+}
+
+::ng-deep .carousel-div .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+    width: 1.5rem;
+    height: 0.3rem;
+    border-radius: 10px;
+}
+
+.horizon-card{
+    transition: box-shadow 0.3s ease;
+}
+.multi-card{
+    height: 47%;
+    width: 32.5%;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+.horizon-card:hover,
+.multi-card:hover {
+    box-shadow: 0 4px 0.3rem rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+}
+
+::ng-deep.multi-card-div .p-card .p-card-body,
+::ng-deep.multi-card-div .p-card .p-card-body .p-card-content{
+    height: 100%;
+}
+
+.mcard-img-div{
+    width: 41%;
+    overflow: hidden;
+}
+
+::ng-deep.multi-card-carousel .carousel-temp-div .p-card .p-card-content{
+    padding: 0rem;
+}
+
+::ng-deep.multi-card-carousel img{
+    transition: transform 0.5s ease;
+    border-radius: 5px 0 0 5px;
+}
+
+::ng-deep.multi-card-carousel img:hover {
+    transform: scale(2);
+}
+
+::ng-deep.mcard-prop-bottom-right .p-button{
+    padding: 0.5rem 1rem;
+}
+
+.mcardSqft{
+    width:7rem;
+}
+
+.headerSearch-ImagePanel{
+    height: 41vh;
+    position: relative;
+}
+.filter-container{
+    height: 100%;
+    width: 41%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* gap: 1rem; */
+}
+
+.filter-title{
+    font-size: 1.3rem;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #6b7280;
+    background: #ffffff;
+    padding: 0.5rem;
+    border-radius: 6px 6px 0 0;
+    letter-spacing: 1px;
+}
+
+.filter-body{
+    width: 100%;
+    border-radius: 5px;
+}
+
+::ng-deep .filter-body .filter-tab{
+    display: flex;
+    width: 100%;
+}
+
+::ng-deep .filter-tab .p-tabview.p-component{
+    width: 100%;
+}
+
+::ng-deep.filter-tab .p-tabview .p-tabview-nav li .p-tabview-nav-link{
+    padding: 0.5rem;
+}
+
+/* ::ng-deep.filter-tab .p-tabview-nav-content{
+    border-radius: 6px 6px 0 0 ;
+} */
+
+::ng-deep.filter-tab .p-tabview-nav-content .p-tabview-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+::ng-deep.filter-body .p-tabview .p-tabview-panels{
+    padding: 0.7rem;
+}
+
+.headerInputText,
+.headerInputSerBtn{
+    height: 2rem;
+    box-shadow: none;
+}
+
+/* .carousel-div{
+    background: #feeeee;
+} */
+
+.carousel-div,
+.evenClass{
+    background: #f5f5f5;
+}
+
+::ng-deep.p-carousel .p-carousel-container .p-ripple.p-carousel-next,
+::ng-deep.p-carousel .p-carousel-container .p-ripple.p-carousel-prev{
+    background: #0ea5e9;
+    color: white;
+}
+
+::ng-deep.p-carousel-header{
+    margin-bottom: 1rem;
+}
+
+.notice-container{
+    color: red;
+    background: #ffff7a;
+    font-family: math;
+    font-size: 0.9rem;
+}
+
+.isNoticeExpanded{
+    text-align: center;
+}

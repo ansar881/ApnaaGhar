@@ -1,0 +1,39 @@
+<div class="home-comp bgWhite">
+    <div class="home-header paddingILRem1 bgWhite width100pc height100pc display-flex align-items-center justify-content-space-between">
+        <div class="home-header-left height100pc display-flex align-items-center">
+            <div class="img-div height100pc paddingBRem0-5">
+                <img class="projIcon height100pc" src="./../../../assets/images/homeicon2.avif" alt="ApnaaGharIcon" />
+            </div>
+            <div class="proj-title primaryColor fontSizeRem1-2 fontWeight600">
+                ApnaaGhar
+            </div>
+        </div>
+
+        <div class="header-input">
+            <p-megaMenu orientation="horizontal" [model]="items"/>
+        </div>
+        
+        <div class="home-header-right display-flex align-items-center gapRem2">
+            <div class="header-right-items display-flex align-items-center gapRem0-5">
+                <div *ngFor="let option of headerItems" class="home-btn-div display-flex gapRem0-5 paddingRem0-4"
+                    (click)="headerBtnClicked(option)">
+                    <span [class]="option.icon"></span><span>{{option.label}}</span>
+                </div>
+            </div>
+            <div class="user-div">
+                <p-avatar 
+                icon="pi pi-user" 
+                styleClass="mr-2" 
+                [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }" 
+                shape="circle" 
+                (click)="avatarClick($event, loginPopup)"/>
+                <p-overlayPanel #loginPopup>
+                    <div class="loginPopup-container">
+                        <div class="icon-div login marginBRem0-5" (click)="goToLoginPage()"><span class="pi pi-sign-in"></span>&nbsp;Login</div>
+                        <div class="icon-div logout" (click)="logOut()"><span class="pi pi-power-off"></span>&nbsp;Log Out</div>
+                    </div>
+                </p-overlayPanel>
+            </div>
+        </div>
+    </div>
+</div> 

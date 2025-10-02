@@ -1,0 +1,172 @@
+.all-data-container{
+    width: 85%;
+}
+
+.filter-section{
+    height: 6vh;
+    border-bottom: 1px solid #cfd0d2;
+}
+
+::ng-deep .filter-section .p-button{
+    background: transparent;
+    color: #333;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.7rem;
+    border-color: #333;
+}
+
+::ng-deep .filter-section .p-button .p-button-label{
+    font-weight: 500;
+    font-family: system-ui;
+}
+
+::ng-deep.p-button{
+    box-shadow: none; 
+}
+
+::ng-deep.filter-section .p-button .p-badge{
+    color: white;
+    background: var(--primaryColor);
+}
+
+.filter-div {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+.slider-div{
+    width: 23rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+
+::ng-deep .priceMinMax-div .p-inputnumber .p-inputtext{
+    font-size: 0.8rem;
+    padding: 0.5rem;
+}
+
+.card-data-wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.filter-card-div{
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.filter-card-div:hover {
+    box-shadow: 0 4px 0.3rem rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+}
+
+.filterCard-wrapper{
+    display: grid;
+    grid-template-columns: 41% 59%;
+}
+
+::ng-deep.filter-card .p-card .p-card-content{
+    padding: 0;
+}
+
+::ng-deep.gallery img{
+    width: 100%;
+    height: 39vh;
+    border-radius: 5px;
+}
+
+::ng-deep.card-image-section .p-galleria .p-galleria-indicators .p-galleria-indicator button{
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+::ng-deep.card-image-section .p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator.p-highlight button{
+    background: var(--primaryColor);
+}
+::ng-deep.card-image-section .p-galleria .p-galleria-indicators {
+    padding: 0.7rem;
+    border-radius: 0 0 5px 5px;
+}
+
+::ng-deep.cardContactsec .p-button-label {
+    font-weight: 500;
+}
+
+.cardDatas{
+    font-family: system-ui;
+    gap: 0.5em;
+}
+
+.cardDatas-title,
+.price-span{
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.bhk-specification{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+}
+
+.cardDatas-bhk,
+.cardDatas-price,
+.spec-details{
+    font-weight: 500;
+}
+
+.cardDatas-price{
+    color: var(--primaryColor);
+}
+
+::ng-deep.cardDatas-price .pi{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.bhk-desc{
+    height: 7vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+::ng-deep.searched-container .p-inputgroup-addon {
+    padding: 0.2rem 0.5rem;
+    min-width: 2rem;
+}
+
+::ng-deep.type-container .p-inputtext,
+::ng-deep.searched-container .p-inputtext {
+    padding: 0.2rem 0.5rem;
+    box-shadow: none;
+    background: #f3f4f6;
+}
+
+::ng-deep.type-container .p-dropdown .p-dropdown-trigger{
+    width: 1.5rem;
+    background: #f3f4f6;
+}
+
+::ng-deep.type-container .p-dropdown{
+    width: 7rem;
+    box-shadow: none;
+}
+
+::ng-deep.apply-btn .p-button{
+    background: #0ea5e9;
+    border: 1px solid #0ea5e9;
+    color: white;
+}
+
+::ng-deep.apply-btn .p-button:hover{
+    background: #0284c7;
+    border-color: #0284c7;
+}
+
+::ng-deep.type-container .p-dropdown-panel .p-dropdown-items .p-dropdown-item{
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+}

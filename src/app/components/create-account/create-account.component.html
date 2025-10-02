@@ -1,0 +1,154 @@
+<div class="create-account-comp">
+  <div class="create-account display-flex justify-content-center align-items-center flex-direction-column gapRem2 paddingRem1">
+    <div class="createAcc-title">Sign Up</div>
+      <div class="createAcc-form-group display-flex flex-direction-column" [formGroup]="signUpForm">
+
+        <div class="form-group">
+          <div class="member-container display-flex align-items-center gapRem0-5">
+            <div class="category-title">I am</div>
+            <div class="member-div display-flex align-items-center">
+              <input
+                class="createAcc-member-input"
+                id="AdminMember"
+                type="radio"
+                value="Admin"
+                formControlName="member"
+                (input)="onInput($event)"
+              />
+              <div class="AdminMember">Admin</div>
+            </div>
+ 
+            <div class="member-div display-flex align-items-center">
+              <input
+                class="createAcc-member-input"
+                id="userMember"
+                type="radio"
+                value="User"
+                formControlName="member"
+                (input)="onInput($event)"
+              />
+              <div class="userMember">User</div>
+            </div>
+          </div>
+          <div *ngIf="signUpForm.get('member')?.touched && signUpForm.get('member')?.invalid">
+            <small class="error-text">Please select category.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="createAcc-input width100pc"
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Name"
+            (input)="onInput($event)"
+          />
+          <div *ngIf="signUpForm.get('name')?.touched && signUpForm.get('name')?.invalid">
+            <small class="error-text">Name is required.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="createAcc-input width100pc"
+            id="username"
+            type="text"
+            formControlName="username"
+            placeholder="Username"
+            (input)="onInput($event)"
+          />
+          <div *ngIf="signUpForm.get('username')?.touched && signUpForm.get('username')?.invalid">
+            <small class="error-text">Username is required.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="createAcc-input width100pc"
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+            (input)="onInput($event)"
+          />
+          <div *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid">
+            <small class="error-text">Valid email is required.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="createAcc-input width100pc"
+            id="number"
+            type="tel"
+            formControlName="number"
+            placeholder="Mobile Number"
+            (input)="onInput($event)"
+          />
+          <div *ngIf="signUpForm.get('number')?.touched && signUpForm.get('number')?.invalid">
+            <small class="error-text">Valid mobile number is required.</small>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <input
+            class="createAcc-input width100pc"
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+            (input)="onInput($event)"
+          />
+          <div *ngIf="signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid">
+            <small class="error-text"
+              style="cursor: pointer;"
+              (click)="showPswdValidation()">
+              <span class="pi pi-info-circle"></span>
+              Click to see password validation rules.
+            </small>
+            <p-dialog 
+              header="Password Validation Rules"
+              [modal]="true"
+              [(visible)]="pswdDetailsDialog">
+                <div>
+                  <ul>
+                    Password must contain:
+                    <li>At least one uppercase letter (A-Z).</li>
+                    <li>At least one lowercase letter (a-z).</li>
+                    <li>At least one special character from: <code>( &#64;, #, $, & )</code>.</li>
+                    <li>At least one numeric digit (0-9).</li>
+                    <li>A minimum length of 8 characters.</li>
+                  </ul>
+                </div>
+            </p-dialog>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="termAndCondi-container display-flex align-items-center gapRem0-5">
+            <input
+              class="createAcc-checkBox-input"
+              id="termCondi"
+              type="checkbox"
+              formControlName="terms"
+              (input)="onInput($event)"
+            />
+            <div class="term-condi-title">
+              I agree to ApnaaGhar T&C, Privacy & Cookies Policies.
+            </div>
+          </div>
+          <div *ngIf="signUpForm.get('terms')?.touched && signUpForm.get('terms')?.invalid">
+            <small class="error-text">Accept the terms and conditions.</small>
+          </div>
+          <small *ngIf="invalidform" class="error-text">
+            <span class="pi pi-times-circle"></span>
+            Invalid form something is missing.
+          </small>
+        </div>
+
+        <button type="submit" class="createAcc-btn width100pc" (click)="onCreateAccount()">Sign Up</button>
+      </div>
+      <div class="login" (click)="goToLogin()">Existing User?Login</div>
+  </div>
+</div>
