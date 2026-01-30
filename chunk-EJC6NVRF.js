@@ -1,0 +1,1 @@
+import{O as e}from"./chunk-265SXWIP.js";var n=class o{userLogin=!1;adminLogin=!1;user={};csrfToken="";constructor(){}static \u0275fac=function(r){return new(r||o)};static \u0275prov=e({token:o,factory:o.\u0275fac,providedIn:"root"})};export{n as a};
