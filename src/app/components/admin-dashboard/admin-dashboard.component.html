@@ -1,3 +1,222 @@
-<p>
-  admin-dashboard works!
-</p>
+<p-toast></p-toast>
+
+<p-toolbar class="dashboard-toolbar">
+  <div class="p-toolbar-group-left">
+    <h2 class="title">Admin Dashboard</h2>
+  </div>
+  <div class="p-toolbar-group-right">
+    <button pButton type="button" label="Add Property" icon="pi pi-plus" class="Add-property-btn" (click)="openAddPropertyDialog()"></button>
+  </div>
+</p-toolbar>
+
+<div class="dashboard container">
+  <section class="kpi-grid">
+    <ng-container *ngFor="let s of stats">
+      <p-card class="kpi-card">
+        <div class="kpi-content">
+          <i [class]="s.icon + ' kpi-icon'"></i>
+          <div class="kpi-values">
+            <div class="kpi-value">{{ s.value }}</div>
+            <div class="kpi-label">{{ s.label }}</div>
+          </div>
+        </div>
+        <div class="kpi-footer">Change: <span class="change">{{ s.change }}</span></div>
+      </p-card>
+    </ng-container>
+  </section>
+
+  <section class="main-grid">
+    <p-card header="Recent Properties" class="recent-card">
+      <p-table [value]="recentProperties" [rows]="5" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Title</th>
+            <th>City</th>
+            <th>Price (₹)</th>
+            <th>Status</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td>{{ row.title }}</td>
+            <td>{{ row.city }}</td>
+            <td>{{ row.price }}</td>
+            <td><p-badge [value]="row.status" [severity]="statusSeverity(row.status)"></p-badge></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+
+    <p-card header="Quick Actions" class="actions-card">
+      <div class="actions">
+        <button pButton type="button" label="Create Listing" icon="pi pi-plus" class="p-mb-2 p-button-outlined" (click)="openCreateListingDialog()"></button>
+        <button pButton type="button" label="Manage Users" icon="pi pi-users" class="p-mb-2 p-button-outlined" (click)="openManageUsersDialog()"></button>
+        <button pButton type="button" label="Reports" icon="pi pi-chart-line" class="p-mb-2 p-button-outlined" (click)="openReportsDialog()"></button>
+        <div class="progress-group">
+          <div class="progress-label">Site Health</div>
+          <p-progressBar [value]="78"></p-progressBar>
+        </div>
+      </div>
+    </p-card>
+  </section>
+</div>
+
+<!-- Add Property Dialog -->
+<p-dialog [(visible)]="addPropertyVisible" [header]="'Add New Property'" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true">
+  <form [formGroup]="propertyForm" class="dialog-form">
+    <div class="form-group">
+      <label>Title <span class="required">*</span></label>
+      <input pInputText formControlName="title" placeholder="Property title" class="width100pc" />
+      <small class="error-text" *ngIf="propertyForm.get('title')?.touched && propertyForm.get('title')?.invalid">Title is required</small>
+    </div>
+
+    <div class="form-group">
+      <label>Description <span class="required">*</span></label>
+      <textarea pInputTextarea formControlName="description" placeholder="Property description" rows="3" class="width100pc"></textarea>
+      <small class="error-text" *ngIf="propertyForm.get('description')?.touched && propertyForm.get('description')?.invalid">Description is required</small>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>City <span class="required">*</span></label>
+        <p-dropdown [options]="cities" formControlName="city" optionLabel="label" optionValue="value" placeholder="Select city" [showClear]="true" class="width100pc"></p-dropdown>
+        <small class="error-text" *ngIf="propertyForm.get('city')?.touched && propertyForm.get('city')?.invalid">City is required</small>
+      </div>
+
+      <div class="form-group">
+        <label>Property Type <span class="required">*</span></label>
+        <p-dropdown [options]="propertyTypes" formControlName="propertyType" optionLabel="label" optionValue="value" placeholder="Select type" [showClear]="true" class="width100pc"></p-dropdown>
+        <small class="error-text" *ngIf="propertyForm.get('propertyType')?.touched && propertyForm.get('propertyType')?.invalid">Property type is required</small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Price (₹) <span class="required">*</span></label>
+        <input pInputNumber formControlName="price" placeholder="0" mode="currency" currency="INR" class="width100pc" />
+        <small class="error-text" *ngIf="propertyForm.get('price')?.touched && propertyForm.get('price')?.invalid">Valid price is required</small>
+      </div>
+
+      <div class="form-group">
+        <label>Bedrooms <span class="required">*</span></label>
+        <input pInputNumber formControlName="bedrooms" placeholder="0" class="width100pc" />
+        <small class="error-text" *ngIf="propertyForm.get('bedrooms')?.touched && propertyForm.get('bedrooms')?.invalid">Bedrooms is required</small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Bathrooms <span class="required">*</span></label>
+        <input pInputNumber formControlName="bathrooms" placeholder="0" class="width100pc" />
+        <small class="error-text" *ngIf="propertyForm.get('bathrooms')?.touched && propertyForm.get('bathrooms')?.invalid">Bathrooms is required</small>
+      </div>
+
+      <div class="form-group">
+        <label>Area (sq ft) <span class="required">*</span></label>
+        <input pInputNumber formControlName="area" placeholder="0" class="width100pc" />
+        <small class="error-text" *ngIf="propertyForm.get('area')?.touched && propertyForm.get('area')?.invalid">Area is required</small>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancel" (click)="addPropertyVisible = false" class="p-button-text"></button>
+    <button pButton type="button" label="Add Property" (click)="submitAddProperty()" class="Add-property-btn"></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Create Listing Dialog -->
+<p-dialog [(visible)]="createListingVisible" [header]="'Create New Listing'" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true">
+  <form [formGroup]="listingForm" class="dialog-form">
+    <div class="form-group">
+      <label>Property ID <span class="required">*</span></label>
+      <input pInputText formControlName="propertyId" placeholder="Enter property ID" class="width100pc" />
+      <small class="error-text" *ngIf="listingForm.get('propertyId')?.touched && listingForm.get('propertyId')?.invalid">Property ID is required</small>
+    </div>
+
+    <div class="form-group">
+      <label>Listing Title <span class="required">*</span></label>
+      <input pInputText formControlName="listingTitle" placeholder="Listing title" class="width100pc" />
+      <small class="error-text" *ngIf="listingForm.get('listingTitle')?.touched && listingForm.get('listingTitle')?.invalid">Listing title is required</small>
+    </div>
+
+    <div class="form-group">
+      <label>Description <span class="required">*</span></label>
+      <textarea pInputTextarea formControlName="description" placeholder="Listing description" rows="3" class="width100pc"></textarea>
+      <small class="error-text" *ngIf="listingForm.get('description')?.touched && listingForm.get('description')?.invalid">Description is required</small>
+    </div>
+
+    <div class="form-group">
+      <label>Duration <span class="required">*</span></label>
+      <input pInputText formControlName="duration" placeholder="e.g., 30 days, 3 months" class="width100pc" />
+      <small class="error-text" *ngIf="listingForm.get('duration')?.touched && listingForm.get('duration')?.invalid">Duration is required</small>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancel" (click)="createListingVisible = false" class="p-button-text"></button>
+    <button pButton type="button" label="Create Listing" (click)="submitCreateListing()" class="Add-property-btn"></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Manage Users Dialog -->
+<p-dialog [(visible)]="manageUsersVisible" [header]="'Manage Users'" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true">
+  <div class="users-list">
+    <p-table [value]="allUsers" [rows]="10" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Join Date</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td><p-badge [value]="user.role"></p-badge></td>
+          <td>{{ user.joinDate }}</td>
+          <td>
+            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-info p-mr-2" pTooltip="Edit" tooltipPosition="top"></button>
+            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Delete" tooltipPosition="top"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Close" (click)="manageUsersVisible = false" class="p-button-text"></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Reports Dialog -->
+<p-dialog [(visible)]="reportsVisible" [header]="'Reports'" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true">
+  <div class="reports-section">
+    <div class="report-item">
+      <h3>Sales Report</h3>
+      <p>Download comprehensive sales and revenue reports</p>
+      <button pButton type="button" label="Download" icon="pi pi-download" (click)="downloadReport('Sales')" class="p-button-outlined"></button>
+    </div>
+
+    <div class="report-item">
+      <h3>Property Report</h3>
+      <p>Get detailed property listings and analytics</p>
+      <button pButton type="button" label="Download" icon="pi pi-download" (click)="downloadReport('Property')" class="p-button-outlined"></button>
+    </div>
+
+    <div class="report-item">
+      <h3>User Activity Report</h3>
+      <p>View user engagement and activity metrics</p>
+      <button pButton type="button" label="Download" icon="pi pi-download" (click)="downloadReport('User Activity')" class="p-button-outlined"></button>
+    </div>
+
+    <div class="report-item">
+      <h3>Performance Report</h3>
+      <p>Monitor system performance and health metrics</p>
+      <button pButton type="button" label="Download" icon="pi pi-download" (click)="downloadReport('Performance')" class="p-button-outlined"></button>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Close" (click)="reportsVisible = false" class="p-button-text"></button>
+  </ng-template>
+</p-dialog>
