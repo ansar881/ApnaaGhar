@@ -28,9 +28,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.loginFormBuilder();
-  }
-
-  ngAfterViewInit(){
     this.actRoute.queryParams.subscribe((params) => {
       if(params['action'] && params['action'] === 'login'){
         this.isloginPanel = true;
@@ -38,6 +35,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.isloginPanel = false;
       }
     });
+  }
+
+  ngAfterViewInit(){
   }
 
   loginFormBuilder(){
