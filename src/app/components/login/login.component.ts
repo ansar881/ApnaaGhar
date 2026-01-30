@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { allPrimeNGModules } from '../../services/primeNGShared';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   loginFormBuilder(){
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      username: ['Ansar', [Validators.required]],
+      password: ['Ansar@123', [Validators.required, this.passwordValidator]],
       member: ['User', [Validators.required]],
     });
   }
@@ -83,4 +83,37 @@ export class LoginComponent implements OnInit, AfterViewInit {
   showloginPage(e:boolean){
     this.isloginPanel = true;
   }
+
+  passwordValidator: ValidatorFn = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
+    const value = control.value;
+    if (!value) {
+      return null;
+    }
+
+    const errors: any = {};
+    
+    if (value.length < 8) {
+      errors.minLength = true;
+    }
+    
+    if (!/[A-Z]/.test(value)) {
+      errors.noUpperCase = true;
+    }
+    
+    if (!/[a-z]/.test(value)) {
+      errors.noLowerCase = true;
+    }
+    
+    if (!/[0-9]/.test(value)) {
+      errors.noNumber = true;
+    }
+    
+    if (!/[@#$&]/.test(value)) {
+      errors.noSpecialChar = true;
+    }
+
+    return Object.keys(errors).length > 0 ? errors : null;
+  };
 }

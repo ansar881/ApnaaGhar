@@ -65,7 +65,30 @@
             (input)="onInput($event)"
           />
           <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
-            <small class="error-text">Password is required.</small>
+            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('required')">
+              <span class="pi pi-times-circle"></span>
+              Password is required.
+            </small>
+            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('minLength')">
+              <span class="pi pi-times-circle"></span>
+              Password must be at least 8 characters long.
+            </small>
+            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noUpperCase')">
+              <span class="pi pi-times-circle"></span>
+              Password must contain at least one uppercase letter.
+            </small>
+            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noLowerCase')">
+              <span class="pi pi-times-circle"></span>
+              Password must contain at least one lowercase letter.
+            </small>
+            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noNumber')">
+              <span class="pi pi-times-circle"></span>
+              Password must contain at least one number.
+            </small>
+            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noSpecialChar')">
+              <span class="pi pi-times-circle"></span>
+              Password must contain at least one special character.
+            </small>
           </div>
           <small *ngIf="invalidUserPswd" class="error-text">
             <span class="pi pi-times-circle"></span>
