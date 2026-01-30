@@ -59,7 +59,7 @@ export class ShowAllComponent implements OnInit, AfterViewInit{
     let multiPropertiesData = JSON.parse(JSON.stringify(this.sharedDataService.multiPropertiesData));
     let imageData = JSON.parse(JSON.stringify(this.sharedDataService.imageList));
     let imageList = imageData.map((img:any)=>{
-      img['imageUrl'] = '../../../assets/images/'+img.imageUrl
+      img['imageUrl'] = 'assets/images/'+img.imageUrl
       return img
     });
     let multiPropData = multiPropertiesData.map((data: any)=>{

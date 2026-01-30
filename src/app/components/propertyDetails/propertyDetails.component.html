@@ -9,12 +9,12 @@
         [autoPlay]="true">
             <ng-template pTemplate="item" let-item>
               <div class="propDetails-img-div width100pc">
-                <img [src]="'../../../assets/images/'+item.imageUrl" class="propDetails-img height100pc width100pc"/>
+                <img [src]="'assets/images/'+item.imageUrl" class="propDetails-img height100pc width100pc"/>
               </div>
             </ng-template>
             <ng-template pTemplate="thumbnail" let-item>
                 <div class="propDetails-imgThum-div">
-                  <img [src]="'../../../assets/images/'+item.imageUrl" class="propDetails-imgThum height100pc width100pc"/>
+                  <img [src]="'assets/images/'+item.imageUrl" class="propDetails-imgThum height100pc width100pc"/>
                 </div>
             </ng-template>
     </p-galleria>

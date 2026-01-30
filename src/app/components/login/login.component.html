@@ -1,6 +1,7 @@
 <div class="login-comp display-flex justify-content-center paddingBLRem1">
   <div class="login-sec">
-    <div class="login-img-sec display-flex justify-content-center align-items-center">
+    <div class="login-img-sec display-flex justify-content-center align-items-center"
+    [style.background-image]="'url(assets/images/vecteezy-backgroundImg.jpg)'">
       <div class="welcm-txt">
         <span *ngIf="isloginPanel">Welcome Back</span>
         <span *ngIf="!isloginPanel">Sign Up</span>
