@@ -22,15 +22,60 @@
             </div>
             <div class="user-div">
                 <p-avatar 
-                icon="pi pi-user" 
-                styleClass="mr-2" 
-                [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }" 
-                shape="circle" 
-                (click)="avatarClick($event, loginPopup)"/>
-                <p-overlayPanel #loginPopup>
-                    <div class="loginPopup-container">
-                        <div class="icon-div login marginBRem0-5" (click)="goToLoginPage()"><span class="pi pi-sign-in"></span>&nbsp;Login</div>
-                        <div class="icon-div logout" (click)="logOut()"><span class="pi pi-power-off"></span>&nbsp;Log Out</div>
+                    icon="pi pi-user" 
+                    styleClass="mr-2" 
+                    [style]="{ 'background-color': 'var(--primaryColor)', color: '#fff' }" 
+                    shape="circle" 
+                    (click)="avatarClick($event, loginPopup)"/>
+                <p-overlayPanel #loginPopup [showCloseIcon]="true" [style]="{width: '320px'}">
+                    <div class="user-popup-container">
+                        <div *ngIf="isUserLoggedIn()" class="user-info-section">
+                            <div class="user-header">
+                                <p-avatar 
+                                    [label]="getUserInitials()" 
+                                    [style]="{ 'background-color': 'var(--primaryColor)', color: '#fff' }" 
+                                    shape="circle" 
+                                    size="xlarge"/>
+                                <div class="user-details">
+                                    <div class="user-name">{{ getUserName() }}</div>
+                                    <div class="user-email">{{ getUserEmail() }}</div>
+                                    <p-badge 
+                                        [value]="getUserRole()" 
+                                        [severity]="getRoleSeverity()"
+                                        class="user-role-badge"/>
+                                </div>
+                            </div>
+                            <div class="user-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Member Since</span>
+                                    <span class="stat-value">{{ getUserMemberSince() }}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Type</span>
+                                    <span class="stat-value">{{ getUserType() }}</span>
+                                </div>
+                            </div>
+                            <hr class="divider">
+                            <div class="user-actions">
+                                <button pButton type="button" label="View Profile" icon="pi pi-user" class="p-button-text w-full profile-btn" (click)="viewProfile()"></button>
+                                <button pButton type="button" label="My Listings" icon="pi pi-list" class="p-button-text w-full listings-btn" (click)="goToMyListings()"></button>
+                                <button pButton type="button" label="Settings" icon="pi pi-cog" class="p-button-text w-full settings-btn" (click)="goToSettings()"></button>
+                            </div>
+                            <hr class="divider">
+                            <button pButton type="button" label="Log Out" icon="pi pi-power-off" class="p-button-text w-full logout-btn" (click)="logOut()"></button>
+                        </div>
+                        
+                        <div *ngIf="!isUserLoggedIn()" class="not-logged-in-section">
+                            <div class="not-logged-icon">
+                                <i class="pi pi-user"></i>
+                            </div>
+                            <div class="not-logged-text">
+                                <p>Welcome to ApnaaGhar!</p>
+                                <small>Sign in to access your account and listings</small>
+                            </div>
+                            <button pButton type="button" label="Login" icon="pi pi-sign-in" class="p-button w-full login-btn" (click)="goToLoginPage()"></button>
+                            <button pButton type="button" label="Create Account" icon="pi pi-plus" class="p-button-outlined w-full signup-btn" (click)="goToSignUp()"></button>
+                        </div>
                     </div>
                 </p-overlayPanel>
             </div>

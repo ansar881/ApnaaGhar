@@ -32,7 +32,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(){
     this.actRoute.queryParams.subscribe((params) => {
-      // this.openWindowId = params['owid'];
+      if(params['action'] && params['action'] === 'login'){
+        this.isloginPanel = true;
+      }else if(params['action'] && params['action'] === 'signup'){
+        this.isloginPanel = false;
+      }
     });
   }
 

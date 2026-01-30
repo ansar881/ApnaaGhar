@@ -117,7 +117,10 @@ export class MainHeaderComponent implements OnInit {
   }
 
   goToLoginPage(){
-    this.router.navigate(['/login']);
+    this.router.navigate(
+      ['/login'],
+      { queryParams: { action: 'login' } }
+    );
   }
 
   megaMenuItemClick(category:string, cityName:any){
@@ -132,5 +135,65 @@ export class MainHeaderComponent implements OnInit {
     this.authService.adminLogin = false;
     this.authService.user = {};
     this.router.navigate(['/home']);
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.authService.userLogin;
+  }
+
+  getUserName(): string {
+    return this.authService.user?.username || 'Guest User';
+  }
+
+  getUserEmail(): string {
+    return this.authService.user?.email || 'not@specified.com';
+  }
+
+  getUserRole(): string {
+    return this.authService.user?.member || 'User';
+  }
+
+  getRoleSeverity(): 'danger' | 'info' | 'success' {
+    const role = this.getUserRole();
+    if (role === 'Admin') return 'danger';
+    if (role === 'Agent') return 'info';
+    return 'success';
+  }
+
+  getUserMemberSince(): string {
+    return new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+  }
+
+  getUserType(): string {
+    return this.authService.user?.member || 'User';
+  }
+
+  getUserInitials(): string {
+    const name = this.getUserName();
+    const initials = name
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase())
+      .join('')
+      .slice(0, 2);
+    return initials || 'GU';
+  }
+
+  viewProfile() {
+    // this.router.navigate(['/profile']);
+  }
+
+  goToMyListings() {
+    // this.router.navigate(['/myListings']);
+  }
+
+  goToSettings() {
+    // this.router.navigate(['/settings']);
+  }
+
+  goToSignUp() {
+    this.router.navigate(
+      [`/login`],
+      { queryParams: { action: 'signup' } }
+    );
   }
 }
