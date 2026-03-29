@@ -17,6 +17,7 @@ export class CreateAccountComponent implements OnInit {
   pswdDetailsDialog:boolean = false;
   openWindowId!:any;
   invalidform:boolean = false;
+  showPassword:boolean = false;
   @Output() showLogin:EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder, private router:Router, private actRoute:ActivatedRoute,) { }
@@ -58,6 +59,10 @@ export class CreateAccountComponent implements OnInit {
 
   onInput(e:any){
     this.invalidform = false;
+  }
+
+  togglePasswordVisibility(){
+    this.showPassword = !this.showPassword;
   }
 
   onCreateAccount(){

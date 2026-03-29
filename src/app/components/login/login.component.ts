@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   openWindowId!:any;
   invalidUserPswd:boolean = false;
   isloginPanel:boolean = true;
+  showPassword:boolean = false;
 
   constructor(private fb: FormBuilder, private router:Router, private actRoute:ActivatedRoute, private authService: AuthService,
     private serverService: ServerService
@@ -74,6 +75,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   onInput(e:any){
     this.invalidUserPswd = false;
+  }
+
+  togglePasswordVisibility(){
+    this.showPassword = !this.showPassword;
   }
 
   showPswdValidation(){

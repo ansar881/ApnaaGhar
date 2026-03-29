@@ -1,110 +1,172 @@
-<div class="login-comp display-flex justify-content-center paddingBLRem1">
-  <div class="login-sec">
-    <div class="login-img-sec display-flex justify-content-center align-items-center"
-    [style.background-image]="'url(assets/images/vecteezy-backgroundImg.jpg)'">
-      <div class="welcm-txt">
-        <span *ngIf="isloginPanel">Welcome Back</span>
-        <span *ngIf="!isloginPanel">Sign Up</span>
+<section class="login-shell">
+  <div class="login-card">
+    <div
+      class="login-hero"
+      [style.background-image]="'url(assets/images/vecteezy-backgroundImg.jpg)'"
+    >
+      <div class="login-hero__overlay"></div>
+      <div class="login-hero__content">
+        <div class="login-hero__brand">
+          <div class="login-hero__logo-frame">
+            <img
+              class="login-hero__logo"
+              src="assets/images/homeicon2.avif"
+              alt="ApnaaGhar logo"
+            />
+          </div>
+          <div class="login-hero__badge">ApnaaGhar</div>
+        </div>
+        <h1 class="login-hero__title">
+          <span *ngIf="isloginPanel">Welcome back</span>
+          <span *ngIf="!isloginPanel">Start your next chapter</span>
+        </h1>
+        <p class="login-hero__text">
+          <span *ngIf="isloginPanel">
+            Manage properties, track updates, and stay connected from one clean dashboard.
+          </span>
+          <span *ngIf="!isloginPanel">
+            Create your account to explore a faster and more personal housing experience.
+          </span>
+        </p>
+
+        <div class="login-hero__stats" *ngIf="isloginPanel">
+          <div class="hero-stat">
+            <strong>24/7</strong>
+            <span>Easy access</span>
+          </div>
+          <div class="hero-stat">
+            <strong>Smart</strong>
+            <span>Property workflow</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div *ngIf="isloginPanel" class="login-container display-flex justify-content-center align-items-center flex-direction-column gapRem2">
-      <div class="login-title">Login</div>
-      <div class="login-form-group display-flex flex-direction-column" [formGroup]="loginForm">
-        <div class="form-group">
-          <div class="member-container display-flex align-items-center gapRem0-5">
-            <div class="category-title">Are you ?</div>
-            <div class="member-div display-flex align-items-center">
-              <input
-                class="login-member-input"
-                id="AdminMember"
-                type="radio"
-                value="Admin"
-                formControlName="member"
-                (input)="onInput($event)"
-              />
-              <div class="AdminMember">Admin</div>
-            </div>
- 
-            <div class="member-div display-flex align-items-center">
-              <input
-                class="login-member-input"
-                id="userMember"
-                type="radio"
-                value="User"
-                formControlName="member"
-                (input)="onInput($event)"
-              />
-              <div class="userMember">User</div>
-            </div>
-          </div>
-          <div *ngIf="loginForm.get('member')?.touched && loginForm.get('member')?.invalid">
-            <small class="error-text">Please select category.</small>
-          </div>
+
+    <div class="login-panel" [class.login-panel--signup]="!isloginPanel">
+      <div *ngIf="isloginPanel" class="login-panel__content">
+        <div class="login-panel__header">
+          <div class="login-eyebrow">Secure access</div>
+          <h2 class="login-title">Sign in to your account</h2>
+          <p class="login-subtitle">
+            Choose your role and continue where you left off.
+          </p>
         </div>
 
-        <div class="form-group">
-          <input
-            class="login-input width100pc"
-            id="username"
-            type="text"
-            formControlName="username"
-            placeholder="Username, phone number or email"
-            (input)="onInput($event)"
-          />
-          <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">
-            <small class="error-text">Username is required.</small>
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="form-group">
+            <label class="form-label">Login as</label>
+            <div class="member-toggle">
+              <label class="member-option" [class.member-option--active]="loginForm.get('member')?.value === 'Admin'">
+                <input
+                  class="login-member-input"
+                  id="AdminMember"
+                  type="radio"
+                  value="Admin"
+                  formControlName="member"
+                  (input)="onInput($event)"
+                />
+                <span>Admin</span>
+              </label>
+
+              <label class="member-option" [class.member-option--active]="loginForm.get('member')?.value === 'User'">
+                <input
+                  class="login-member-input"
+                  id="userMember"
+                  type="radio"
+                  value="User"
+                  formControlName="member"
+                  (input)="onInput($event)"
+                />
+                <span>User</span>
+              </label>
+            </div>
+            <div *ngIf="loginForm.get('member')?.touched && loginForm.get('member')?.invalid">
+              <small class="error-text">Please select category.</small>
+            </div>
           </div>
-        </div>
-    
-        <div class="form-group">
-          <input
-            class="login-input width100pc"
-            id="password"
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-            (input)="onInput($event)"
-          />
-          <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
-            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('required')">
+
+          <div class="form-group">
+            <label class="form-label" for="username">Username or email</label>
+            <div class="input-wrap">
+              <span class="input-icon pi pi-user"></span>
+              <input
+                class="login-input"
+                id="username"
+                type="text"
+                formControlName="username"
+                placeholder="Username, phone number or email"
+                (input)="onInput($event)"
+              />
+            </div>
+            <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">
+              <small class="error-text">Username is required.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon pi pi-lock"></span>
+              <input
+                class="login-input login-input--password"
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="Enter your password"
+                (input)="onInput($event)"
+              />
+              <button
+                type="button"
+                class="password-toggle"
+                (click)="togglePasswordVisibility()"
+                [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+              >
+                <span class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'"></span>
+              </button>
+            </div>
+            <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+              <small class="error-text" *ngIf="loginForm.get('password')?.hasError('required')">
+                <span class="pi pi-times-circle"></span>
+                Password is required.
+              </small>
+              <small class="error-text" *ngIf="loginForm.get('password')?.hasError('minLength')">
+                <span class="pi pi-times-circle"></span>
+                Password must be at least 8 characters long.
+              </small>
+              <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noUpperCase')">
+                <span class="pi pi-times-circle"></span>
+                Password must contain at least one uppercase letter.
+              </small>
+              <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noLowerCase')">
+                <span class="pi pi-times-circle"></span>
+                Password must contain at least one lowercase letter.
+              </small>
+              <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noNumber')">
+                <span class="pi pi-times-circle"></span>
+                Password must contain at least one number.
+              </small>
+              <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noSpecialChar')">
+                <span class="pi pi-times-circle"></span>
+                Password must contain at least one special character.
+              </small>
+            </div>
+            <small *ngIf="invalidUserPswd" class="error-text">
               <span class="pi pi-times-circle"></span>
-              Password is required.
-            </small>
-            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('minLength')">
-              <span class="pi pi-times-circle"></span>
-              Password must be at least 8 characters long.
-            </small>
-            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noUpperCase')">
-              <span class="pi pi-times-circle"></span>
-              Password must contain at least one uppercase letter.
-            </small>
-            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noLowerCase')">
-              <span class="pi pi-times-circle"></span>
-              Password must contain at least one lowercase letter.
-            </small>
-            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noNumber')">
-              <span class="pi pi-times-circle"></span>
-              Password must contain at least one number.
-            </small>
-            <small class="error-text" *ngIf="loginForm.get('password')?.hasError('noSpecialChar')">
-              <span class="pi pi-times-circle"></span>
-              Password must contain at least one special character.
+              Invalid inputs please try again.
             </small>
           </div>
-          <small *ngIf="invalidUserPswd" class="error-text">
-            <span class="pi pi-times-circle"></span>
-            Invalid inputs please try again.
-          </small>
-        </div>
-    
-        <button type="submit" class="login-btn width100pc" (click)="onLogin()">Login</button>
+
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <button type="button" class="signup-link" (click)="createAccount()">
+          New to ApnaaGhar? Create an account
+        </button>
       </div>
-      <div class="sign-up" (click)="createAccount()">New to ApnaaGhar?Sign Up</div>
-    </div>
-    <div *ngIf="!isloginPanel" class="createAccount-container">
-      <app-create-account
-        (showLogin)="showloginPage($event)">
-      </app-create-account>
+
+      <div *ngIf="!isloginPanel" class="createAccount-container">
+        <app-create-account (showLogin)="showloginPage($event)"></app-create-account>
+      </div>
     </div>
   </div>
-</div>
+</section>
