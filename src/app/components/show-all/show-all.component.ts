@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { allPrimeNGModules } from '../../services/primeNGShared';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './show-all.component.html',
   styleUrls: ['./show-all.component.css'],
   standalone: true,
-  imports: [allPrimeNGModules, FormsModule],
+  imports: [CommonModule, allPrimeNGModules, FormsModule],
 })
 export class ShowAllComponent implements OnInit, AfterViewInit{
   filerBtns:any[] = [];
@@ -174,5 +175,9 @@ export class ShowAllComponent implements OnInit, AfterViewInit{
       [copiedArray[i], copiedArray[j]] = [copiedArray[j], copiedArray[i]];
     }
     return copiedArray;
+  }
+
+  getActiveFilterCount(): number {
+    return this.filerBtns.reduce((count, btn) => count + btn.badgeVal, 0);
   }
 }
