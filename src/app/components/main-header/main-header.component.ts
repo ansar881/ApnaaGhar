@@ -1,139 +1,160 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { allPrimeNGModules } from '../../services/primeNGShared';
 import { Router } from '@angular/router';
-import { SharedDataService } from '../../services/shared-data.service';
 import { Guid } from 'guid-typescript';
 import { AuthService } from '../../services/auth.service';
+import { allPrimeNGModules } from '../../services/primeNGShared';
+import { SharedDataService } from '../../services/shared-data.service';
+
+interface HeaderAction {
+  label: string;
+  icon: string;
+}
+
+interface NavigationSection {
+  label: string;
+  category: string;
+  icon: string;
+  description: string;
+  items?: any[][];
+}
 
 @Component({
   selector: 'app-main-header',
   standalone: true,
-  imports: [allPrimeNGModules],
+  imports: [CommonModule, allPrimeNGModules],
   templateUrl: './main-header.component.html',
   styleUrls: ['./main-header.component.css']
 })
 export class MainHeaderComponent implements OnInit {
-
-  headerItems: any[] | undefined;
+  headerItems: HeaderAction[] = [];
   items: any[] | undefined;
-  openWindowId:any;
+  navigationSections: NavigationSection[] = [];
+  featuredCities: string[] = [];
+  openWindowId: any;
+  mobileMenuVisible = false;
+  activeMobileSection = 'Buy';
 
-  constructor(private router: Router, private sharedDataService: SharedDataService, private authService: AuthService) { }
+  constructor(
+    private router: Router,
+    public sharedDataService: SharedDataService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.openWindowId = Guid.create();
-    
+
     this.headerItems = [
       { label: 'Home', icon: 'pi pi-home' }
-    ]
+    ];
 
-    let cityData = (this.sharedDataService.cityNames).map((data:any)=>{
-      data['label'] = data['city'];
-      return data
-    });
-    
-    this.items = [
+    const cityData = this.sharedDataService.cityNames.map((data: any) => ({
+      ...data,
+      label: data.city
+    }));
+
+    this.featuredCities = cityData.slice(0, 6).map(city => city.label);
+
+    this.navigationSections = [
       {
         label: 'Buy',
-        items: [
-          [
-            {
-              label: 'Buy in',
-              items: cityData.map(city => ({
-                ...city,
-                command: () => this.megaMenuItemClick('buy', city.label)
-              }))
-            }
-          ],
-        ]
+        category: 'buy',
+        icon: 'pi pi-building',
+        description: 'Ready-to-move homes and investment opportunities'
       },
       {
         label: 'Rent/Pg',
-        items: [
-          [
-            {
-              label: 'Rent/Pg in',
-              items: cityData.map(city => ({
-                ...city,
-                command: () => this.megaMenuItemClick('rent/pg', city.label)
-              }))
-            }
-          ]
-        ]
+        category: 'rent/pg',
+        icon: 'pi pi-key',
+        description: 'Flexible rentals, shared stays and city living'
       },
       {
         label: 'Projects',
-        items: [
-          [
-            {
-              label: 'Projects in',
-              items: cityData.map(city => ({
-                ...city,
-                command: () => this.megaMenuItemClick('projects', city.label)
-              }))
-            }
-          ]
-        ]
+        category: 'projects',
+        icon: 'pi pi-objects-column',
+        description: 'New launches from trusted builders'
       },
       {
         label: 'Commerical',
-        items: [
-          [
-            {
-              label: 'Commerical in',
-              items: cityData.map(city => ({
-                ...city,
-                command: () => this.megaMenuItemClick('commerical', city.label)
-              }))
-            }
-          ]
-        ]
+        category: 'commerical',
+        icon: 'pi pi-briefcase',
+        description: 'Offices, shops and workspace options'
       },
       {
         label: 'Dealers',
-        items: [
-          [
-            {
-              label: 'Dealers in',
-              items: cityData.map(city => ({
-                ...city,
-                command: () => this.megaMenuItemClick('dealers', city.label)
-              }))
-            }
-          ]
+        category: 'dealers',
+        icon: 'pi pi-users',
+        description: 'Verified property dealers across major cities'
+      }
+    ].map(section => ({
+      ...section,
+      items: [
+        [
+          {
+            label: `${section.label} in`,
+            items: cityData.map(city => ({
+              ...city,
+              command: () => this.megaMenuItemClick(section.category, city.label)
+            }))
+          }
         ]
-      },
-    ]
+      ]
+    }));
+
+    this.items = this.navigationSections.map(section => ({
+      label: section.label,
+      items: section.items
+    }));
   }
 
-  headerBtnClicked(option: any){
-    if(option.label === "Home"){
-      this.router.navigate(['/home']);
+  goHome() {
+    this.mobileMenuVisible = false;
+    this.router.navigate(['/home']);
+  }
+
+  headerBtnClicked(option: HeaderAction) {
+    if (option.label === 'Home') {
+      this.goHome();
     }
   }
 
-  avatarClick(e:any, loginPopup:any){
+  avatarClick(e: any, loginPopup: any) {
     loginPopup.toggle(e);
   }
 
-  goToLoginPage(){
+  toggleMobileMenu() {
+    this.mobileMenuVisible = !this.mobileMenuVisible;
+  }
+
+  selectMobileSection(sectionLabel: string) {
+    this.activeMobileSection = sectionLabel;
+  }
+
+  getActiveMobileSection(): NavigationSection | undefined {
+    return this.navigationSections.find(section => section.label === this.activeMobileSection);
+  }
+
+  goToLoginPage() {
+    this.mobileMenuVisible = false;
     this.router.navigate(
       ['/login'],
       { queryParams: { action: 'login' } }
     );
   }
 
-  megaMenuItemClick(category:string, cityName:any){
+  megaMenuItemClick(category: string, cityName: any) {
+    this.mobileMenuVisible = false;
     this.router.navigate(
       ['/showAll'],
-      { queryParams: { rfm:'headerMenu', category: category, searchValue: cityName, owid: this.openWindowId }}
+      { queryParams: { rfm: 'headerMenu', category: category, searchValue: cityName, owid: this.openWindowId } }
     );
   }
 
-  logOut(){
+  logOut() {
     this.authService.userLogin = false;
     this.authService.adminLogin = false;
     this.authService.user = {};
+    this.mobileMenuVisible = false;
     this.router.navigate(['/home']);
   }
 
@@ -191,8 +212,9 @@ export class MainHeaderComponent implements OnInit {
   }
 
   goToSignUp() {
+    this.mobileMenuVisible = false;
     this.router.navigate(
-      [`/login`],
+      ['/login'],
       { queryParams: { action: 'signup' } }
     );
   }
