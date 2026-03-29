@@ -12,58 +12,72 @@ import { SharedDataService } from '../../services/shared-data.service';
   styleUrls: ['./main-footer.component.css']
 })
 export class MainFooterComponent implements OnInit {
-  topCityPropertyData:any[] = [];
-  openWindowId:any;
+  topCityPropertyData: any[] = [];
+  cityHighlights: string[] = [];
+  socialLinks = [
+    { type: 'facebook', icon: 'pi pi-facebook', label: 'Facebook' },
+    { type: 'instagram', icon: 'pi pi-instagram', label: 'Instagram' },
+    { type: 'linkedin', icon: 'pi pi-linkedin', label: 'LinkedIn' },
+    { type: 'twitter', icon: 'pi pi-twitter', label: 'Twitter' },
+    { type: 'youtube', icon: 'pi pi-youtube', label: 'YouTube' }
+  ];
+  footerStats = [
+    { value: '15+', label: 'Cities covered' },
+    { value: '1K+', label: 'Listings explored' },
+    { value: '24/7', label: 'Search anytime' }
+  ];
+  openWindowId: any;
 
-  constructor(private router:Router, private sharedDataService: SharedDataService) { }
+  constructor(private router: Router, private sharedDataService: SharedDataService) {}
 
   ngOnInit() {
     this.openWindowId = Guid.create();
 
-    let cityNames = this.sharedDataService.cityNames;
-    
+    const cityNames = this.sharedDataService.cityNames;
+    this.cityHighlights = cityNames.slice(0, 6).map(city => city.city);
+
     this.topCityPropertyData = [
-      { title: 'Property for Sale', type: 'Real estate', category:'buy', city: cityNames },
-      { title: 'Flats for Sale', type: 'Flats', category:'buy', city: cityNames },
-      { title: 'Flats for Rent', type: 'Flats for Rent', category:'rent', city: cityNames },
-      { title: 'New Projects', type: 'New Projects', category:'projects', city: cityNames },
-    ]
+      { title: 'Property for Sale', type: 'Real estate', category: 'buy', city: cityNames.slice(0, 8) },
+      { title: 'Flats for Sale', type: 'Flats', category: 'buy', city: cityNames.slice(0, 8) },
+      { title: 'Flats for Rent', type: 'Flats for Rent', category: 'rent', city: cityNames.slice(0, 8) },
+      { title: 'New Projects', type: 'New Projects', category: 'projects', city: cityNames.slice(0, 8) }
+    ];
   }
 
-  showSelectedData(category:string, type:string, cityname:string){
+  showSelectedData(category: string, type: string, cityname: string) {
     this.router.navigate(['/showAll'],
-      {queryParams:{ rfm:'footer', category: category, type: type, cityname: cityname, owid: this.openWindowId }}
-    )
+      { queryParams: { rfm: 'footer', category: category, type: type, cityname: cityname, owid: this.openWindowId } }
+    );
   }
 
-  socialLinkClicked(linktype:string){
-    switch(linktype){
-      case 'facebook':{
+  socialLinkClicked(linktype: string) {
+    switch (linktype) {
+      case 'facebook': {
         window.open('https://www.facebook.com/the.ansarkhan3', '_blank');
         break;
       }
 
-      case 'instagram':{
+      case 'instagram': {
         window.open('https://www.instagram.com/the.ansar3', '_blank');
         break;
       }
 
-      case 'linkedin':{
+      case 'linkedin': {
         window.open('https://www.linkedin.com/in/ansar-khan-711973207', '_blank');
         break;
       }
 
-      case 'twitter':{
+      case 'twitter': {
         window.open('https://www.x.com/AnsarKhan881', '_blank');
         break;
       }
 
-      case 'youtube':{
+      case 'youtube': {
         window.open('https://www.youtube.com/@the.ansar3', '_blank');
         break;
       }
 
-      default:{
+      default: {
         console.error('Invalid link');
         break;
       }

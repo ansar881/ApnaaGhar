@@ -1,72 +1,101 @@
-<div class="footer-comp">
-  <div class="propertyCity-section display-flex justify-content-center paddingBLRem2">
-    <div class="propertyCity-div display-flex justify-content-space-between">
-      <div class="prop-type" *ngFor="let cities of topCityPropertyData">
-        <div class="city-title marginBRem0-3">{{cities.title}}</div>
-        <div class="cities marginBRem0-2" *ngFor="let cityname of cities.city">
-          <span class="pi pi-angle-right"></span>
-          <span (click)="showSelectedData(cities.category, cities.type, cityname.city)">{{cities.type}} in {{cityname.city}}</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<footer class="footer-shell">
+  <div class="footer-surface">
+    <section class="footer-hero">
+      <div class="footer-brand">
+        <span class="footer-kicker">ApnaaGhar</span>
+        <h2>Discover smarter property journeys with a cleaner, more connected platform.</h2>
+        <p>
+          Browse homes, rentals and projects across growing cities with a modern search experience built for clarity,
+          speed and confidence.
+        </p>
 
-  <div class="about-section display-flex justify-content-center">
-    <div class="about-div display-flex justify-content-space-between align-items-center paddingBLRem1">
-      <div class="about">
-        <div class="about-title marginBRem2">ABOUT US</div>
-        <div class="about-details">
-          ApnaaGhar is India's largest Integrated real estate marketplace,
-          with category leadership presence across multiple touchpoints of consumer home ownership journey.
-          With Urbanisation and rising disposable incomes as the core theme,
-          ApnaaGhar, with 8mn+ monthly traffic and ~USD 5bn+ GTV,
-          is the largest and asset light proxy play to the growing residential demand story of India.
-          One of the few Indian start ups to taste global success with presence in 100+ cities across 9 countries,
-          ApnaaGhar is at the forefront of tech adoption in the sector, with multiple patents across VR/AI domains.
+        <div class="footer-city-strip">
+          <button
+            *ngFor="let city of cityHighlights"
+            type="button"
+            class="footer-city-chip"
+            (click)="showSelectedData('buy', 'Real estate', city)">
+            {{ city }}
+          </button>
         </div>
       </div>
-      <div class="contact">
-        <div class="contact-title marginBRem2">CONTACT US</div>
-        <div class="email-sec marginBRem1">
-          <div class="email-title">Email us at</div>
-          <div class="email">anoansarkhan&#64;gmail.com</div>
-        </div>
-        <div class="num-sec">
-          <div class="num-title">Call us at</div>
-          <div class="num">+91 9861062015</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="social-media-section display-flex justify-content-center">
-    <div class="social-media">
-      <div class="social-media-div display-flex justify-content-space-between align-items-center paddingBLRem0-6 paddingILRem0-5">
-        <div class="follow">Follow on</div>
-        <div class="follow-icons display-flex align-items-center gapRem1">
-          <div class="icon-div facebook" (click)="socialLinkClicked('facebook')"><span class="pi pi-facebook"></span></div>
-          <div class="icon-div instagram" (click)="socialLinkClicked('instagram')"><span class="pi pi-instagram"></span></div>
-          <div class="icon-div linkedin" (click)="socialLinkClicked('linkedin')"><span class="pi pi-linkedin"></span></div>
-          <div class="icon-div twitter" (click)="socialLinkClicked('twitter')"><span class="pi pi-twitter"></span></div>
-          <div class="icon-div youtube" (click)="socialLinkClicked('youtube')"><span class="pi pi-youtube"></span></div>
-          <div class="icon-div pinterest" (click)="socialLinkClicked('pinterest')"><span class="pi pi-pinterest"></span></div>
+      <div class="footer-stat-grid">
+        <div *ngFor="let stat of footerStats" class="footer-stat-card">
+          <span class="footer-stat-value">{{ stat.value }}</span>
+          <span class="footer-stat-label">{{ stat.label }}</span>
         </div>
       </div>
-      <div class="disclamer-div paddingBLRem0-5">
+    </section>
+
+    <section class="footer-links-section">
+      <div class="footer-link-card" *ngFor="let cities of topCityPropertyData">
+        <div class="footer-link-title">{{ cities.title }}</div>
+        <div class="footer-link-list">
+          <button
+            *ngFor="let cityname of cities.city"
+            type="button"
+            class="footer-link-item"
+            (click)="showSelectedData(cities.category, cities.type, cityname.city)">
+            <span class="pi pi-angle-right"></span>
+            <span>{{ cities.type }} in {{ cityname.city }}</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-info-section">
+      <div class="footer-about-card">
+        <span class="footer-section-tag">About us</span>
+        <h3>Built as a personal property platform concept with a focus on modern browsing experiences.</h3>
+        <p>
+          ApnaaGhar is a personal project created independently to explore a more attractive and accessible real estate
+          experience. It is designed around cleaner discovery, clearer navigation and responsive layouts across devices.
+        </p>
+        <p>
+          The platform highlights search, browsing and property presentation patterns for homes, rentals and projects
+          without representing any business affiliation.
+        </p>
+      </div>
+
+      <div class="footer-contact-card">
+        <span class="footer-section-tag">Contact</span>
+        <div class="contact-block">
+          <span class="contact-label">Email us</span>
+          <span class="contact-value">anoansarkhan&#64;gmail.com</span>
+        </div>
+        <div class="contact-block">
+          <span class="contact-label">Call us</span>
+          <span class="contact-value">+91 9861062015</span>
+        </div>
+
+        <div class="footer-social-row">
+          <button
+            *ngFor="let social of socialLinks"
+            type="button"
+            class="footer-social-btn"
+            [attr.aria-label]="social.label"
+            (click)="socialLinkClicked(social.type)">
+            <span [class]="social.icon"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-disclaimer-section">
+      <div class="footer-disclaimer">
         Disclaimer: ApnaaGhar Realty Services Limited is only an intermediary offering its platform to advertise
         properties of Seller for a Customer/Buyer/User coming on its Website and is not and cannot be a party to or privy
-        to or control in any manner any transactions between the Seller and the Customer/Buyer/User. All the offers and
-        discounts on this Website have been extended by various Builder(s)/Developer(s) who have advertised their
-        products. ApnaaGhar is only communicating the offers and not selling or rendering any of those products or
-        services. It neither warrants nor is it making any representations with respect to offer(s) made on the site.
-        ApnaaGhar Realty Services Limited shall neither be responsible nor liable to mediate or resolve any disputes or
-        disagreements between the Customer/Buyer/User and the Seller and both Seller and Customer/Buyer/User shall settle
-        all such disputes without involving ApnaaGhar Realty Services Limited in any manner.
+        to or control in any manner any transactions between the Seller and the Customer/Buyer/User. All offers and
+        discounts displayed are communicated listings only.
       </div>
+    </section>
+  </div>
+
+  <div class="footer-bottom-bar">
+    <div class="footer-bottom-content">
+      <span>Copyright &copy; 2007-2026. All rights reserved.</span>
+      <span>Developed by <span class="developerName">Ansar Khan</span></span>
     </div>
   </div>
-  <div class="copyRight-div">
-    <div style="font-size: 0.85rem;">Copyright &copy; 2007-2026. All rights reserved. Developed by <span
-      class="developerName">Ansar Khan</span>❤️</div>
-  </div>
-</div>
+</footer>
