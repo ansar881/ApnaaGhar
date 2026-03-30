@@ -461,10 +461,51 @@
 .cardContactsec {
     justify-content: space-between;
     flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    align-items: stretch;
+    gap: 0.85rem;
 }
 
 ::ng-deep .cardContactsec .p-button {
-    padding: 0.62rem 0.9rem;
+    min-width: 9rem;
+    padding: 0.88rem 1.1rem;
+    border-radius: 999px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primaryColor) 0%, #0ea5e9 100%);
+    border: 1px solid rgba(1, 125, 224, 0.14);
+    color: #ffffff;
+    box-shadow: 0 14px 28px rgba(1, 125, 224, 0.18);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+::ng-deep .cardContactsec .p-button:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 20px 38px rgba(1, 125, 224, 0.26);
+    filter: brightness(1.08);
+}
+
+::ng-deep .cardContactsec .p-button:focus-visible {
+    box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.28), 0 20px 38px rgba(1, 125, 224, 0.26);
+}
+
+::ng-deep .cardContactsec .p-button .p-button-icon {
+    font-size: 0.92rem;
+}
+
+::ng-deep .cardContactsec .p-button .p-button-icon-left {
+    margin-right: 0.42rem;
+}
+
+::ng-deep .cardContactsec .p-button .p-button-label {
+    font-weight: 700;
+}
+
+::ng-deep .cardContactsec .whatsapp-pBtn .p-button,
+::ng-deep .cardContactsec .details-pBtn .p-button {
+    background: linear-gradient(135deg, var(--primaryColor) 0%, #0ea5e9 100%);
+    border: 1px solid rgba(1, 125, 224, 0.14);
+    color: #ffffff;
 }
 
 ::ng-deep .filter-overlay-panel {
@@ -574,6 +615,16 @@
 
     .cardContactsec > * {
         width: 100%;
+    }
+
+    .cardContactsec {
+        grid-template-columns: 1fr;
+    }
+
+    ::ng-deep .cardContactsec .p-button {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
     }
 }
 
