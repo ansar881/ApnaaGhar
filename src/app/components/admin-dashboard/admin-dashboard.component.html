@@ -1,78 +1,128 @@
 <p-toast></p-toast>
 
-<p-toolbar class="dashboard-toolbar">
-  <div class="p-toolbar-group-left">
-    <h2 class="title">Admin Dashboard</h2>
-  </div>
-  <div class="p-toolbar-group-right">
-    <button pButton type="button" label="Add Property" icon="pi pi-plus" class="Add-property-btn" (click)="openAddPropertyDialog()"></button>
-  </div>
-</p-toolbar>
-
-<div class="dashboard container">
-  <section class="kpi-grid">
-    <ng-container *ngFor="let s of stats">
-      <p-card class="kpi-card">
-        <div class="kpi-content">
-          <i [class]="s.icon + ' kpi-icon'"></i>
-          <div class="kpi-values">
-            <div class="kpi-value">{{ s.value }}</div>
-            <div class="kpi-label">{{ s.label }}</div>
+<div class="admin-dashboard-page">
+  <section class="admin-hero">
+    <div class="admin-hero-shell">
+      <p-toolbar class="dashboard-toolbar">
+        <div class="p-toolbar-group-left">
+          <div class="hero-copy">
+            <span class="hero-kicker">Control Center</span>
+            <h1 class="title">Admin Dashboard</h1>
+            <p>Monitor listings, users, reports and platform health from one modern responsive workspace.</p>
           </div>
         </div>
-        <div class="kpi-footer">Change: <span class="change">{{ s.change }}</span></div>
-      </p-card>
-    </ng-container>
-  </section>
+        <div class="p-toolbar-group-right">
+          <button pButton type="button" label="Add Property" icon="pi pi-plus" class="Add-property-btn" (click)="openAddPropertyDialog()"></button>
+        </div>
+      </p-toolbar>
 
-  <section class="main-grid">
-    <p-card header="Recent Properties" class="recent-card">
-      <p-table [value]="recentProperties" [rows]="5" responsiveLayout="scroll">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Title</th>
-            <th>City</th>
-            <th>Price (₹)</th>
-            <th>Status</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-row>
-          <tr>
-            <td>{{ row.title }}</td>
-            <td>{{ row.city }}</td>
-            <td>{{ row.price }}</td>
-            <td><p-badge [value]="row.status" [severity]="statusSeverity(row.status)"></p-badge></td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </p-card>
-
-    <p-card header="Quick Actions" class="actions-card">
-      <div class="actions">
-        <button pButton type="button" label="Create Listing" icon="pi pi-plus" class="p-mb-2 p-button-outlined" (click)="openCreateListingDialog()"></button>
-        <button pButton type="button" label="Manage Users" icon="pi pi-users" class="p-mb-2 p-button-outlined" (click)="openManageUsersDialog()"></button>
-        <button pButton type="button" label="Reports" icon="pi pi-chart-line" class="p-mb-2 p-button-outlined" (click)="openReportsDialog()"></button>
-        <div class="progress-group">
-          <div class="progress-label">Site Health</div>
-          <p-progressBar [value]="78"></p-progressBar>
+      <div class="hero-meta">
+        <div class="hero-meta-card">
+          <span class="hero-meta-value">{{ recentProperties.length }}</span>
+          <span class="hero-meta-label">Recent properties</span>
+        </div>
+        <div class="hero-meta-card">
+          <span class="hero-meta-value">{{ allUsers.length }}</span>
+          <span class="hero-meta-label">Managed users</span>
+        </div>
+        <div class="hero-meta-card">
+          <span class="hero-meta-value">78%</span>
+          <span class="hero-meta-label">Site health</span>
         </div>
       </div>
-    </p-card>
+    </div>
   </section>
+
+  <div class="dashboard container">
+    <section class="kpi-grid">
+      <ng-container *ngFor="let s of stats">
+        <p-card class="kpi-card">
+          <div class="kpi-content">
+            <div class="kpi-icon-wrap">
+              <i [class]="s.icon + ' kpi-icon'"></i>
+            </div>
+            <div class="kpi-values">
+              <div class="kpi-value">{{ s.value }}</div>
+              <div class="kpi-label">{{ s.label }}</div>
+            </div>
+          </div>
+          <div class="kpi-footer">Change: <span class="change">{{ s.change }}</span></div>
+        </p-card>
+      </ng-container>
+    </section>
+
+    <section class="main-grid">
+      <p-card class="recent-card">
+        <div class="panel-head">
+          <div>
+            <span class="panel-kicker">Overview</span>
+            <h2>Recent Properties</h2>
+          </div>
+          <span class="panel-note">Latest inventory snapshot</span>
+        </div>
+
+        <p-table [value]="recentProperties" [rows]="5" responsiveLayout="scroll">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Title</th>
+              <th>City</th>
+              <th>Price (Rs)</th>
+              <th>Status</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-row>
+            <tr>
+              <td>{{ row.title }}</td>
+              <td>{{ row.city }}</td>
+              <td>{{ row.price }}</td>
+              <td><p-badge [value]="row.status" [severity]="statusSeverity(row.status)"></p-badge></td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-card>
+
+      <p-card class="actions-card">
+        <div class="panel-head">
+          <div>
+            <span class="panel-kicker">Operations</span>
+            <h2>Quick Actions</h2>
+          </div>
+          <span class="panel-note">Manage daily admin tasks</span>
+        </div>
+
+        <div class="actions">
+          <button pButton type="button" label="Create Listing" icon="pi pi-plus" class="quick-action-btn p-button-outlined" (click)="openCreateListingDialog()"></button>
+          <button pButton type="button" label="Manage Users" icon="pi pi-users" class="quick-action-btn p-button-outlined" (click)="openManageUsersDialog()"></button>
+          <button pButton type="button" label="Reports" icon="pi pi-chart-line" class="quick-action-btn p-button-outlined" (click)="openReportsDialog()"></button>
+          <div class="progress-group">
+            <div class="progress-label-row">
+              <span class="progress-label">Site Health</span>
+              <span class="progress-value">78%</span>
+            </div>
+            <p-progressBar [value]="78"></p-progressBar>
+          </div>
+        </div>
+      </p-card>
+    </section>
+  </div>
 </div>
 
-<!-- Add Property Dialog -->
-<p-dialog [(visible)]="addPropertyVisible" [header]="'Add New Property'" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true">
-  <form [formGroup]="propertyForm" class="dialog-form">
-    <div class="form-group">
+<p-dialog [(visible)]="addPropertyVisible" [header]="'Add New Property'" [modal]="true" [style]="{width: '92vw', maxWidth: '860px'}" [breakpoints]="{ '960px': '94vw', '640px': '98vw' }">
+  <div class="dialog-intro">
+    <span class="dialog-intro-kicker">Property Intake</span>
+    <p>Add the essential property information below to publish a polished new inventory record.</p>
+  </div>
+
+  <form [formGroup]="propertyForm" class="dialog-form dialog-form-surface">
+    <div class="form-group form-group-full">
       <label>Title <span class="required">*</span></label>
-      <input pInputText formControlName="title" placeholder="Property title" class="width100pc" />
+      <input pInputText formControlName="title" placeholder="Enter property title" class="width100pc" />
       <small class="error-text" *ngIf="propertyForm.get('title')?.touched && propertyForm.get('title')?.invalid">Title is required</small>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-group-full">
       <label>Description <span class="required">*</span></label>
-      <textarea pInputTextarea formControlName="description" placeholder="Property description" rows="3" class="width100pc"></textarea>
+      <textarea pInputTextarea formControlName="description" placeholder="Write a short property summary" rows="4" class="width100pc"></textarea>
       <small class="error-text" *ngIf="propertyForm.get('description')?.touched && propertyForm.get('description')?.invalid">Description is required</small>
     </div>
 
@@ -85,36 +135,36 @@
 
       <div class="form-group">
         <label>Property Type <span class="required">*</span></label>
-        <p-dropdown [options]="propertyTypes" formControlName="propertyType" optionLabel="label" optionValue="value" placeholder="Select type" [showClear]="true" class="width100pc"></p-dropdown>
+        <p-dropdown [options]="propertyTypes" formControlName="propertyType" optionLabel="label" optionValue="value" placeholder="Select property type" [showClear]="true" class="width100pc"></p-dropdown>
         <small class="error-text" *ngIf="propertyForm.get('propertyType')?.touched && propertyForm.get('propertyType')?.invalid">Property type is required</small>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <label>Price (₹) <span class="required">*</span></label>
-        <input pInputNumber formControlName="price" placeholder="0" mode="currency" currency="INR" class="width100pc" />
+        <label>Price (Rs) <span class="required">*</span></label>
+        <input pInputNumber formControlName="price" placeholder="Enter expected price" mode="currency" currency="INR" class="width100pc" />
         <small class="error-text" *ngIf="propertyForm.get('price')?.touched && propertyForm.get('price')?.invalid">Valid price is required</small>
       </div>
 
       <div class="form-group">
-        <label>Bedrooms <span class="required">*</span></label>
-        <input pInputNumber formControlName="bedrooms" placeholder="0" class="width100pc" />
-        <small class="error-text" *ngIf="propertyForm.get('bedrooms')?.touched && propertyForm.get('bedrooms')?.invalid">Bedrooms is required</small>
+        <label>Area (sq ft) <span class="required">*</span></label>
+        <input pInputNumber formControlName="area" placeholder="Enter built-up area" class="width100pc" />
+        <small class="error-text" *ngIf="propertyForm.get('area')?.touched && propertyForm.get('area')?.invalid">Area is required</small>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <label>Bathrooms <span class="required">*</span></label>
-        <input pInputNumber formControlName="bathrooms" placeholder="0" class="width100pc" />
-        <small class="error-text" *ngIf="propertyForm.get('bathrooms')?.touched && propertyForm.get('bathrooms')?.invalid">Bathrooms is required</small>
+        <label>Bedrooms <span class="required">*</span></label>
+        <input pInputNumber formControlName="bedrooms" placeholder="Bedrooms count" class="width100pc" />
+        <small class="error-text" *ngIf="propertyForm.get('bedrooms')?.touched && propertyForm.get('bedrooms')?.invalid">Bedrooms is required</small>
       </div>
 
       <div class="form-group">
-        <label>Area (sq ft) <span class="required">*</span></label>
-        <input pInputNumber formControlName="area" placeholder="0" class="width100pc" />
-        <small class="error-text" *ngIf="propertyForm.get('area')?.touched && propertyForm.get('area')?.invalid">Area is required</small>
+        <label>Bathrooms <span class="required">*</span></label>
+        <input pInputNumber formControlName="bathrooms" placeholder="Bathrooms count" class="width100pc" />
+        <small class="error-text" *ngIf="propertyForm.get('bathrooms')?.touched && propertyForm.get('bathrooms')?.invalid">Bathrooms is required</small>
       </div>
     </div>
   </form>
@@ -124,8 +174,7 @@
   </ng-template>
 </p-dialog>
 
-<!-- Create Listing Dialog -->
-<p-dialog [(visible)]="createListingVisible" [header]="'Create New Listing'" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true">
+<p-dialog [(visible)]="createListingVisible" [header]="'Create New Listing'" [modal]="true" [style]="{width: '92vw', maxWidth: '780px'}" [breakpoints]="{ '960px': '94vw', '640px': '98vw' }">
   <form [formGroup]="listingForm" class="dialog-form">
     <div class="form-group">
       <label>Property ID <span class="required">*</span></label>
@@ -157,8 +206,7 @@
   </ng-template>
 </p-dialog>
 
-<!-- Manage Users Dialog -->
-<p-dialog [(visible)]="manageUsersVisible" [header]="'Manage Users'" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true">
+<p-dialog [(visible)]="manageUsersVisible" [header]="'Manage Users'" [modal]="true" [style]="{width: '92vw', maxWidth: '980px'}" [breakpoints]="{ '960px': '94vw', '640px': '98vw' }">
   <div class="users-list">
     <p-table [value]="allUsers" [rows]="10" responsiveLayout="scroll">
       <ng-template pTemplate="header">
@@ -189,8 +237,7 @@
   </ng-template>
 </p-dialog>
 
-<!-- Reports Dialog -->
-<p-dialog [(visible)]="reportsVisible" [header]="'Reports'" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true">
+<p-dialog [(visible)]="reportsVisible" [header]="'Reports'" [modal]="true" [style]="{width: '92vw', maxWidth: '860px'}" [breakpoints]="{ '960px': '94vw', '640px': '98vw' }">
   <div class="reports-section">
     <div class="report-item">
       <h3>Sales Report</h3>
