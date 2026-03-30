@@ -380,6 +380,342 @@
     color: #ffffff;
 }
 
+::ng-deep .property-action-dialog {
+    border-radius: 1.8rem;
+    overflow: hidden;
+    box-shadow: 0 28px 60px rgba(15, 23, 42, 0.2);
+    max-height: calc(100vh - 2rem);
+}
+
+::ng-deep .property-action-dialog .p-dialog-header {
+    padding: 0;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+::ng-deep .property-action-dialog .p-dialog-content {
+    padding: 0;
+    overflow-y: auto;
+    max-height: calc(100vh - 7rem);
+}
+
+::ng-deep .property-action-dialog .p-dialog-header-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+}
+
+.action-dialog-header {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2rem 2rem 1.35rem;
+    background:
+        linear-gradient(120deg, rgba(15, 23, 42, 0.94) 0%, rgba(30, 41, 59, 0.88) 58%, rgba(1, 125, 224, 0.85) 100%);
+    color: #ffffff;
+}
+
+.action-dialog-kicker,
+.action-card-tag {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.45rem 0.78rem;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.action-dialog-kicker {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #e0f2fe;
+}
+
+.action-dialog-header h2 {
+    margin: 0.95rem 0 0.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    line-height: 1.08;
+}
+
+.action-dialog-header p {
+    margin: 0;
+    color: rgba(226, 232, 240, 0.92);
+}
+
+.action-dialog-shell {
+    background:
+        radial-gradient(circle at top right, rgba(1, 125, 224, 0.12), transparent 22%),
+        linear-gradient(180deg, #f8fbff 0%, #eef6ff 32%, #ffffff 100%);
+    padding: 1.35rem 2rem 2rem;
+    box-sizing: border-box;
+}
+
+.action-dialog-hero,
+.action-panel-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.action-dialog-hero {
+    grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 0.85fr);
+    align-items: stretch;
+}
+
+.action-dialog-copy,
+.action-highlight-panel,
+.action-card,
+.phone-card {
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 24px 40px rgba(15, 23, 42, 0.08);
+}
+
+.action-dialog-copy,
+.action-highlight-panel,
+.action-card,
+.phone-card {
+    padding: 1.2rem;
+    border-radius: 1.35rem;
+}
+
+.action-price-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    color: var(--primaryColor);
+    font-size: 1.55rem;
+    font-weight: 700;
+}
+
+.action-dialog-summary {
+    margin: 0.9rem 0 0;
+    color: #475569;
+    line-height: 1.7;
+}
+
+.action-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.1rem;
+}
+
+.action-badge {
+    display: inline-flex;
+    padding: 0.65rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(1, 125, 224, 0.08);
+    color: #0f172a;
+    font-weight: 700;
+    border: 1px solid rgba(1, 125, 224, 0.1);
+}
+
+.action-highlight-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.45rem;
+    background: linear-gradient(180deg, #0f172a 0%, #1e3a5f 100%);
+    color: #ffffff;
+}
+
+.action-highlight-label,
+.phone-card-role {
+    color: #bae6fd;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.74rem;
+    font-weight: 700;
+}
+
+.action-highlight-panel strong {
+    font-size: 1.35rem;
+}
+
+.action-highlight-panel p {
+    margin: 0;
+    color: rgba(226, 232, 240, 0.88);
+    line-height: 1.6;
+}
+
+.action-panel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 1rem;
+}
+
+.action-card-tag {
+    background: rgba(1, 125, 224, 0.08);
+    border: 1px solid rgba(1, 125, 224, 0.12);
+    color: var(--primaryColor);
+}
+
+.action-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: 1rem;
+}
+
+.action-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.action-field label {
+    color: #64748b;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+}
+
+.action-field-full {
+    grid-column: 1 / -1;
+}
+
+::ng-deep .action-field .p-inputtext,
+::ng-deep .action-field .p-inputtextarea {
+    width: 100%;
+    border-radius: 1rem;
+    border-color: rgba(148, 163, 184, 0.18);
+    background: #f8fafc;
+    box-shadow: none;
+}
+
+.action-note-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.action-note-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.95rem;
+    border-radius: 1rem;
+    background: #ffffff;
+    border-left: 4px solid var(--primaryColor);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.12);
+}
+
+.action-note-index {
+    color: var(--primaryColor);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.action-note-item p {
+    margin: 0;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.action-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.15rem;
+}
+
+::ng-deep .action-dialog-footer .p-button {
+    min-width: 11rem;
+    padding: 0.9rem 1.15rem;
+    border-radius: 999px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primaryColor) 0%, #0ea5e9 100%);
+    border: 1px solid rgba(1, 125, 224, 0.14);
+    color: #ffffff;
+    box-shadow: 0 14px 28px rgba(1, 125, 224, 0.18);
+}
+
+.phone-card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.phone-avatar {
+    width: 3.35rem;
+    height: 3.35rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primaryColor) 0%, #0ea5e9 100%);
+    color: #ffffff;
+    font-size: 1.3rem;
+    box-shadow: 0 16px 32px rgba(1, 125, 224, 0.22);
+}
+
+.phone-card-copy h3 {
+    margin: 0.25rem 0 0.2rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.35rem;
+    color: #0f172a;
+}
+
+.phone-card-copy p {
+    margin: 0;
+    color: #64748b;
+}
+
+.phone-number-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.15rem;
+    padding: 0.95rem 1rem;
+    border-radius: 1rem;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.phone-stat-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.phone-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.9rem;
+    border-radius: 1rem;
+    background: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.phone-stat span {
+    color: #64748b;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+}
+
+.phone-stat strong {
+    color: #0f172a;
+}
+
 @media (max-width: 1100px) {
     .property-main-grid {
         grid-template-columns: 1fr;
@@ -389,6 +725,11 @@
     .property-gallery-card,
     .property-summary-card {
         min-height: auto;
+    }
+
+    .action-dialog-hero,
+    .action-panel-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -424,6 +765,35 @@
 
     .propDetails-img {
         height: 21rem;
+    }
+
+    ::ng-deep .property-action-dialog {
+        border-radius: 1.25rem;
+    }
+
+    .action-dialog-header {
+        padding: 1.35rem 1.25rem 1rem;
+    }
+
+    .action-dialog-shell {
+        padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .action-dialog-header h2 {
+        font-size: 1.55rem;
+    }
+
+    .action-dialog-copy,
+    .action-highlight-panel,
+    .action-card,
+    .phone-card {
+        padding: 1rem;
+        border-radius: 1.15rem;
+    }
+
+    .action-form-grid,
+    .phone-stat-row {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -468,5 +838,68 @@
         width: 100%;
         min-width: 0;
         justify-content: center;
+    }
+
+    ::ng-deep .property-action-dialog {
+        border-radius: 1rem;
+        max-height: calc(100vh - 1rem);
+    }
+
+    ::ng-deep .property-action-dialog .p-dialog-header-icon {
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    ::ng-deep .property-action-dialog .p-dialog-content {
+        max-height: calc(100vh - 5rem);
+    }
+
+    .action-dialog-header {
+        padding: 1rem 0.95rem 0.9rem;
+    }
+
+    .action-dialog-shell {
+        padding: 0.9rem 0.95rem 1rem;
+    }
+
+    .action-dialog-header h2 {
+        font-size: 1.28rem;
+        line-height: 1.15;
+    }
+
+    .action-dialog-header p,
+    .action-dialog-summary,
+    .action-note-item p,
+    .action-highlight-panel p,
+    .phone-card-copy p {
+        font-size: 0.92rem;
+    }
+
+    .action-badge-row {
+        gap: 0.5rem;
+    }
+
+    .action-badge {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .action-note-item {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+    }
+
+    .action-dialog-footer {
+        justify-content: stretch;
+    }
+
+    ::ng-deep .action-dialog-footer .p-button {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+    }
+
+    .phone-card-top {
+        align-items: flex-start;
     }
 }

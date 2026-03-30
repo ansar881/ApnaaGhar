@@ -15,6 +15,13 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   propertyId:any;
   routerFrom:any;
   propertyData:any = {};
+  showContactDialog = false;
+  showPhoneDialog = false;
+  contactFormData = {
+    fullName: '',
+    phone: '',
+    message: ''
+  };
 
 
   constructor(private sharedDataService: SharedDataService, private router:Router, private actRoute:ActivatedRoute) { }
@@ -40,5 +47,26 @@ export class PropertyDetailsComponent implements OnInit, AfterViewInit {
       multiData['imageList'] = imageList;
       this.propertyData = multiData;
     }
+  }
+
+  openContactDialog() {
+    this.contactFormData = {
+      fullName: '',
+      phone: '',
+      message: `Hi, I'm interested in ${this.propertyData?.title || 'this property'}. Please contact me.`
+    };
+    this.showContactDialog = true;
+  }
+
+  closeContactDialog() {
+    this.showContactDialog = false;
+  }
+
+  openPhoneDialog() {
+    this.showPhoneDialog = true;
+  }
+
+  closePhoneDialog() {
+    this.showPhoneDialog = false;
   }
 }
