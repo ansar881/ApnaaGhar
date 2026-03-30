@@ -655,3 +655,7 @@
         align-items: stretch;
     }
 }
+
+.homeBtn{
+    margin-left: 0.5rem;
+}
