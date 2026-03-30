@@ -29,6 +29,8 @@ export class ShowAllComponent implements OnInit, AfterViewInit{
   propCategory:any[] = [];
   selectedPropCategory:any | undefined;
   searchData:any = {};
+  selectedInfoProperty: any = null;
+  showMoreInfoDialog = false;
 
   constructor(private sharedDataService: SharedDataService, private router:Router, private actRoute:ActivatedRoute) { }
 
@@ -166,6 +168,16 @@ export class ShowAllComponent implements OnInit, AfterViewInit{
       [`propertyDetails/${id}`],
       { queryParams:{ id: id, rfm: 'showAll', owid: this.openWindowId } }
     )
+  }
+
+  openMoreInfo(property: any) {
+    this.selectedInfoProperty = property;
+    this.showMoreInfoDialog = true;
+  }
+
+  closeMoreInfo() {
+    this.showMoreInfoDialog = false;
+    this.selectedInfoProperty = null;
   }
 
   shuffleArray(array: any[]): any[] {

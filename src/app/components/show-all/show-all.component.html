@@ -209,7 +209,8 @@
                 icon="pi pi-question-circle"
                 iconPos="left"
                 raised="true"
-                size="small">
+                size="small"
+                (onClick)="openMoreInfo(cardData)">
               </p-button>
 
               <p-button
@@ -228,4 +229,111 @@
       </div>
     </div>
   </section>
+
+  <p-dialog
+    [(visible)]="showMoreInfoDialog"
+    [modal]="true"
+    [dismissableMask]="true"
+    [draggable]="false"
+    [resizable]="false"
+    [closable]="true"
+    [style]="{ width: '92vw', maxWidth: '1100px' }"
+    [breakpoints]="{ '960px': '94vw', '640px': '98vw' }"
+    styleClass="more-info-dialog"
+    (onHide)="closeMoreInfo()">
+    <ng-template pTemplate="header">
+      <div class="more-info-header" *ngIf="selectedInfoProperty">
+        <span class="more-info-kicker">Property Insight</span>
+        <h2>{{ selectedInfoProperty.title }}</h2>
+        <p>{{ selectedInfoProperty.location }}</p>
+      </div>
+    </ng-template>
+
+    <div class="more-info-shell" *ngIf="selectedInfoProperty">
+      <div class="more-info-hero">
+        <div class="more-info-hero-copy">
+          <div class="more-info-price">
+            <span class="pi pi-indian-rupee"></span>
+            <span>{{ selectedInfoProperty.price }}</span>
+          </div>
+          <p class="more-info-summary">
+            {{ selectedInfoProperty.description }}
+          </p>
+
+          <div class="more-info-badges">
+            <span class="more-info-badge">{{ selectedInfoProperty.bhk }}</span>
+            <span class="more-info-badge">{{ selectedInfoProperty.furnish }}</span>
+            <span class="more-info-badge">{{ selectedInfoProperty.sq_ft }}.ft</span>
+          </div>
+        </div>
+
+        <div class="more-info-highlight-card">
+          <span class="highlight-card-label">Posted</span>
+          <strong>{{ selectedInfoProperty.posted }}</strong>
+          <span class="highlight-card-note">Quick overview prepared for buyers and tenants.</span>
+        </div>
+      </div>
+
+      <div class="more-info-grid">
+        <div class="more-info-section">
+          <span class="more-info-section-tag">Key Details</span>
+          <div class="more-info-stat-grid">
+            <div class="more-info-stat">
+              <span>Bedrooms</span>
+              <strong>{{ selectedInfoProperty.bedrooms }}</strong>
+            </div>
+            <div class="more-info-stat">
+              <span>Bathrooms</span>
+              <strong>{{ selectedInfoProperty.bathrooms }}</strong>
+            </div>
+            <div class="more-info-stat">
+              <span>Area</span>
+              <strong>{{ selectedInfoProperty.sq_ft }}.ft</strong>
+            </div>
+            <div class="more-info-stat">
+              <span>Parking</span>
+              <strong>{{ selectedInfoProperty.carParking }}</strong>
+            </div>
+            <div class="more-info-stat">
+              <span>Lift</span>
+              <strong>{{ selectedInfoProperty.lift }}</strong>
+            </div>
+            <div class="more-info-stat">
+              <span>Furnishing</span>
+              <strong>{{ selectedInfoProperty.furnish }}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="more-info-section">
+          <span class="more-info-section-tag">Utility Notes</span>
+          <div class="more-info-note-list">
+            <div class="more-info-note">
+              <span class="note-index">01</span>
+              <p>Water availability: {{ selectedInfoProperty.waterAvl }}</p>
+            </div>
+            <div class="more-info-note">
+              <span class="note-index">02</span>
+              <p>Electricity availability: {{ selectedInfoProperty.electricityAvl }}</p>
+            </div>
+            <div class="more-info-note">
+              <span class="note-index">03</span>
+              <p>{{ selectedInfoProperty.bhk }} layout designed for practical day-to-day living.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="more-info-action-row">
+        <p-button
+          label="See Full Details"
+          class="details-pBtn display-flex"
+          icon="pi pi-arrow-right"
+          iconPos="left"
+          raised="true"
+          (onClick)="seeDetailsOfProperty(selectedInfoProperty.id)">
+        </p-button>
+      </div>
+    </div>
+  </p-dialog>
 </div>
