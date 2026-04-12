@@ -10,38 +10,44 @@
         </p>
 
         <div class="footer-city-strip">
-          <button
-            *ngFor="let city of cityHighlights"
-            type="button"
-            class="footer-city-chip"
-            (click)="showSelectedData('buy', 'Real estate', city)">
-            {{ city }}
-          </button>
+          @for (city of cityHighlights; track city) {
+            <button
+              type="button"
+              class="footer-city-chip"
+              (click)="showSelectedData('buy', 'Real estate', city)">
+              {{ city }}
+            </button>
+          }
         </div>
       </div>
 
       <div class="footer-stat-grid">
-        <div *ngFor="let stat of footerStats" class="footer-stat-card">
-          <span class="footer-stat-value">{{ stat.value }}</span>
-          <span class="footer-stat-label">{{ stat.label }}</span>
-        </div>
+        @for (stat of footerStats; track stat) {
+          <div class="footer-stat-card">
+            <span class="footer-stat-value">{{ stat.value }}</span>
+            <span class="footer-stat-label">{{ stat.label }}</span>
+          </div>
+        }
       </div>
     </section>
 
     <section class="footer-links-section">
-      <div class="footer-link-card" *ngFor="let cities of topCityPropertyData">
-        <div class="footer-link-title">{{ cities.title }}</div>
-        <div class="footer-link-list">
-          <button
-            *ngFor="let cityname of cities.city"
-            type="button"
-            class="footer-link-item"
-            (click)="showSelectedData(cities.category, cities.type, cityname.city)">
-            <span class="pi pi-angle-right"></span>
-            <span>{{ cities.type }} in {{ cityname.city }}</span>
-          </button>
+      @for (cities of topCityPropertyData; track cities) {
+        <div class="footer-link-card">
+          <div class="footer-link-title">{{ cities.title }}</div>
+          <div class="footer-link-list">
+            @for (cityname of cities.city; track cityname) {
+              <button
+                type="button"
+                class="footer-link-item"
+                (click)="showSelectedData(cities.category, cities.type, cityname.city)">
+                <span class="pi pi-angle-right"></span>
+                <span>{{ cities.type }} in {{ cityname.city }}</span>
+              </button>
+            }
+          </div>
         </div>
-      </div>
+      }
     </section>
 
     <section class="footer-info-section">
@@ -70,14 +76,15 @@
         </div>
 
         <div class="footer-social-row">
-          <button
-            *ngFor="let social of socialLinks"
-            type="button"
-            class="footer-social-btn"
-            [attr.aria-label]="social.label"
-            (click)="socialLinkClicked(social.type)">
-            <span [class]="social.icon"></span>
-          </button>
+          @for (social of socialLinks; track social) {
+            <button
+              type="button"
+              class="footer-social-btn"
+              [attr.aria-label]="social.label"
+              (click)="socialLinkClicked(social.type)">
+              <span [class]="social.icon"></span>
+            </button>
+          }
         </div>
       </div>
     </section>

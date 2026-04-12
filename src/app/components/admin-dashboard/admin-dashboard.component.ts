@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
@@ -20,7 +20,7 @@ import { TooltipModule } from 'primeng/tooltip';
     selector: 'app-admin-dashboard',
     templateUrl: './admin-dashboard.component.html',
     styleUrls: ['./admin-dashboard.component.scss'],
-    imports: [CommonModule, ToolbarModule, CardModule, ButtonModule, TableModule, ProgressBarModule, BadgeModule, DialogModule, InputTextModule, InputNumberModule, DropdownModule, InputTextareaModule, ReactiveFormsModule, ToastModule, TooltipModule],
+    imports: [ToolbarModule, CardModule, ButtonModule, TableModule, ProgressBarModule, BadgeModule, DialogModule, InputTextModule, InputNumberModule, DropdownModule, InputTextareaModule, ReactiveFormsModule, ToastModule, TooltipModule],
     providers: [MessageService]
 })
 export class AdminDashboardComponent implements OnInit {

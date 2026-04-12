@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { allPrimeNGModules } from '../../services/primeNGShared';
 import { SharedDataService } from '../../services/shared-data.service';
@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     selector: 'app-propertyDetails',
     templateUrl: './propertyDetails.component.html',
     styleUrls: ['./propertyDetails.component.css'],
-    imports: [CommonModule, allPrimeNGModules]
+    imports: [allPrimeNGModules]
 })
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   propertyId:any;

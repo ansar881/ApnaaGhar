@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
@@ -21,7 +21,7 @@ interface NavigationSection {
 
 @Component({
     selector: 'app-main-header',
-    imports: [CommonModule, allPrimeNGModules],
+    imports: [allPrimeNGModules],
     templateUrl: './main-header.component.html',
     styleUrls: ['./main-header.component.css']
 })

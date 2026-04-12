@@ -59,32 +59,35 @@
         </div>
 
         <div class="filter-chip-row">
-          <p-button
-            *ngFor="let btn of filerBtns"
-            [rounded]="true"
-            (click)="popupToggle($event, btn.btnName, popup)">
-            {{ btn.btnName }}
-            <ng-container *ngIf="btn.badgeVal > 0">
-              <span class="p-badge">{{ btn.badgeVal }}</span>
-            </ng-container>
-          </p-button>
+          @for (btn of filerBtns; track btn) {
+            <p-button
+              [rounded]="true"
+              (click)="popupToggle($event, btn.btnName, popup)">
+              {{ btn.btnName }}
+              @if (btn.badgeVal > 0) {
+                <span class="p-badge">{{ btn.badgeVal }}</span>
+              }
+            </p-button>
+          }
         </div>
 
         <p-overlayPanel #popup [showCloseIcon]="true" styleClass="filter-overlay-panel">
-          <ng-container *ngIf="popupUi !== 'Price'">
+          @if (popupUi !== 'Price') {
             <div class="filter-div gapRem0-5">
-              <div *ngFor="let option of filterOptionsData">
-                <p-checkbox
-                  (onChange)="filterCheckBoxValueChanged($event, option)"
-                  [label]="option.name"
-                  [binary]="true"
-                  [(ngModel)]="option.value">
-                </p-checkbox>
-              </div>
+              @for (option of filterOptionsData; track option) {
+                <div>
+                  <p-checkbox
+                    (onChange)="filterCheckBoxValueChanged($event, option)"
+                    [label]="option.name"
+                    [binary]="true"
+                    [(ngModel)]="option.value">
+                  </p-checkbox>
+                </div>
+              }
             </div>
-          </ng-container>
+          }
 
-          <ng-container *ngIf="popupUi === 'Price'">
+          @if (popupUi === 'Price') {
             <div class="price-div display-flex align-items-center flex-direction-column">
               <div class="slider-div">
                 <p-slider
@@ -97,7 +100,6 @@
                   (onChange)="sliderValueChanged($event)">
                 </p-slider>
               </div>
-
               <div class="priceMinMax-div display-flex align-items-center gapRem1">
                 <div class="minPrice-div display-flex align-items-center gapRem0-5">
                   <label for="minPrice">Min</label>
@@ -121,7 +123,7 @@
                 </div>
               </div>
             </div>
-          </ng-container>
+          }
         </p-overlayPanel>
       </div>
 
@@ -133,99 +135,93 @@
       </div>
 
       <div class="card-data-wrapper">
-        <article class="result-card" *ngFor="let cardData of multiPropertiesData">
-          <div class="result-card-media">
-            <p-galleria
-              class="gallery"
-              [value]="cardData.imageList"
-              [indicatorsPosition]="'bottom'"
-              [showIndicators]="true"
-              [showThumbnails]="false"
-              [showIndicatorsOnItem]="true"
-              [autoPlay]="true"
-              [circular]="true">
-              <ng-template pTemplate="item" let-item>
-                <img [src]="item.imageUrl" />
-              </ng-template>
-            </p-galleria>
-
-            <span class="result-card-tag">{{ cardData.bhk }}</span>
-          </div>
-
-          <div class="result-card-body">
-            <div class="result-card-top">
-              <div class="result-card-heading">
-                <h3>{{ cardData.title }}</h3>
-                <div class="cardDatas-location">{{ cardData.location }}</div>
+        @for (cardData of multiPropertiesData; track cardData) {
+          <article class="result-card">
+            <div class="result-card-media">
+              <p-galleria
+                class="gallery"
+                [value]="cardData.imageList"
+                [indicatorsPosition]="'bottom'"
+                [showIndicators]="true"
+                [showThumbnails]="false"
+                [showIndicatorsOnItem]="true"
+                [autoPlay]="true"
+                [circular]="true">
+                <ng-template pTemplate="item" let-item>
+                  <img [src]="item.imageUrl" />
+                </ng-template>
+              </p-galleria>
+              <span class="result-card-tag">{{ cardData.bhk }}</span>
+            </div>
+            <div class="result-card-body">
+              <div class="result-card-top">
+                <div class="result-card-heading">
+                  <h3>{{ cardData.title }}</h3>
+                  <div class="cardDatas-location">{{ cardData.location }}</div>
+                </div>
+                <div class="cardDatas-price">
+                  <span class="pi pi-indian-rupee rupee"></span>
+                  <span class="price-span">{{ cardData.price }}</span>
+                </div>
               </div>
-
-              <div class="cardDatas-price">
-                <span class="pi pi-indian-rupee rupee"></span>
-                <span class="price-span">{{ cardData.price }}</span>
+              <div class="bhk-specification">
+                <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
+                  <div class="spec-title">Bedrooms</div>
+                  <div class="spec-details">{{ cardData.bedrooms }}</div>
+                </div>
+                <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
+                  <div class="spec-title">Bathrooms</div>
+                  <div class="spec-details">{{ cardData.bathrooms }}</div>
+                </div>
+                <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
+                  <div class="spec-title">Area</div>
+                  <div class="spec-details">{{ cardData.sq_ft }}.ft</div>
+                </div>
+              </div>
+              <p class="bhk-desc">{{ cardData.description }}</p>
+              <div class="result-detail-grid">
+                <div class="result-detail-item">
+                  <span class="detail-label">Furnishing</span>
+                  <span class="detail-value">{{ cardData.furnish }}</span>
+                </div>
+                <div class="result-detail-item">
+                  <span class="detail-label">Parking</span>
+                  <span class="detail-value">{{ cardData.carParking }}</span>
+                </div>
+                <div class="result-detail-item">
+                  <span class="detail-label">Water</span>
+                  <span class="detail-value">{{ cardData.waterAvl }}</span>
+                </div>
+                <div class="result-detail-item">
+                  <span class="detail-label">Posted</span>
+                  <span class="detail-value">{{ cardData.posted }}</span>
+                </div>
+              </div>
+              <div class="cardContactsec">
+                <p-button
+                  label="Get More Info"
+                  class="whatsapp-pBtn display-flex"
+                  severity="info"
+                  icon="pi pi-question-circle"
+                  iconPos="left"
+                  raised="true"
+                  size="small"
+                  (onClick)="openMoreInfo(cardData)">
+                </p-button>
+                <p-button
+                  label="See Details"
+                  class="details-pBtn display-flex"
+                  severity="info"
+                  icon="pi pi-info-circle"
+                  iconPos="left"
+                  raised="true"
+                  size="small"
+                  (onClick)="seeDetailsOfProperty(cardData.id)">
+                </p-button>
               </div>
             </div>
-
-            <div class="bhk-specification">
-              <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
-                <div class="spec-title">Bedrooms</div>
-                <div class="spec-details">{{ cardData.bedrooms }}</div>
-              </div>
-              <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
-                <div class="spec-title">Bathrooms</div>
-                <div class="spec-details">{{ cardData.bathrooms }}</div>
-              </div>
-              <div class="spec-div display-flex flex-direction-column align-items-center gapRem0-3">
-                <div class="spec-title">Area</div>
-                <div class="spec-details">{{ cardData.sq_ft }}.ft</div>
-              </div>
-            </div>
-
-            <p class="bhk-desc">{{ cardData.description }}</p>
-
-            <div class="result-detail-grid">
-              <div class="result-detail-item">
-                <span class="detail-label">Furnishing</span>
-                <span class="detail-value">{{ cardData.furnish }}</span>
-              </div>
-              <div class="result-detail-item">
-                <span class="detail-label">Parking</span>
-                <span class="detail-value">{{ cardData.carParking }}</span>
-              </div>
-              <div class="result-detail-item">
-                <span class="detail-label">Water</span>
-                <span class="detail-value">{{ cardData.waterAvl }}</span>
-              </div>
-              <div class="result-detail-item">
-                <span class="detail-label">Posted</span>
-                <span class="detail-value">{{ cardData.posted }}</span>
-              </div>
-            </div>
-
-            <div class="cardContactsec">
-              <p-button
-                label="Get More Info"
-                class="whatsapp-pBtn display-flex"
-                severity="info"
-                icon="pi pi-question-circle"
-                iconPos="left"
-                raised="true"
-                size="small"
-                (onClick)="openMoreInfo(cardData)">
-              </p-button>
-
-              <p-button
-                label="See Details"
-                class="details-pBtn display-flex"
-                severity="info"
-                icon="pi pi-info-circle"
-                iconPos="left"
-                raised="true"
-                size="small"
-                (onClick)="seeDetailsOfProperty(cardData.id)">
-              </p-button>
-            </div>
-          </div>
-        </article>
+          </article>
+        }
       </div>
     </div>
   </section>
@@ -242,98 +238,97 @@
     styleClass="more-info-dialog"
     (onHide)="closeMoreInfo()">
     <ng-template pTemplate="header">
-      <div class="more-info-header" *ngIf="selectedInfoProperty">
-        <span class="more-info-kicker">Property Insight</span>
-        <h2>{{ selectedInfoProperty.title }}</h2>
-        <p>{{ selectedInfoProperty.location }}</p>
-      </div>
+      @if (selectedInfoProperty) {
+        <div class="more-info-header">
+          <span class="more-info-kicker">Property Insight</span>
+          <h2>{{ selectedInfoProperty.title }}</h2>
+          <p>{{ selectedInfoProperty.location }}</p>
+        </div>
+      }
     </ng-template>
 
-    <div class="more-info-shell" *ngIf="selectedInfoProperty">
-      <div class="more-info-hero">
-        <div class="more-info-hero-copy">
-          <div class="more-info-price">
-            <span class="pi pi-indian-rupee"></span>
-            <span>{{ selectedInfoProperty.price }}</span>
+    @if (selectedInfoProperty) {
+      <div class="more-info-shell">
+        <div class="more-info-hero">
+          <div class="more-info-hero-copy">
+            <div class="more-info-price">
+              <span class="pi pi-indian-rupee"></span>
+              <span>{{ selectedInfoProperty.price }}</span>
+            </div>
+            <p class="more-info-summary">
+              {{ selectedInfoProperty.description }}
+            </p>
+            <div class="more-info-badges">
+              <span class="more-info-badge">{{ selectedInfoProperty.bhk }}</span>
+              <span class="more-info-badge">{{ selectedInfoProperty.furnish }}</span>
+              <span class="more-info-badge">{{ selectedInfoProperty.sq_ft }}.ft</span>
+            </div>
           </div>
-          <p class="more-info-summary">
-            {{ selectedInfoProperty.description }}
-          </p>
-
-          <div class="more-info-badges">
-            <span class="more-info-badge">{{ selectedInfoProperty.bhk }}</span>
-            <span class="more-info-badge">{{ selectedInfoProperty.furnish }}</span>
-            <span class="more-info-badge">{{ selectedInfoProperty.sq_ft }}.ft</span>
+          <div class="more-info-highlight-card">
+            <span class="highlight-card-label">Posted</span>
+            <strong>{{ selectedInfoProperty.posted }}</strong>
+            <span class="highlight-card-note">Quick overview prepared for buyers and tenants.</span>
           </div>
         </div>
-
-        <div class="more-info-highlight-card">
-          <span class="highlight-card-label">Posted</span>
-          <strong>{{ selectedInfoProperty.posted }}</strong>
-          <span class="highlight-card-note">Quick overview prepared for buyers and tenants.</span>
+        <div class="more-info-grid">
+          <div class="more-info-section">
+            <span class="more-info-section-tag">Key Details</span>
+            <div class="more-info-stat-grid">
+              <div class="more-info-stat">
+                <span>Bedrooms</span>
+                <strong>{{ selectedInfoProperty.bedrooms }}</strong>
+              </div>
+              <div class="more-info-stat">
+                <span>Bathrooms</span>
+                <strong>{{ selectedInfoProperty.bathrooms }}</strong>
+              </div>
+              <div class="more-info-stat">
+                <span>Area</span>
+                <strong>{{ selectedInfoProperty.sq_ft }}.ft</strong>
+              </div>
+              <div class="more-info-stat">
+                <span>Parking</span>
+                <strong>{{ selectedInfoProperty.carParking }}</strong>
+              </div>
+              <div class="more-info-stat">
+                <span>Lift</span>
+                <strong>{{ selectedInfoProperty.lift }}</strong>
+              </div>
+              <div class="more-info-stat">
+                <span>Furnishing</span>
+                <strong>{{ selectedInfoProperty.furnish }}</strong>
+              </div>
+            </div>
+          </div>
+          <div class="more-info-section">
+            <span class="more-info-section-tag">Utility Notes</span>
+            <div class="more-info-note-list">
+              <div class="more-info-note">
+                <span class="note-index">01</span>
+                <p>Water availability: {{ selectedInfoProperty.waterAvl }}</p>
+              </div>
+              <div class="more-info-note">
+                <span class="note-index">02</span>
+                <p>Electricity availability: {{ selectedInfoProperty.electricityAvl }}</p>
+              </div>
+              <div class="more-info-note">
+                <span class="note-index">03</span>
+                <p>{{ selectedInfoProperty.bhk }} layout designed for practical day-to-day living.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="more-info-action-row">
+          <p-button
+            label="See Full Details"
+            class="details-pBtn display-flex"
+            icon="pi pi-arrow-right"
+            iconPos="left"
+            raised="true"
+            (onClick)="seeDetailsOfProperty(selectedInfoProperty.id)">
+          </p-button>
         </div>
       </div>
-
-      <div class="more-info-grid">
-        <div class="more-info-section">
-          <span class="more-info-section-tag">Key Details</span>
-          <div class="more-info-stat-grid">
-            <div class="more-info-stat">
-              <span>Bedrooms</span>
-              <strong>{{ selectedInfoProperty.bedrooms }}</strong>
-            </div>
-            <div class="more-info-stat">
-              <span>Bathrooms</span>
-              <strong>{{ selectedInfoProperty.bathrooms }}</strong>
-            </div>
-            <div class="more-info-stat">
-              <span>Area</span>
-              <strong>{{ selectedInfoProperty.sq_ft }}.ft</strong>
-            </div>
-            <div class="more-info-stat">
-              <span>Parking</span>
-              <strong>{{ selectedInfoProperty.carParking }}</strong>
-            </div>
-            <div class="more-info-stat">
-              <span>Lift</span>
-              <strong>{{ selectedInfoProperty.lift }}</strong>
-            </div>
-            <div class="more-info-stat">
-              <span>Furnishing</span>
-              <strong>{{ selectedInfoProperty.furnish }}</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="more-info-section">
-          <span class="more-info-section-tag">Utility Notes</span>
-          <div class="more-info-note-list">
-            <div class="more-info-note">
-              <span class="note-index">01</span>
-              <p>Water availability: {{ selectedInfoProperty.waterAvl }}</p>
-            </div>
-            <div class="more-info-note">
-              <span class="note-index">02</span>
-              <p>Electricity availability: {{ selectedInfoProperty.electricityAvl }}</p>
-            </div>
-            <div class="more-info-note">
-              <span class="note-index">03</span>
-              <p>{{ selectedInfoProperty.bhk }} layout designed for practical day-to-day living.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="more-info-action-row">
-        <p-button
-          label="See Full Details"
-          class="details-pBtn display-flex"
-          icon="pi pi-arrow-right"
-          iconPos="left"
-          raised="true"
-          (onClick)="seeDetailsOfProperty(selectedInfoProperty.id)">
-        </p-button>
-      </div>
-    </div>
+    }
   </p-dialog>
 </div>

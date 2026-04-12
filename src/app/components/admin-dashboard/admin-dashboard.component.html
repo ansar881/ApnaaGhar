@@ -35,7 +35,7 @@
 
   <div class="dashboard container">
     <section class="kpi-grid">
-      <ng-container *ngFor="let s of stats">
+      @for (s of stats; track s) {
         <p-card class="kpi-card">
           <div class="kpi-content">
             <div class="kpi-icon-wrap">
@@ -48,7 +48,7 @@
           </div>
           <div class="kpi-footer">Change: <span class="change">{{ s.change }}</span></div>
         </p-card>
-      </ng-container>
+      }
     </section>
 
     <section class="main-grid">
@@ -117,26 +117,34 @@
     <div class="form-group form-group-full">
       <label>Title <span class="required">*</span></label>
       <input pInputText formControlName="title" placeholder="Enter property title" class="width100pc" />
-      <small class="error-text" *ngIf="propertyForm.get('title')?.touched && propertyForm.get('title')?.invalid">Title is required</small>
+      @if (propertyForm.get('title')?.touched && propertyForm.get('title')?.invalid) {
+        <small class="error-text">Title is required</small>
+      }
     </div>
 
     <div class="form-group form-group-full">
       <label>Description <span class="required">*</span></label>
       <textarea pInputTextarea formControlName="description" placeholder="Write a short property summary" rows="4" class="width100pc"></textarea>
-      <small class="error-text" *ngIf="propertyForm.get('description')?.touched && propertyForm.get('description')?.invalid">Description is required</small>
+      @if (propertyForm.get('description')?.touched && propertyForm.get('description')?.invalid) {
+        <small class="error-text">Description is required</small>
+      }
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label>City <span class="required">*</span></label>
         <p-dropdown [options]="cities" formControlName="city" optionLabel="label" optionValue="value" placeholder="Select city" [showClear]="true" class="width100pc"></p-dropdown>
-        <small class="error-text" *ngIf="propertyForm.get('city')?.touched && propertyForm.get('city')?.invalid">City is required</small>
+        @if (propertyForm.get('city')?.touched && propertyForm.get('city')?.invalid) {
+          <small class="error-text">City is required</small>
+        }
       </div>
 
       <div class="form-group">
         <label>Property Type <span class="required">*</span></label>
         <p-dropdown [options]="propertyTypes" formControlName="propertyType" optionLabel="label" optionValue="value" placeholder="Select property type" [showClear]="true" class="width100pc"></p-dropdown>
-        <small class="error-text" *ngIf="propertyForm.get('propertyType')?.touched && propertyForm.get('propertyType')?.invalid">Property type is required</small>
+        @if (propertyForm.get('propertyType')?.touched && propertyForm.get('propertyType')?.invalid) {
+          <small class="error-text">Property type is required</small>
+        }
       </div>
     </div>
 
@@ -144,13 +152,17 @@
       <div class="form-group">
         <label>Price (Rs) <span class="required">*</span></label>
         <input pInputNumber formControlName="price" placeholder="Enter expected price" mode="currency" currency="INR" class="width100pc" />
-        <small class="error-text" *ngIf="propertyForm.get('price')?.touched && propertyForm.get('price')?.invalid">Valid price is required</small>
+        @if (propertyForm.get('price')?.touched && propertyForm.get('price')?.invalid) {
+          <small class="error-text">Valid price is required</small>
+        }
       </div>
 
       <div class="form-group">
         <label>Area (sq ft) <span class="required">*</span></label>
         <input pInputNumber formControlName="area" placeholder="Enter built-up area" class="width100pc" />
-        <small class="error-text" *ngIf="propertyForm.get('area')?.touched && propertyForm.get('area')?.invalid">Area is required</small>
+        @if (propertyForm.get('area')?.touched && propertyForm.get('area')?.invalid) {
+          <small class="error-text">Area is required</small>
+        }
       </div>
     </div>
 
@@ -158,13 +170,17 @@
       <div class="form-group">
         <label>Bedrooms <span class="required">*</span></label>
         <input pInputNumber formControlName="bedrooms" placeholder="Bedrooms count" class="width100pc" />
-        <small class="error-text" *ngIf="propertyForm.get('bedrooms')?.touched && propertyForm.get('bedrooms')?.invalid">Bedrooms is required</small>
+        @if (propertyForm.get('bedrooms')?.touched && propertyForm.get('bedrooms')?.invalid) {
+          <small class="error-text">Bedrooms is required</small>
+        }
       </div>
 
       <div class="form-group">
         <label>Bathrooms <span class="required">*</span></label>
         <input pInputNumber formControlName="bathrooms" placeholder="Bathrooms count" class="width100pc" />
-        <small class="error-text" *ngIf="propertyForm.get('bathrooms')?.touched && propertyForm.get('bathrooms')?.invalid">Bathrooms is required</small>
+        @if (propertyForm.get('bathrooms')?.touched && propertyForm.get('bathrooms')?.invalid) {
+          <small class="error-text">Bathrooms is required</small>
+        }
       </div>
     </div>
   </form>
@@ -179,25 +195,33 @@
     <div class="form-group">
       <label>Property ID <span class="required">*</span></label>
       <input pInputText formControlName="propertyId" placeholder="Enter property ID" class="width100pc" />
-      <small class="error-text" *ngIf="listingForm.get('propertyId')?.touched && listingForm.get('propertyId')?.invalid">Property ID is required</small>
+      @if (listingForm.get('propertyId')?.touched && listingForm.get('propertyId')?.invalid) {
+        <small class="error-text">Property ID is required</small>
+      }
     </div>
 
     <div class="form-group">
       <label>Listing Title <span class="required">*</span></label>
       <input pInputText formControlName="listingTitle" placeholder="Listing title" class="width100pc" />
-      <small class="error-text" *ngIf="listingForm.get('listingTitle')?.touched && listingForm.get('listingTitle')?.invalid">Listing title is required</small>
+      @if (listingForm.get('listingTitle')?.touched && listingForm.get('listingTitle')?.invalid) {
+        <small class="error-text">Listing title is required</small>
+      }
     </div>
 
     <div class="form-group">
       <label>Description <span class="required">*</span></label>
       <textarea pInputTextarea formControlName="description" placeholder="Listing description" rows="3" class="width100pc"></textarea>
-      <small class="error-text" *ngIf="listingForm.get('description')?.touched && listingForm.get('description')?.invalid">Description is required</small>
+      @if (listingForm.get('description')?.touched && listingForm.get('description')?.invalid) {
+        <small class="error-text">Description is required</small>
+      }
     </div>
 
     <div class="form-group">
       <label>Duration <span class="required">*</span></label>
       <input pInputText formControlName="duration" placeholder="e.g., 30 days, 3 months" class="width100pc" />
-      <small class="error-text" *ngIf="listingForm.get('duration')?.touched && listingForm.get('duration')?.invalid">Duration is required</small>
+      @if (listingForm.get('duration')?.touched && listingForm.get('duration')?.invalid) {
+        <small class="error-text">Duration is required</small>
+      }
     </div>
   </form>
   <ng-template pTemplate="footer">

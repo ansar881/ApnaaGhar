@@ -1,205 +1,213 @@
 <div class="header-shell">
-    <div class="header-surface">
-        <div class="header-topbar">
-            <div class="brand-group">
-                <button
-                    class="mobile-menu-btn"
-                    pButton
-                    type="button"
-                    icon="pi pi-bars"
-                    [text]="true"
-                    (click)="toggleMobileMenu()"
-                    aria-label="Open navigation menu">
-                </button>
+  <div class="header-surface">
+    <div class="header-topbar">
+      <div class="brand-group">
+        <button
+          class="mobile-menu-btn"
+          pButton
+          type="button"
+          icon="pi pi-bars"
+          [text]="true"
+          (click)="toggleMobileMenu()"
+          aria-label="Open navigation menu">
+        </button>
 
-                <button class="brand-block" type="button" (click)="goHome()">
-                    <div class="brand-logo-wrap">
-                        <img class="brand-logo" src="assets/images/homeicon2.avif" alt="ApnaaGharIcon" />
-                    </div>
-                    <div class="brand-copy">
-                        <span class="brand-kicker">Smart property discovery</span>
-                        <span class="brand-title">ApnaaGhar</span>
-                    </div>
-                </button>
+        <button class="brand-block" type="button" (click)="goHome()">
+          <div class="brand-logo-wrap">
+            <img class="brand-logo" src="assets/images/homeicon2.avif" alt="ApnaaGharIcon" />
+          </div>
+          <div class="brand-copy">
+            <span class="brand-kicker">Smart property discovery</span>
+            <span class="brand-title">ApnaaGhar</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="desktop-nav">
+        <p-megaMenu orientation="horizontal" [model]="items"></p-megaMenu>
+      </div>
+
+      <div class="header-actions">
+        <div class="desktop-shortcuts">
+          @for (option of headerItems; track option) {
+            <div
+              class="header-action-chip"
+              (click)="headerBtnClicked(option)">
+              <span [class]="option.icon"></span>
+              <span class="homeBtn">{{ option.label }}</span>
             </div>
+          }
+        </div>
 
-            <div class="desktop-nav">
-                <p-megaMenu orientation="horizontal" [model]="items"></p-megaMenu>
-            </div>
+        <div class="desktop-market-note">
+          <span class="note-title">15+ cities</span>
+          <span class="note-subtitle">Curated homes, rentals and projects</span>
+        </div>
 
-            <div class="header-actions">
-                <div class="desktop-shortcuts">
-                    <div
-                        *ngFor="let option of headerItems"
-                        class="header-action-chip"
-                        (click)="headerBtnClicked(option)">
-                        <span [class]="option.icon"></span>
-                        <span class="homeBtn">{{ option.label }}</span>
-                    </div>
-                </div>
+        <div class="user-div">
+          <p-avatar
+            [label]="isUserLoggedIn() ? getUserInitials() : ''"
+            [icon]="isUserLoggedIn() ? undefined : 'pi pi-user'"
+            styleClass="header-avatar"
+            [style]="{ 'background-color': 'var(--primaryColor)', color: '#fff' }"
+            shape="circle"
+            (click)="avatarClick($event, loginPopup)">
+          </p-avatar>
 
-                <div class="desktop-market-note">
-                    <span class="note-title">15+ cities</span>
-                    <span class="note-subtitle">Curated homes, rentals and projects</span>
-                </div>
-
-                <div class="user-div">
+          <p-overlayPanel #loginPopup [showCloseIcon]="true" [style]="{ width: '340px' }">
+            <div class="user-popup-container">
+              @if (isUserLoggedIn()) {
+                <div class="user-info-section">
+                  <div class="user-header">
                     <p-avatar
-                        [label]="isUserLoggedIn() ? getUserInitials() : ''"
-                        [icon]="isUserLoggedIn() ? undefined : 'pi pi-user'"
-                        styleClass="header-avatar"
-                        [style]="{ 'background-color': 'var(--primaryColor)', color: '#fff' }"
-                        shape="circle"
-                        (click)="avatarClick($event, loginPopup)">
+                      [label]="getUserInitials()"
+                      [style]="{ 'background-color': 'var(--primaryColor)', color: '#fff' }"
+                      shape="circle"
+                      size="xlarge">
                     </p-avatar>
-
-                    <p-overlayPanel #loginPopup [showCloseIcon]="true" [style]="{ width: '340px' }">
-                        <div class="user-popup-container">
-                            <div *ngIf="isUserLoggedIn()" class="user-info-section">
-                                <div class="user-header">
-                                    <p-avatar
-                                        [label]="getUserInitials()"
-                                        [style]="{ 'background-color': 'var(--primaryColor)', color: '#fff' }"
-                                        shape="circle"
-                                        size="xlarge">
-                                    </p-avatar>
-                                    <div class="user-details">
-                                        <div class="user-name">{{ getUserName() }}</div>
-                                        <div class="user-email">{{ getUserEmail() }}</div>
-                                        <p-badge
-                                            [value]="getUserRole()"
-                                            [severity]="getRoleSeverity()"
-                                            class="user-role-badge">
-                                        </p-badge>
-                                    </div>
-                                </div>
-
-                                <div class="user-stats">
-                                    <div class="stat-item">
-                                        <span class="stat-label">Member Since</span>
-                                        <span class="stat-value">{{ getUserMemberSince() }}</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">Type</span>
-                                        <span class="stat-value">{{ getUserType() }}</span>
-                                    </div>
-                                </div>
-
-                                <hr class="divider">
-
-                                <div class="user-actions">
-                                    <button pButton type="button" label="View Profile" icon="pi pi-user" class="p-button-text w-full profile-btn" (click)="viewProfile()"></button>
-                                    <button pButton type="button" label="My Listings" icon="pi pi-list" class="p-button-text w-full listings-btn" (click)="goToMyListings()"></button>
-                                    <button pButton type="button" label="Settings" icon="pi pi-cog" class="p-button-text w-full settings-btn" (click)="goToSettings()"></button>
-                                </div>
-
-                                <hr class="divider">
-
-                                <button pButton type="button" label="Log Out" icon="pi pi-power-off" class="p-button-text w-full logout-btn" (click)="logOut()"></button>
-                            </div>
-
-                            <div *ngIf="!isUserLoggedIn()" class="not-logged-in-section">
-                                <div class="not-logged-icon">
-                                    <i class="pi pi-user"></i>
-                                </div>
-                                <div class="not-logged-text">
-                                    <p>Welcome to ApnaaGhar!</p>
-                                    <small>Sign in to access your account and listings</small>
-                                </div>
-                                <button pButton type="button" label="Login" icon="pi pi-sign-in" class="p-button w-full login-btn" (click)="goToLoginPage()"></button>
-                                <button pButton type="button" label="Create Account" icon="pi pi-plus" class="p-button-outlined w-full signup-btn" (click)="goToSignUp()"></button>
-                            </div>
-                        </div>
-                    </p-overlayPanel>
+                    <div class="user-details">
+                      <div class="user-name">{{ getUserName() }}</div>
+                      <div class="user-email">{{ getUserEmail() }}</div>
+                      <p-badge
+                        [value]="getUserRole()"
+                        [severity]="getRoleSeverity()"
+                        class="user-role-badge">
+                      </p-badge>
+                    </div>
+                  </div>
+                  <div class="user-stats">
+                    <div class="stat-item">
+                      <span class="stat-label">Member Since</span>
+                      <span class="stat-value">{{ getUserMemberSince() }}</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Type</span>
+                      <span class="stat-value">{{ getUserType() }}</span>
+                    </div>
+                  </div>
+                  <hr class="divider">
+                  <div class="user-actions">
+                    <button pButton type="button" label="View Profile" icon="pi pi-user" class="p-button-text w-full profile-btn" (click)="viewProfile()"></button>
+                    <button pButton type="button" label="My Listings" icon="pi pi-list" class="p-button-text w-full listings-btn" (click)="goToMyListings()"></button>
+                    <button pButton type="button" label="Settings" icon="pi pi-cog" class="p-button-text w-full settings-btn" (click)="goToSettings()"></button>
+                  </div>
+                  <hr class="divider">
+                  <button pButton type="button" label="Log Out" icon="pi pi-power-off" class="p-button-text w-full logout-btn" (click)="logOut()"></button>
                 </div>
-            </div>
-        </div>
+              }
 
-        <div class="header-bottombar">
-            <div class="header-bottom-copy">
-                <span class="bottom-label">Trending locations</span>
-                <span class="bottom-subtitle">Find the right home faster in high-demand markets.</span>
+              @if (!isUserLoggedIn()) {
+                <div class="not-logged-in-section">
+                  <div class="not-logged-icon">
+                    <i class="pi pi-user"></i>
+                  </div>
+                  <div class="not-logged-text">
+                    <p>Welcome to ApnaaGhar!</p>
+                    <small>Sign in to access your account and listings</small>
+                  </div>
+                  <button pButton type="button" label="Login" icon="pi pi-sign-in" class="p-button w-full login-btn" (click)="goToLoginPage()"></button>
+                  <button pButton type="button" label="Create Account" icon="pi pi-plus" class="p-button-outlined w-full signup-btn" (click)="goToSignUp()"></button>
+                </div>
+              }
             </div>
-
-            <div class="featured-city-row">
-                <button
-                    *ngFor="let city of featuredCities"
-                    type="button"
-                    class="featured-city-chip"
-                    (click)="megaMenuItemClick('buy', city)">
-                    {{ city }}
-                </button>
-            </div>
+          </p-overlayPanel>
         </div>
+      </div>
     </div>
+
+    <div class="header-bottombar">
+      <div class="header-bottom-copy">
+        <span class="bottom-label">Trending locations</span>
+        <span class="bottom-subtitle">Find the right home faster in high-demand markets.</span>
+      </div>
+
+      <div class="featured-city-row">
+        @for (city of featuredCities; track city) {
+          <button
+            type="button"
+            class="featured-city-chip"
+            (click)="megaMenuItemClick('buy', city)">
+            {{ city }}
+          </button>
+        }
+      </div>
+    </div>
+  </div>
 </div>
 
 <p-sidebar
-    [(visible)]="mobileMenuVisible"
-    position="right"
-    styleClass="mobile-header-sidebar"
-    [dismissible]="true"
-    [modal]="false"
-    [showCloseIcon]="true">
+  [(visible)]="mobileMenuVisible"
+  position="right"
+  styleClass="mobile-header-sidebar"
+  [dismissible]="true"
+  [modal]="false"
+  [showCloseIcon]="true">
 
-    <div class="mobile-sidebar-content">
-        <div class="mobile-profile-card">
-            <div class="mobile-profile-top">
-                <p-avatar
-                    [label]="isUserLoggedIn() ? getUserInitials() : 'AG'"
-                    [style]="{ 'background-color': 'var(--primaryColor)', color: '#fff' }"
-                    shape="circle"
-                    size="large">
-                </p-avatar>
-                <div class="mobile-profile-copy">
-                    <span class="mobile-profile-title">{{ isUserLoggedIn() ? getUserName() : 'Explore ApnaaGhar' }}</span>
-                    <span class="mobile-profile-subtitle">{{ isUserLoggedIn() ? getUserEmail() : 'Modern homes, rentals and projects' }}</span>
-                </div>
-            </div>
-
-            <div class="mobile-auth-actions" *ngIf="!isUserLoggedIn()">
-                <button pButton type="button" label="Login" icon="pi pi-sign-in" class="mobile-login-btn" (click)="goToLoginPage()"></button>
-                <button pButton type="button" label="Create Account" icon="pi pi-user-plus" class="p-button-outlined mobile-signup-btn" (click)="goToSignUp()"></button>
-            </div>
-
-            <div class="mobile-auth-actions" *ngIf="isUserLoggedIn()">
-                <button pButton type="button" label="My Listings" icon="pi pi-list" class="p-button-text mobile-text-btn" (click)="goToMyListings()"></button>
-                <button pButton type="button" label="Log Out" icon="pi pi-power-off" class="p-button-text mobile-logout-btn" (click)="logOut()"></button>
-            </div>
+  <div class="mobile-sidebar-content">
+    <div class="mobile-profile-card">
+      <div class="mobile-profile-top">
+        <p-avatar
+          [label]="isUserLoggedIn() ? getUserInitials() : 'AG'"
+          [style]="{ 'background-color': 'var(--primaryColor)', color: '#fff' }"
+          shape="circle"
+          size="large">
+        </p-avatar>
+        <div class="mobile-profile-copy">
+          <span class="mobile-profile-title">{{ isUserLoggedIn() ? getUserName() : 'Explore ApnaaGhar' }}</span>
+          <span class="mobile-profile-subtitle">{{ isUserLoggedIn() ? getUserEmail() : 'Modern homes, rentals and projects' }}</span>
         </div>
+      </div>
 
-        <button type="button" class="mobile-home-link" (click)="goHome()">
-            <span class="pi pi-home"></span>
-            <span>Home</span>
-        </button>
-
-        <div class="mobile-section-tabs">
-            <button
-                *ngFor="let section of navigationSections"
-                type="button"
-                class="mobile-section-tab"
-                [class.active]="activeMobileSection === section.label"
-                (click)="selectMobileSection(section.label)">
-                <span [class]="section.icon"></span>
-                <span>{{ section.label }}</span>
-            </button>
+      @if (!isUserLoggedIn()) {
+        <div class="mobile-auth-actions">
+          <button pButton type="button" label="Login" icon="pi pi-sign-in" class="mobile-login-btn" (click)="goToLoginPage()"></button>
+          <button pButton type="button" label="Create Account" icon="pi pi-user-plus" class="p-button-outlined mobile-signup-btn" (click)="goToSignUp()"></button>
         </div>
+      }
 
-        <div class="mobile-section-card" *ngIf="getActiveMobileSection() as activeSection">
-            <div class="mobile-section-header">
-                <span class="mobile-section-title">{{ activeSection.label }}</span>
-                <span class="mobile-section-description">{{ activeSection.description }}</span>
-            </div>
-
-            <div class="mobile-city-grid">
-                <button
-                    *ngFor="let city of sharedDataService.cityNames"
-                    type="button"
-                    class="mobile-city-chip"
-                    (click)="megaMenuItemClick(activeSection.category, city.city)">
-                    {{ city.city }}
-                </button>
-            </div>
+      @if (isUserLoggedIn()) {
+        <div class="mobile-auth-actions">
+          <button pButton type="button" label="My Listings" icon="pi pi-list" class="p-button-text mobile-text-btn" (click)="goToMyListings()"></button>
+          <button pButton type="button" label="Log Out" icon="pi pi-power-off" class="p-button-text mobile-logout-btn" (click)="logOut()"></button>
         </div>
+      }
     </div>
+
+    <button type="button" class="mobile-home-link" (click)="goHome()">
+      <span class="pi pi-home"></span>
+      <span>Home</span>
+    </button>
+
+    <div class="mobile-section-tabs">
+      @for (section of navigationSections; track section) {
+        <button
+          type="button"
+          class="mobile-section-tab"
+          [class.active]="activeMobileSection === section.label"
+          (click)="selectMobileSection(section.label)">
+          <span [class]="section.icon"></span>
+          <span>{{ section.label }}</span>
+        </button>
+      }
+    </div>
+
+    @if (getActiveMobileSection(); as activeSection) {
+      <div class="mobile-section-card">
+        <div class="mobile-section-header">
+          <span class="mobile-section-title">{{ activeSection.label }}</span>
+          <span class="mobile-section-description">{{ activeSection.description }}</span>
+        </div>
+        <div class="mobile-city-grid">
+          @for (city of sharedDataService.cityNames; track city) {
+            <button
+              type="button"
+              class="mobile-city-chip"
+              (click)="megaMenuItemClick(activeSection.category, city.city)">
+              {{ city.city }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+  </div>
 </p-sidebar>

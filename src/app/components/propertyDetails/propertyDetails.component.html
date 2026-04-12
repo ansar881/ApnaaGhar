@@ -1,320 +1,300 @@
-<div class="property-details-page" *ngIf="propertyData">
-  <section class="property-hero">
-    <div class="property-hero-shell">
-      <div class="property-hero-copy">
-        <span class="property-kicker">Property details</span>
-        <h1>{{ propertyData.title }}</h1>
-        <div class="property-location">{{ propertyData.location }}</div>
-
-        <div class="property-price-row">
-          <div class="property-price">
-            <span class="pi pi-indian-rupee rupee"></span>
-            <span class="property-price-value">{{ propertyData.price }}</span>
+@if (propertyData) {
+  <div class="property-details-page">
+    <section class="property-hero">
+      <div class="property-hero-shell">
+        <div class="property-hero-copy">
+          <span class="property-kicker">Property details</span>
+          <h1>{{ propertyData.title }}</h1>
+          <div class="property-location">{{ propertyData.location }}</div>
+          <div class="property-price-row">
+            <div class="property-price">
+              <span class="pi pi-indian-rupee rupee"></span>
+              <span class="property-price-value">{{ propertyData.price }}</span>
+            </div>
+            <div class="property-posted">Posted on {{ propertyData.posted }}</div>
           </div>
-          <div class="property-posted">Posted on {{ propertyData.posted }}</div>
-        </div>
-
-        <div class="property-highlight-grid">
-          <div class="property-highlight-card">
-            <span class="highlight-label">Configuration</span>
-            <span class="highlight-value">{{ propertyData.bhk }}</span>
-          </div>
-          <div class="property-highlight-card">
-            <span class="highlight-label">Area</span>
-            <span class="highlight-value">{{ propertyData.sq_ft }}.ft</span>
-          </div>
-          <div class="property-highlight-card">
-            <span class="highlight-label">Furnish</span>
-            <span class="highlight-value">{{ propertyData.furnish }}</span>
+          <div class="property-highlight-grid">
+            <div class="property-highlight-card">
+              <span class="highlight-label">Configuration</span>
+              <span class="highlight-value">{{ propertyData.bhk }}</span>
+            </div>
+            <div class="property-highlight-card">
+              <span class="highlight-label">Area</span>
+              <span class="highlight-value">{{ propertyData.sq_ft }}.ft</span>
+            </div>
+            <div class="property-highlight-card">
+              <span class="highlight-label">Furnish</span>
+              <span class="highlight-value">{{ propertyData.furnish }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="property-content">
-    <div class="property-content-shell">
-      <div class="property-main-grid">
-        <div class="property-gallery-card">
-          <p-galleria
-            [value]="propertyData.imageList"
-            [showItemNavigators]="true"
-            [circular]="true"
-            [numVisible]="6"
-            [autoPlay]="true"
-            styleClass="details-gallery">
-            <ng-template pTemplate="item" let-item>
-              <div class="propDetails-img-div width100pc">
-                <img [src]="'assets/images/' + item.imageUrl" class="propDetails-img height100pc width100pc" />
-              </div>
-            </ng-template>
-            <ng-template pTemplate="thumbnail" let-item>
-              <div class="propDetails-imgThum-div">
-                <img [src]="'assets/images/' + item.imageUrl" class="propDetails-imgThum height100pc width100pc" />
-              </div>
-            </ng-template>
-          </p-galleria>
-        </div>
-
-        <div class="property-summary-card">
-          <div class="summary-top">
-            <div class="summary-heading">
-              <span class="summary-tag">Details</span>
-              <h2>{{ propertyData.title }}</h2>
-              <p>{{ propertyData.description }}</p>
-            </div>
-
-            <div class="detail-btn-wrapper">
-              <p-button
-                label="Contact"
-                class="contact-pBtn display-flex"
-                severity="info"
-                icon="pi pi-phone"
-                iconPos="left"
-                raised="true"
-                size="small"
-                (onClick)="openContactDialog()">
-              </p-button>
-
-              <p-button
-                label="Get Phone No."
-                class="phoneNo-pBtn display-flex"
-                severity="info"
-                icon="pi pi-mobile"
-                iconPos="left"
-                raised="true"
-                size="small"
-                (onClick)="openPhoneDialog()">
-              </p-button>
-            </div>
+    </section>
+    <section class="property-content">
+      <div class="property-content-shell">
+        <div class="property-main-grid">
+          <div class="property-gallery-card">
+            <p-galleria
+              [value]="propertyData.imageList"
+              [showItemNavigators]="true"
+              [circular]="true"
+              [numVisible]="6"
+              [autoPlay]="true"
+              styleClass="details-gallery">
+              <ng-template pTemplate="item" let-item>
+                <div class="propDetails-img-div width100pc">
+                  <img [src]="'assets/images/' + item.imageUrl" class="propDetails-img height100pc width100pc" />
+                </div>
+              </ng-template>
+              <ng-template pTemplate="thumbnail" let-item>
+                <div class="propDetails-imgThum-div">
+                  <img [src]="'assets/images/' + item.imageUrl" class="propDetails-imgThum height100pc width100pc" />
+                </div>
+              </ng-template>
+            </p-galleria>
           </div>
-
-          <div class="property-spec-grid">
-            <div class="propDetails-div">
-              <div class="propDetails-title">BHK</div>
-              <div class="propDetails-details">{{ propertyData.bhk }}</div>
-            </div>
-            <div class="propDetails-div">
-              <div class="propDetails-title">Bedrooms</div>
-              <div class="propDetails-details">{{ propertyData.bedrooms }}</div>
-            </div>
-            <div class="propDetails-div">
-              <div class="propDetails-title">Bathrooms</div>
-              <div class="propDetails-details">{{ propertyData.bathrooms }}</div>
-            </div>
-            <div class="propDetails-div">
-              <div class="propDetails-title">Built Up Area</div>
-              <div class="propDetails-details">{{ propertyData.sq_ft }}.ft</div>
-            </div>
-            <div class="propDetails-div">
-              <div class="propDetails-title">Furnish</div>
-              <div class="propDetails-details">{{ propertyData.furnish }}</div>
-            </div>
-            <div class="propDetails-div">
-              <div class="propDetails-title">Lift</div>
-              <div class="propDetails-details">{{ propertyData.lift }}</div>
-            </div>
-            <div class="propDetails-div">
-              <div class="propDetails-title">Water Availability</div>
-              <div class="propDetails-details">{{ propertyData.waterAvl }}</div>
-            </div>
-            <div class="propDetails-div">
-              <div class="propDetails-title">Electricity</div>
-              <div class="propDetails-details">{{ propertyData.electricityAvl }}</div>
-            </div>
-            <div class="propDetails-div">
-              <div class="propDetails-title">Car Parking</div>
-              <div class="propDetails-details">{{ propertyData.carParking }}</div>
-            </div>
-          </div>
-
-          <div class="property-extra-panel">
-            <div class="extra-panel-header">
-              <span class="summary-tag extra-tag">Property highlights</span>
-              <p>Well-balanced essentials for day-to-day comfort and quick decision making.</p>
-            </div>
-
-            <div class="extra-highlight-list">
-              <div class="extra-highlight-item">
-                <span class="extra-highlight-label">Water availability</span>
-                <span class="extra-highlight-value">{{ propertyData.waterAvl }}</span>
+          <div class="property-summary-card">
+            <div class="summary-top">
+              <div class="summary-heading">
+                <span class="summary-tag">Details</span>
+                <h2>{{ propertyData.title }}</h2>
+                <p>{{ propertyData.description }}</p>
               </div>
-              <div class="extra-highlight-item">
-                <span class="extra-highlight-label">Electricity</span>
-                <span class="extra-highlight-value">{{ propertyData.electricityAvl }}</span>
+              <div class="detail-btn-wrapper">
+                <p-button
+                  label="Contact"
+                  class="contact-pBtn display-flex"
+                  severity="info"
+                  icon="pi pi-phone"
+                  iconPos="left"
+                  raised="true"
+                  size="small"
+                  (onClick)="openContactDialog()">
+                </p-button>
+                <p-button
+                  label="Get Phone No."
+                  class="phoneNo-pBtn display-flex"
+                  severity="info"
+                  icon="pi pi-mobile"
+                  iconPos="left"
+                  raised="true"
+                  size="small"
+                  (onClick)="openPhoneDialog()">
+                </p-button>
+              </div>
+            </div>
+            <div class="property-spec-grid">
+              <div class="propDetails-div">
+                <div class="propDetails-title">BHK</div>
+                <div class="propDetails-details">{{ propertyData.bhk }}</div>
+              </div>
+              <div class="propDetails-div">
+                <div class="propDetails-title">Bedrooms</div>
+                <div class="propDetails-details">{{ propertyData.bedrooms }}</div>
+              </div>
+              <div class="propDetails-div">
+                <div class="propDetails-title">Bathrooms</div>
+                <div class="propDetails-details">{{ propertyData.bathrooms }}</div>
+              </div>
+              <div class="propDetails-div">
+                <div class="propDetails-title">Built Up Area</div>
+                <div class="propDetails-details">{{ propertyData.sq_ft }}.ft</div>
+              </div>
+              <div class="propDetails-div">
+                <div class="propDetails-title">Furnish</div>
+                <div class="propDetails-details">{{ propertyData.furnish }}</div>
+              </div>
+              <div class="propDetails-div">
+                <div class="propDetails-title">Lift</div>
+                <div class="propDetails-details">{{ propertyData.lift }}</div>
+              </div>
+              <div class="propDetails-div">
+                <div class="propDetails-title">Water Availability</div>
+                <div class="propDetails-details">{{ propertyData.waterAvl }}</div>
+              </div>
+              <div class="propDetails-div">
+                <div class="propDetails-title">Electricity</div>
+                <div class="propDetails-details">{{ propertyData.electricityAvl }}</div>
+              </div>
+              <div class="propDetails-div">
+                <div class="propDetails-title">Car Parking</div>
+                <div class="propDetails-details">{{ propertyData.carParking }}</div>
+              </div>
+            </div>
+            <div class="property-extra-panel">
+              <div class="extra-panel-header">
+                <span class="summary-tag extra-tag">Property highlights</span>
+                <p>Well-balanced essentials for day-to-day comfort and quick decision making.</p>
+              </div>
+              <div class="extra-highlight-list">
+                <div class="extra-highlight-item">
+                  <span class="extra-highlight-label">Water availability</span>
+                  <span class="extra-highlight-value">{{ propertyData.waterAvl }}</span>
+                </div>
+                <div class="extra-highlight-item">
+                  <span class="extra-highlight-label">Electricity</span>
+                  <span class="extra-highlight-value">{{ propertyData.electricityAvl }}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <p-dialog
-    [(visible)]="showContactDialog"
-    [modal]="true"
-    [dismissableMask]="true"
-    [draggable]="false"
-    [resizable]="false"
-    [closable]="true"
-    [style]="{ width: '92vw', maxWidth: '960px' }"
-    [breakpoints]="{ '960px': '94vw', '640px': '98vw' }"
-    styleClass="property-action-dialog"
-    (onHide)="closeContactDialog()">
-    <ng-template pTemplate="header">
-      <div class="action-dialog-header">
-        <span class="action-dialog-kicker">Connect Now</span>
-        <h2>Contact for this property</h2>
-        <p>{{ propertyData.title }} in {{ propertyData.location }}</p>
+    </section>
+    <p-dialog
+      [(visible)]="showContactDialog"
+      [modal]="true"
+      [dismissableMask]="true"
+      [draggable]="false"
+      [resizable]="false"
+      [closable]="true"
+      [style]="{ width: '92vw', maxWidth: '960px' }"
+      [breakpoints]="{ '960px': '94vw', '640px': '98vw' }"
+      styleClass="property-action-dialog"
+      (onHide)="closeContactDialog()">
+      <ng-template pTemplate="header">
+        <div class="action-dialog-header">
+          <span class="action-dialog-kicker">Connect Now</span>
+          <h2>Contact for this property</h2>
+          <p>{{ propertyData.title }} in {{ propertyData.location }}</p>
+        </div>
+      </ng-template>
+      <div class="action-dialog-shell contact-dialog-shell">
+        <div class="action-dialog-hero">
+          <div class="action-dialog-copy">
+            <div class="action-price-chip">
+              <span class="pi pi-indian-rupee"></span>
+              <span>{{ propertyData.price }}</span>
+            </div>
+            <p class="action-dialog-summary">
+              Share your details and the owner or agent can reach you with availability, visit timing and next steps.
+            </p>
+            <div class="action-badge-row">
+              <span class="action-badge">{{ propertyData.bhk }}</span>
+              <span class="action-badge">{{ propertyData.sq_ft }}.ft</span>
+              <span class="action-badge">{{ propertyData.furnish }}</span>
+            </div>
+          </div>
+          <div class="action-highlight-panel">
+            <span class="action-highlight-label">Why contact now</span>
+            <strong>Quick response experience</strong>
+            <p>Send a clean inquiry and keep your interest organized in one place.</p>
+          </div>
+        </div>
+        <div class="action-panel-grid">
+          <div class="action-card">
+            <span class="action-card-tag">Contact Form</span>
+            <div class="action-form-grid">
+              <div class="action-field">
+                <label>Full Name</label>
+                <input pInputText [(ngModel)]="contactFormData.fullName" placeholder="Enter your full name" />
+              </div>
+              <div class="action-field">
+                <label>Phone Number</label>
+                <input pInputText [(ngModel)]="contactFormData.phone" placeholder="Enter your mobile number" />
+              </div>
+              <div class="action-field action-field-full">
+                <label>Message</label>
+                <textarea pInputTextarea [(ngModel)]="contactFormData.message" rows="4" placeholder="Write your message"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="action-card">
+            <span class="action-card-tag">What you can ask</span>
+            <div class="action-note-list">
+              <div class="action-note-item">
+                <span class="action-note-index">01</span>
+                <p>Ask for site visit timing and current availability.</p>
+              </div>
+              <div class="action-note-item">
+                <span class="action-note-index">02</span>
+                <p>Confirm price discussion, furnishing and parking details.</p>
+              </div>
+              <div class="action-note-item">
+                <span class="action-note-index">03</span>
+                <p>Request utility details like water and electricity support.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="action-dialog-footer">
+          <p-button
+            label="Send Inquiry"
+            class="contact-pBtn display-flex"
+            icon="pi pi-send"
+            iconPos="left"
+            raised="true"
+            (onClick)="closeContactDialog()">
+          </p-button>
+        </div>
       </div>
-    </ng-template>
-
-    <div class="action-dialog-shell contact-dialog-shell">
-      <div class="action-dialog-hero">
-        <div class="action-dialog-copy">
-          <div class="action-price-chip">
-            <span class="pi pi-indian-rupee"></span>
-            <span>{{ propertyData.price }}</span>
-          </div>
-          <p class="action-dialog-summary">
-            Share your details and the owner or agent can reach you with availability, visit timing and next steps.
-          </p>
-
-          <div class="action-badge-row">
-            <span class="action-badge">{{ propertyData.bhk }}</span>
-            <span class="action-badge">{{ propertyData.sq_ft }}.ft</span>
-            <span class="action-badge">{{ propertyData.furnish }}</span>
-          </div>
+    </p-dialog>
+    <p-dialog
+      [(visible)]="showPhoneDialog"
+      [modal]="true"
+      [dismissableMask]="true"
+      [draggable]="false"
+      [resizable]="false"
+      [closable]="true"
+      [style]="{ width: '92vw', maxWidth: '820px' }"
+      [breakpoints]="{ '960px': '94vw', '640px': '98vw' }"
+      styleClass="property-action-dialog"
+      (onHide)="closePhoneDialog()">
+      <ng-template pTemplate="header">
+        <div class="action-dialog-header">
+          <span class="action-dialog-kicker">Direct Access</span>
+          <h2>Get phone number</h2>
+          <p>Fast contact details for {{ propertyData.title }}</p>
         </div>
-
-        <div class="action-highlight-panel">
-          <span class="action-highlight-label">Why contact now</span>
-          <strong>Quick response experience</strong>
-          <p>Send a clean inquiry and keep your interest organized in one place.</p>
-        </div>
-      </div>
-
-      <div class="action-panel-grid">
-        <div class="action-card">
-          <span class="action-card-tag">Contact Form</span>
-          <div class="action-form-grid">
-            <div class="action-field">
-              <label>Full Name</label>
-              <input pInputText [(ngModel)]="contactFormData.fullName" placeholder="Enter your full name" />
+      </ng-template>
+      <div class="action-dialog-shell phone-dialog-shell">
+        <div class="phone-card">
+          <div class="phone-card-top">
+            <div class="phone-avatar">
+              <span class="pi pi-user"></span>
             </div>
-            <div class="action-field">
-              <label>Phone Number</label>
-              <input pInputText [(ngModel)]="contactFormData.phone" placeholder="Enter your mobile number" />
-            </div>
-            <div class="action-field action-field-full">
-              <label>Message</label>
-              <textarea pInputTextarea [(ngModel)]="contactFormData.message" rows="4" placeholder="Write your message"></textarea>
+            <div class="phone-card-copy">
+              <span class="phone-card-role">Property Contact</span>
+              <h3>ApnaaGhar Property Desk</h3>
+              <p>{{ propertyData.location }}</p>
             </div>
           </div>
-        </div>
-
-        <div class="action-card">
-          <span class="action-card-tag">What you can ask</span>
+          <div class="phone-number-chip">
+            <span class="pi pi-mobile"></span>
+            <span>+91 98765 43210</span>
+          </div>
+          <div class="phone-stat-row">
+            <div class="phone-stat">
+              <span>Response</span>
+              <strong>Within 30 mins</strong>
+            </div>
+            <div class="phone-stat">
+              <span>Best Time</span>
+              <strong>10 AM - 7 PM</strong>
+            </div>
+          </div>
           <div class="action-note-list">
             <div class="action-note-item">
               <span class="action-note-index">01</span>
-              <p>Ask for site visit timing and current availability.</p>
+              <p>Call to confirm pricing, visit availability and property status.</p>
             </div>
             <div class="action-note-item">
               <span class="action-note-index">02</span>
-              <p>Confirm price discussion, furnishing and parking details.</p>
-            </div>
-            <div class="action-note-item">
-              <span class="action-note-index">03</span>
-              <p>Request utility details like water and electricity support.</p>
+              <p>Keep the property title handy for a faster conversation.</p>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="action-dialog-footer">
-        <p-button
-          label="Send Inquiry"
-          class="contact-pBtn display-flex"
-          icon="pi pi-send"
-          iconPos="left"
-          raised="true"
-          (onClick)="closeContactDialog()">
-        </p-button>
-      </div>
-    </div>
-  </p-dialog>
-
-  <p-dialog
-    [(visible)]="showPhoneDialog"
-    [modal]="true"
-    [dismissableMask]="true"
-    [draggable]="false"
-    [resizable]="false"
-    [closable]="true"
-    [style]="{ width: '92vw', maxWidth: '820px' }"
-    [breakpoints]="{ '960px': '94vw', '640px': '98vw' }"
-    styleClass="property-action-dialog"
-    (onHide)="closePhoneDialog()">
-    <ng-template pTemplate="header">
-      <div class="action-dialog-header">
-        <span class="action-dialog-kicker">Direct Access</span>
-        <h2>Get phone number</h2>
-        <p>Fast contact details for {{ propertyData.title }}</p>
-      </div>
-    </ng-template>
-
-    <div class="action-dialog-shell phone-dialog-shell">
-      <div class="phone-card">
-        <div class="phone-card-top">
-          <div class="phone-avatar">
-            <span class="pi pi-user"></span>
-          </div>
-          <div class="phone-card-copy">
-            <span class="phone-card-role">Property Contact</span>
-            <h3>ApnaaGhar Property Desk</h3>
-            <p>{{ propertyData.location }}</p>
-          </div>
-        </div>
-
-        <div class="phone-number-chip">
-          <span class="pi pi-mobile"></span>
-          <span>+91 98765 43210</span>
-        </div>
-
-        <div class="phone-stat-row">
-          <div class="phone-stat">
-            <span>Response</span>
-            <strong>Within 30 mins</strong>
-          </div>
-          <div class="phone-stat">
-            <span>Best Time</span>
-            <strong>10 AM - 7 PM</strong>
-          </div>
-        </div>
-
-        <div class="action-note-list">
-          <div class="action-note-item">
-            <span class="action-note-index">01</span>
-            <p>Call to confirm pricing, visit availability and property status.</p>
-          </div>
-          <div class="action-note-item">
-            <span class="action-note-index">02</span>
-            <p>Keep the property title handy for a faster conversation.</p>
-          </div>
+        <div class="action-dialog-footer">
+          <p-button
+            label="Close"
+            class="phoneNo-pBtn display-flex"
+            icon="pi pi-check"
+            iconPos="left"
+            raised="true"
+            (onClick)="closePhoneDialog()">
+          </p-button>
         </div>
       </div>
-
-      <div class="action-dialog-footer">
-        <p-button
-          label="Close"
-          class="phoneNo-pBtn display-flex"
-          icon="pi pi-check"
-          iconPos="left"
-          raised="true"
-          (onClick)="closePhoneDialog()">
-        </p-button>
-      </div>
-    </div>
-  </p-dialog>
-</div>
+    </p-dialog>
+  </div>
+}

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
@@ -6,7 +6,7 @@ import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
     selector: 'app-main-footer',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './main-footer.component.html',
     styleUrls: ['./main-footer.component.css']
 })

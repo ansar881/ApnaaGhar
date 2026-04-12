@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { allPrimeNGModules } from '../../services/primeNGShared';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     selector: 'app-show-all',
     templateUrl: './show-all.component.html',
     styleUrls: ['./show-all.component.css'],
-    imports: [CommonModule, allPrimeNGModules, FormsModule]
+    imports: [allPrimeNGModules, FormsModule]
 })
 export class ShowAllComponent implements OnInit, AfterViewInit{
   filerBtns:any[] = [];
