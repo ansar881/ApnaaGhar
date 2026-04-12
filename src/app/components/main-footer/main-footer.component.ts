@@ -5,11 +5,10 @@ import { Guid } from 'guid-typescript';
 import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
-  selector: 'app-main-footer',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './main-footer.component.html',
-  styleUrls: ['./main-footer.component.css']
+    selector: 'app-main-footer',
+    imports: [CommonModule],
+    templateUrl: './main-footer.component.html',
+    styleUrls: ['./main-footer.component.css']
 })
 export class MainFooterComponent implements OnInit {
   topCityPropertyData: any[] = [];

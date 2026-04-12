@@ -6,11 +6,10 @@ import { SharedDataService } from '../../services/shared-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-show-all',
-  templateUrl: './show-all.component.html',
-  styleUrls: ['./show-all.component.css'],
-  standalone: true,
-  imports: [CommonModule, allPrimeNGModules, FormsModule],
+    selector: 'app-show-all',
+    templateUrl: './show-all.component.html',
+    styleUrls: ['./show-all.component.css'],
+    imports: [CommonModule, allPrimeNGModules, FormsModule]
 })
 export class ShowAllComponent implements OnInit, AfterViewInit{
   filerBtns:any[] = [];

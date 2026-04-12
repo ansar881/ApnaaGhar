@@ -6,11 +6,10 @@ import { allPrimeNGModules } from '../../services/primeNGShared';
 import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, allPrimeNGModules],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    imports: [CommonModule, allPrimeNGModules],
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   propertiesData: any[] = [];

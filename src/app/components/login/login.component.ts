@@ -8,11 +8,10 @@ import { CreateAccountComponent } from "../create-account/create-account.compone
 import { ServerService } from '../../services/server.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, allPrimeNGModules, CreateAccountComponent],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    imports: [CommonModule, ReactiveFormsModule, allPrimeNGModules, CreateAccountComponent],
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent implements OnInit, AfterViewInit {

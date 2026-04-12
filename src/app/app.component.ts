@@ -4,11 +4,10 @@ import { MainHeaderComponent } from './components/main-header/main-header.compon
 import { MainFooterComponent } from './components/main-footer/main-footer.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, MainHeaderComponent, MainFooterComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [RouterOutlet, MainHeaderComponent, MainFooterComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'ApnaaGhar';

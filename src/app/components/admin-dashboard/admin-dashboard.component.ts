@@ -17,12 +17,11 @@ import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
-  selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.scss'],
-  standalone: true,
-  imports: [CommonModule, ToolbarModule, CardModule, ButtonModule, TableModule, ProgressBarModule, BadgeModule, DialogModule, InputTextModule, InputNumberModule, DropdownModule, InputTextareaModule, ReactiveFormsModule, ToastModule, TooltipModule],
-  providers: [MessageService]
+    selector: 'app-admin-dashboard',
+    templateUrl: './admin-dashboard.component.html',
+    styleUrls: ['./admin-dashboard.component.scss'],
+    imports: [CommonModule, ToolbarModule, CardModule, ButtonModule, TableModule, ProgressBarModule, BadgeModule, DialogModule, InputTextModule, InputNumberModule, DropdownModule, InputTextareaModule, ReactiveFormsModule, ToastModule, TooltipModule],
+    providers: [MessageService]
 })
 export class AdminDashboardComponent implements OnInit {
 

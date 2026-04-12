@@ -5,11 +5,10 @@ import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validator
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-account',
-  templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.css'],
-  standalone: true,
-  imports: [allPrimeNGModules, CommonModule, ReactiveFormsModule],
+    selector: 'app-create-account',
+    templateUrl: './create-account.component.html',
+    styleUrls: ['./create-account.component.css'],
+    imports: [allPrimeNGModules, CommonModule, ReactiveFormsModule]
 })
 
 export class CreateAccountComponent implements OnInit {

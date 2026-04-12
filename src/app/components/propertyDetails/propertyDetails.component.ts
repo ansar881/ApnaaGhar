@@ -5,11 +5,10 @@ import { SharedDataService } from '../../services/shared-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-propertyDetails',
-  templateUrl: './propertyDetails.component.html',
-  styleUrls: ['./propertyDetails.component.css'],
-  standalone: true,
-  imports: [CommonModule, allPrimeNGModules],
+    selector: 'app-propertyDetails',
+    templateUrl: './propertyDetails.component.html',
+    styleUrls: ['./propertyDetails.component.css'],
+    imports: [CommonModule, allPrimeNGModules]
 })
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   propertyId:any;

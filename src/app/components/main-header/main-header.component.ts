@@ -20,11 +20,10 @@ interface NavigationSection {
 }
 
 @Component({
-  selector: 'app-main-header',
-  standalone: true,
-  imports: [CommonModule, allPrimeNGModules],
-  templateUrl: './main-header.component.html',
-  styleUrls: ['./main-header.component.css']
+    selector: 'app-main-header',
+    imports: [CommonModule, allPrimeNGModules],
+    templateUrl: './main-header.component.html',
+    styleUrls: ['./main-header.component.css']
 })
 export class MainHeaderComponent implements OnInit {
   headerItems: HeaderAction[] = [];
