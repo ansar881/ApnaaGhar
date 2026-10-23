@@ -7,6 +7,7 @@ import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
     selector: 'app-home',
+    standalone: true,
     imports: [CommonModule, allPrimeNGModules],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
