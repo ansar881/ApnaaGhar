@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { AuthService } from '../../services/auth.service';
@@ -21,8 +21,9 @@ interface NavigationSection {
 
 @Component({
     selector: 'app-main-header',
-    imports: [allPrimeNGModules],
+    imports: [...allPrimeNGModules],
     templateUrl: './main-header.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./main-header.component.css']
 })
 export class MainHeaderComponent implements OnInit {

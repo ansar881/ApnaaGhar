@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { allPrimeNGModules } from '../../services/primeNGShared';
@@ -8,8 +8,9 @@ import { SharedDataService } from '../../services/shared-data.service';
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, allPrimeNGModules],
+    imports: [CommonModule, ...allPrimeNGModules],
     templateUrl: './home.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {

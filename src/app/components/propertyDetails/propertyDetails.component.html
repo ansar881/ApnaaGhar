@@ -41,12 +41,12 @@
               [numVisible]="6"
               [autoPlay]="true"
               styleClass="details-gallery">
-              <ng-template pTemplate="item" let-item>
+              <ng-template #item let-item>
                 <div class="propDetails-img-div width100pc">
                   <img [src]="'assets/images/' + item.imageUrl" class="propDetails-img height100pc width100pc" />
                 </div>
               </ng-template>
-              <ng-template pTemplate="thumbnail" let-item>
+              <ng-template #thumbnail let-item>
                 <div class="propDetails-imgThum-div">
                   <img [src]="'assets/images/' + item.imageUrl" class="propDetails-imgThum height100pc width100pc" />
                 </div>
@@ -195,7 +195,7 @@
               </div>
               <div class="action-field action-field-full">
                 <label>Message</label>
-                <textarea pInputTextarea [(ngModel)]="contactFormData.message" rows="4" placeholder="Write your message"></textarea>
+                <textarea pTextarea [(ngModel)]="contactFormData.message" rows="4" placeholder="Write your message"></textarea>
               </div>
             </div>
           </div>

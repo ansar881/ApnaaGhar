@@ -1,5 +1,5 @@
 
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { allPrimeNGModules } from '../../services/primeNGShared';
 import { FormsModule } from '@angular/forms';
 import { SharedDataService } from '../../services/shared-data.service';
@@ -9,7 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     selector: 'app-show-all',
     templateUrl: './show-all.component.html',
     styleUrls: ['./show-all.component.css'],
-    imports: [allPrimeNGModules, FormsModule]
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [...allPrimeNGModules, FormsModule]
 })
 export class ShowAllComponent implements OnInit, AfterViewInit{
   filerBtns:any[] = [];

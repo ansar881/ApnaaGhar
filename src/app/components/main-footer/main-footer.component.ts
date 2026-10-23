@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { SharedDataService } from '../../services/shared-data.service';
@@ -8,6 +8,7 @@ import { SharedDataService } from '../../services/shared-data.service';
     selector: 'app-main-footer',
     imports: [],
     templateUrl: './main-footer.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrls: ['./main-footer.component.css']
 })
 export class MainFooterComponent implements OnInit {

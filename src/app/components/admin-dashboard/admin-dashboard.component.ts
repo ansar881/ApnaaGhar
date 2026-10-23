@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -10,8 +10,8 @@ import { BadgeModule } from 'primeng/badge';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { DropdownModule } from 'primeng/dropdown';
-import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SelectModule } from 'primeng/select';
+import { TextareaModule } from 'primeng/textarea';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { TooltipModule } from 'primeng/tooltip';
@@ -20,7 +20,8 @@ import { TooltipModule } from 'primeng/tooltip';
     selector: 'app-admin-dashboard',
     templateUrl: './admin-dashboard.component.html',
     styleUrls: ['./admin-dashboard.component.scss'],
-    imports: [ToolbarModule, CardModule, ButtonModule, TableModule, ProgressBarModule, BadgeModule, DialogModule, InputTextModule, InputNumberModule, DropdownModule, InputTextareaModule, ReactiveFormsModule, ToastModule, TooltipModule],
+    imports: [ToolbarModule, CardModule, ButtonModule, TableModule, ProgressBarModule, BadgeModule, DialogModule, InputTextModule, InputNumberModule, SelectModule, TextareaModule, ReactiveFormsModule, ToastModule, TooltipModule],
+    changeDetection: ChangeDetectionStrategy.Eager,
     providers: [MessageService]
 })
 export class AdminDashboardComponent implements OnInit {
@@ -171,7 +172,7 @@ export class AdminDashboardComponent implements OnInit {
     switch (status) {
       case 'Available': return 'success';
       case 'Rented': return 'info';
-      case 'Maintenance': return 'warning';
+      case 'Maintenance': return 'warn';
       default: return 'secondary';
     }
   }

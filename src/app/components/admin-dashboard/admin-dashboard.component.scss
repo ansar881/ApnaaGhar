@@ -408,7 +408,7 @@
 
     input,
     textarea,
-    ::ng-deep .p-dropdown {
+    ::ng-deep .p-select {
         font-size: 0.95rem;
     }
 
@@ -486,9 +486,9 @@
 }
 
 ::ng-deep .p-dialog .p-inputtext,
-::ng-deep .p-dialog .p-inputtextarea,
+::ng-deep .p-dialog .p-textarea,
 ::ng-deep .p-dialog .p-inputnumber-input,
-::ng-deep .p-dialog .p-dropdown {
+::ng-deep .p-dialog .p-select {
     width: 100%;
     border-radius: 0.9rem;
     border-color: rgba(148, 163, 184, 0.18);
@@ -497,21 +497,21 @@
     min-height: 3rem;
 }
 
-::ng-deep .p-dialog .p-inputtextarea {
+::ng-deep .p-dialog .p-textarea {
     min-height: 7.25rem;
     resize: vertical;
 }
 
-::ng-deep .p-dialog .p-dropdown,
+::ng-deep .p-dialog .p-select,
 ::ng-deep .p-dialog .p-inputnumber,
 ::ng-deep .p-dialog .p-inputnumber-input {
     width: 100%;
 }
 
 ::ng-deep .p-dialog .p-inputtext:focus,
-::ng-deep .p-dialog .p-inputtextarea:focus,
+::ng-deep .p-dialog .p-textarea:focus,
 ::ng-deep .p-dialog .p-inputnumber-input:focus,
-::ng-deep .p-dialog .p-dropdown:not(.p-disabled).p-focus {
+::ng-deep .p-dialog .p-select:not(.p-disabled).p-focus {
     border-color: rgba(1, 125, 224, 0.34);
     box-shadow: 0 0 0 4px rgba(1, 125, 224, 0.1);
 }

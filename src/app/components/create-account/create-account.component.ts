@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { allPrimeNGModules } from '../../services/primeNGShared';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,7 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     selector: 'app-create-account',
     templateUrl: './create-account.component.html',
     styleUrls: ['./create-account.component.css'],
-    imports: [allPrimeNGModules, CommonModule, ReactiveFormsModule]
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [...allPrimeNGModules, CommonModule, ReactiveFormsModule]
 })
 
 export class CreateAccountComponent implements OnInit {

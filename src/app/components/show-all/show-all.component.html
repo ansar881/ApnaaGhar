@@ -33,23 +33,23 @@
         <div class="filter-panel-top">
           <div class="searched-container">
             <label class="filter-label">Search</label>
-            <p-inputGroup>
+            <p-inputgroup>
               <input pInputText [value]="searchedValue" placeholder="Search by city or locality" />
-              <p-inputGroupAddon>
+              <p-inputgroup-addon>
                 <i class="pi pi-search"></i>
-              </p-inputGroupAddon>
-            </p-inputGroup>
+              </p-inputgroup-addon>
+            </p-inputgroup>
           </div>
 
           <div class="type-container">
             <label class="filter-label">Category</label>
-            <p-dropdown
+            <p-select
               class="filter-type"
               [options]="propCategory"
               [(ngModel)]="selectedPropCategory"
               optionLabel="type"
               placeholder="Category">
-            </p-dropdown>
+            </p-select>
           </div>
 
           <div class="apply-btn">
@@ -71,14 +71,14 @@
           }
         </div>
 
-        <p-overlayPanel #popup [showCloseIcon]="true" styleClass="filter-overlay-panel">
+        <p-popover #popup styleClass="filter-overlay-panel">
           @if (popupUi !== 'Price') {
             <div class="filter-div gapRem0-5">
               @for (option of filterOptionsData; track option) {
                 <div>
+                  <label>{{ option.name }}</label>
                   <p-checkbox
                     (onChange)="filterCheckBoxValueChanged($event, option)"
-                    [label]="option.name"
                     [binary]="true"
                     [(ngModel)]="option.value">
                   </p-checkbox>
@@ -124,7 +124,7 @@
               </div>
             </div>
           }
-        </p-overlayPanel>
+        </p-popover>
       </div>
 
       <div class="results-header-row">
@@ -147,7 +147,7 @@
                 [showIndicatorsOnItem]="true"
                 [autoPlay]="true"
                 [circular]="true">
-                <ng-template pTemplate="item" let-item>
+                <ng-template #item let-item>
                   <img [src]="item.imageUrl" />
                 </ng-template>
               </p-galleria>

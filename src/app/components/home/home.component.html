@@ -39,21 +39,28 @@
           <p>Pick a category, enter a city or locality, and jump straight into relevant listings.</p>
         </div>
 
-        <p-tabView class="filter-tab">
-          @for (tab of searchTabDataSource; track tab) {
-            <p-tabPanel [header]="tab.title">
+        <p-tabs class="filter-tab" value="0">
+          <p-tablist>
+            @for (tab of searchTabDataSource; track tab; let i = $index) {
+              <p-tab [value]="i.toString()">{{ tab.title }}</p-tab>
+            }
+          </p-tablist>
+          <p-tabpanels>
+          @for (tab of searchTabDataSource; track tab; let i = $index) {
+            <p-tabpanel [value]="i.toString()">
               <div class="search-tab-body">
                 <p class="search-tab-copy">{{ tab.description }}</p>
-                <p-inputGroup>
+                <p-inputgroup>
                   <input #searchInput type="text" pInputText placeholder="Search city or locality" class="headerInputText" />
                   <button type="button" pButton icon="pi pi-search" class="headerInputSerBtn" (click)="homeSearchClicked(tab, searchInput)">
                     Search
                   </button>
-                </p-inputGroup>
+                </p-inputgroup>
               </div>
-            </p-tabPanel>
+            </p-tabpanel>
           }
-        </p-tabView>
+          </p-tabpanels>
+        </p-tabs>
       </div>
     </div>
   </section>
@@ -99,7 +106,7 @@
       </div>
 
       <p-carousel class="featured-carousel" [value]="propertiesData" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="featureResponsiveOptions" autoplayInterval="4500">
-        <ng-template let-property pTemplate="item">
+        <ng-template let-property #item>
           <div class="feature-slide">
             <div class="feature-image-wrap">
               <img [src]="'assets/images/' + property.imageUrl" [alt]="property.title" class="feature-image" />
@@ -143,7 +150,7 @@
           <div class="section-action">Explore more <span class="pi pi-arrow-right"></span></div>
         </div>
         <p-carousel [value]="prop.propData" [numVisible]="4" [numScroll]="1" [circular]="false" [responsiveOptions]="responsiveOptions" [showIndicators]="false">
-          <ng-template let-property pTemplate="item">
+          <ng-template let-property #item>
             <div class="listing-card-wrap">
               <article class="listing-card" (click)="seePropertyDetails(property.id)">
                 <div class="listing-card-image-wrap">
@@ -184,7 +191,7 @@
           <div class="section-action">See all projects <span class="pi pi-arrow-right"></span></div>
         </div>
         <p-carousel class="project-carousel" [value]="prop.propData" [numVisible]="1" [numScroll]="1" [circular]="false" [responsiveOptions]="featureResponsiveOptions" [showIndicators]="false">
-          <ng-template let-property pTemplate="item">
+          <ng-template let-property #item>
             <div class="project-grid">
               @for (item of property.data; track item) {
                 <article class="project-card" (click)="seePropertyDetails(item.id)">

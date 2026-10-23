@@ -1,11 +1,11 @@
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
-import { CalendarModule } from 'primeng/calendar';
+import { DatePickerModule } from 'primeng/datepicker';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { CheckboxModule } from 'primeng/checkbox';
 // import { ChipsModule } from 'primeng/chips';
 import { ColorPickerModule } from 'primeng/colorpicker';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -13,8 +13,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputMaskModule } from 'primeng/inputmask';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { InputTextarea } from 'primeng/inputtextarea';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { TextareaModule } from 'primeng/textarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputOtpModule } from 'primeng/inputotp';
 import { KnobModule } from 'primeng/knob';
@@ -47,14 +47,14 @@ import { PanelModule } from 'primeng/panel';
 import { SplitterModule } from 'primeng/splitter';
 import { StepperModule } from 'primeng/stepper';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { TabViewModule } from 'primeng/tabview';
+import { TabsModule } from 'primeng/tabs';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
 // import { DynamicDialog } from 'primeng/dynamicdialog';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { SidebarModule } from 'primeng/sidebar';
+import { PopoverModule } from 'primeng/popover';
+import { DrawerModule } from 'primeng/drawer';
 import { TooltipModule } from 'primeng/tooltip';
 import { FileUploadModule } from 'primeng/fileupload';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -65,9 +65,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { StepsModule } from 'primeng/steps';
-import { TabMenuModule } from 'primeng/tabmenu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { CarouselModule } from 'primeng/carousel';
 import { GalleriaModule } from 'primeng/galleria';
@@ -86,7 +85,6 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TagModule } from 'primeng/tag';
 import { TerminalModule } from 'primeng/terminal';
-import { DeferModule } from 'primeng/defer';
 import { FocusTrapModule } from 'primeng/focustrap';
 import { StyleClassModule } from 'primeng/styleclass';
 import { RippleModule } from 'primeng/ripple';
@@ -99,15 +97,15 @@ import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 // import { PickListModule } from 'primeng/picklist';
 // import { ChartModule } from 'primeng/chart';
 
-export const allPrimeNGModules: any[] = [
+export const allPrimeNGModules = [
   AutoCompleteModule,
   ButtonModule,
-  CalendarModule,
+  DatePickerModule,
   CascadeSelectModule,
   CheckboxModule,
   // ChipsModule,
   ColorPickerModule,
-  DropdownModule,
+  SelectModule,
   FloatLabelModule,
   IconFieldModule,
   InputIconModule,
@@ -115,7 +113,8 @@ export const allPrimeNGModules: any[] = [
   InputGroupModule,
   InputGroupAddonModule,
   InputMaskModule,
-  InputSwitchModule,
+  ToggleSwitchModule,
+  TextareaModule,
   InputTextModule,
   InputNumberModule,
   InputOtpModule,
@@ -149,14 +148,14 @@ export const allPrimeNGModules: any[] = [
   SplitterModule,
   StepperModule,
   ScrollPanelModule,
-  TabViewModule,
+  TabsModule,
   ToolbarModule,
   ConfirmDialogModule,
   ConfirmPopupModule,
   DialogModule,
   // DynamicDialog,
-  OverlayPanelModule,
-  SidebarModule,
+  PopoverModule,
+  DrawerModule,
   TooltipModule,
   FileUploadModule,
   BreadcrumbModule,
@@ -167,9 +166,8 @@ export const allPrimeNGModules: any[] = [
   MegaMenuModule,
   PanelMenuModule,
   StepsModule,
-  TabMenuModule,
   TieredMenuModule,
-  MessagesModule,
+  MessageModule,
   ToastModule,
   CarouselModule,
   GalleriaModule,
@@ -188,7 +186,6 @@ export const allPrimeNGModules: any[] = [
   ProgressSpinnerModule,
   TagModule,
   TerminalModule,
-  DeferModule,
   FocusTrapModule,
   StyleClassModule,
   RippleModule,

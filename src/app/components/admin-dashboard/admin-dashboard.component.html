@@ -99,7 +99,7 @@
               <span class="progress-label">Site Health</span>
               <span class="progress-value">78%</span>
             </div>
-            <p-progressBar [value]="78"></p-progressBar>
+            <p-progressbar [value]="78"></p-progressbar>
           </div>
         </div>
       </p-card>
@@ -124,7 +124,7 @@
 
     <div class="form-group form-group-full">
       <label>Description <span class="required">*</span></label>
-      <textarea pInputTextarea formControlName="description" placeholder="Write a short property summary" rows="4" class="width100pc"></textarea>
+      <textarea pTextarea formControlName="description" placeholder="Write a short property summary" rows="4" class="width100pc"></textarea>
       @if (propertyForm.get('description')?.touched && propertyForm.get('description')?.invalid) {
         <small class="error-text">Description is required</small>
       }
@@ -133,7 +133,7 @@
     <div class="form-row">
       <div class="form-group">
         <label>City <span class="required">*</span></label>
-        <p-dropdown [options]="cities" formControlName="city" optionLabel="label" optionValue="value" placeholder="Select city" [showClear]="true" class="width100pc"></p-dropdown>
+        <p-select [options]="cities" formControlName="city" optionLabel="label" optionValue="value" placeholder="Select city" [showClear]="true" class="width100pc"></p-select>
         @if (propertyForm.get('city')?.touched && propertyForm.get('city')?.invalid) {
           <small class="error-text">City is required</small>
         }
@@ -141,7 +141,7 @@
 
       <div class="form-group">
         <label>Property Type <span class="required">*</span></label>
-        <p-dropdown [options]="propertyTypes" formControlName="propertyType" optionLabel="label" optionValue="value" placeholder="Select property type" [showClear]="true" class="width100pc"></p-dropdown>
+        <p-select [options]="propertyTypes" formControlName="propertyType" optionLabel="label" optionValue="value" placeholder="Select property type" [showClear]="true" class="width100pc"></p-select>
         @if (propertyForm.get('propertyType')?.touched && propertyForm.get('propertyType')?.invalid) {
           <small class="error-text">Property type is required</small>
         }
@@ -210,7 +210,7 @@
 
     <div class="form-group">
       <label>Description <span class="required">*</span></label>
-      <textarea pInputTextarea formControlName="description" placeholder="Listing description" rows="3" class="width100pc"></textarea>
+      <textarea pTextarea formControlName="description" placeholder="Listing description" rows="3" class="width100pc"></textarea>
       @if (listingForm.get('description')?.touched && listingForm.get('description')?.invalid) {
         <small class="error-text">Description is required</small>
       }

@@ -24,7 +24,7 @@
       </div>
 
       <div class="desktop-nav">
-        <p-megaMenu orientation="horizontal" [model]="items"></p-megaMenu>
+        <p-megamenu orientation="horizontal" [model]="items"></p-megamenu>
       </div>
 
       <div class="header-actions">
@@ -54,7 +54,7 @@
             (click)="avatarClick($event, loginPopup)">
           </p-avatar>
 
-          <p-overlayPanel #loginPopup [showCloseIcon]="true" [style]="{ width: '340px' }">
+          <p-popover #loginPopup [style]="{ width: '340px' }">
             <div class="user-popup-container">
               @if (isUserLoggedIn()) {
                 <div class="user-info-section">
@@ -110,7 +110,7 @@
                 </div>
               }
             </div>
-          </p-overlayPanel>
+          </p-popover>
         </div>
       </div>
     </div>
@@ -135,13 +135,13 @@
   </div>
 </div>
 
-<p-sidebar
+<p-drawer
   [(visible)]="mobileMenuVisible"
   position="right"
   styleClass="mobile-header-sidebar"
   [dismissible]="true"
   [modal]="false"
-  [showCloseIcon]="true">
+ >
 
   <div class="mobile-sidebar-content">
     <div class="mobile-profile-card">
@@ -210,4 +210,4 @@
       </div>
     }
   </div>
-</p-sidebar>
+</p-drawer>

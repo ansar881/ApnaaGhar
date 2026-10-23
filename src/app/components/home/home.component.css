@@ -427,6 +427,58 @@
     gap: 1rem;
 }
 
+::ng-deep .home-page .feature-btn,
+::ng-deep .home-page .listing-view-btn,
+::ng-deep .home-page .project-view-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.7rem 1.1rem;
+    border: 1px solid #017de0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #017de0 0%, #0ea5e9 100%);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.2;
+    box-shadow: 0 10px 22px rgba(1, 125, 224, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+::ng-deep .home-page .feature-btn .p-button-label,
+::ng-deep .home-page .listing-view-btn .p-button-label,
+::ng-deep .home-page .project-view-btn .p-button-label {
+    color: inherit;
+    font: inherit;
+}
+
+::ng-deep .home-page .feature-btn .p-button-icon,
+::ng-deep .home-page .listing-view-btn .p-button-icon,
+::ng-deep .home-page .project-view-btn .p-button-icon {
+    color: inherit;
+    font-size: 0.85rem;
+}
+
+::ng-deep .home-page .feature-btn:hover,
+::ng-deep .home-page .listing-view-btn:hover,
+::ng-deep .home-page .project-view-btn:hover {
+    background: linear-gradient(135deg, #006fc8 0%, #0284c7 100%);
+    border-color: #006fc8;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 26px rgba(1, 125, 224, 0.26);
+}
+
+::ng-deep .home-page .feature-btn:focus-visible,
+::ng-deep .home-page .listing-view-btn:focus-visible,
+::ng-deep .home-page .project-view-btn:focus-visible {
+    outline: 3px solid rgba(1, 125, 224, 0.25);
+    outline-offset: 2px;
+}
+
 .feature-price,
 .listing-card-price,
 .project-price {
@@ -591,12 +643,12 @@
     color: #334155;
 }
 
-::ng-deep .filter-tab .p-tabview.p-component {
+::ng-deep .filter-tab .p-tabs {
     background: transparent;
     width: 100%;
 }
 
-::ng-deep .filter-tab .p-tabview-nav {
+::ng-deep .filter-tab .p-tablist {
     gap: 0.3rem;
     flex-wrap: wrap;
     border: none;
@@ -604,7 +656,7 @@
     padding: 0;
 }
 
-::ng-deep .filter-tab .p-tabview-nav li .p-tabview-nav-link {
+::ng-deep .filter-tab .p-tab {
     border: none;
     border-radius: 1rem;
     background: #f8fafc;
@@ -615,31 +667,29 @@
     transition: background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
 }
 
-::ng-deep .filter-tab .p-tabview-nav li {
+::ng-deep .filter-tab .p-tablist .p-tab {
     margin-right: 0;
 }
 
-::ng-deep .filter-tab .p-tabview-nav li .p-tabview-nav-link:hover {
+::ng-deep .filter-tab .p-tab:hover {
     background: #eff6ff;
     color: #017de0;
     box-shadow: inset 0 0 0 1px rgba(1, 125, 224, 0.2);
     transform: translateY(-1px);
 }
 
-::ng-deep .filter-tab .p-tabview-panels {
+::ng-deep .filter-tab .p-tabpanels {
     background: transparent;
     padding: 1rem 0 0;
 }
 
-::ng-deep .filter-tab .p-tabview-nav li.p-highlight .p-tabview-nav-link,
-::ng-deep .filter-tab .p-tabview-selected .p-tabview-nav-link {
+::ng-deep .filter-tab .p-tab[aria-selected="true"] {
     background: linear-gradient(135deg, var(--primaryColor), #0ea5e9);
     color: #fff;
     box-shadow: 0 14px 24px rgba(1, 125, 224, 0.24);
 }
 
-::ng-deep .filter-tab .p-tabview-nav li.p-highlight .p-tabview-nav-link:hover,
-::ng-deep .filter-tab .p-tabview-selected .p-tabview-nav-link:hover {
+::ng-deep .filter-tab .p-tab[aria-selected="true"]:hover {
     background: linear-gradient(135deg, var(--primaryColor), #0ea5e9);
     color: #fff;
 }
@@ -650,8 +700,8 @@
     padding-inline: 0.2rem;
 }
 
-::ng-deep .featured-carousel .p-carousel-items-content,
-::ng-deep .featured-carousel .p-carousel-items-container,
+::ng-deep .featured-carousel .p-carousel-viewport,
+::ng-deep .featured-carousel .p-carousel-item-list,
 ::ng-deep .featured-carousel .p-carousel-item {
     height: 100%;
 }
@@ -661,14 +711,14 @@
     justify-content: center;
 }
 
-::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+::ng-deep .p-carousel .p-carousel-indicator-button {
     width: 1.4rem;
     height: 0.32rem;
     border-radius: 999px;
 }
 
-::ng-deep .p-carousel .p-carousel-next,
-::ng-deep .p-carousel .p-carousel-prev {
+::ng-deep .p-carousel .p-carousel-next-button,
+::ng-deep .p-carousel .p-carousel-prev-button {
     background: #0ea5e9;
     color: #fff;
 }
@@ -776,12 +826,12 @@
         height: auto;
     }
 
-    ::ng-deep .filter-tab .p-tabview-nav {
+    ::ng-deep .filter-tab .p-tablist {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    ::ng-deep .filter-tab .p-tabview-nav li .p-tabview-nav-link {
+    ::ng-deep .filter-tab .p-tab {
         justify-content: center;
         text-align: center;
         min-height: 3rem;
@@ -831,11 +881,11 @@
         height: 13rem;
     }
 
-    ::ng-deep .filter-tab .p-tabview-nav {
+    ::ng-deep .filter-tab .p-tablist {
         grid-template-columns: 1fr;
     }
 
-    ::ng-deep .filter-tab .p-tabview-panels {
+    ::ng-deep .filter-tab .p-tabpanels {
         padding-top: 0.85rem;
     }
 }

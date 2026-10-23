@@ -1,6 +1,7 @@
 
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { allPrimeNGModules } from '../../services/primeNGShared';
+import { FormsModule } from '@angular/forms';
 import { SharedDataService } from '../../services/shared-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -8,7 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
     selector: 'app-propertyDetails',
     templateUrl: './propertyDetails.component.html',
     styleUrls: ['./propertyDetails.component.css'],
-    imports: [allPrimeNGModules]
+    changeDetection: ChangeDetectionStrategy.Eager,
+    imports: [...allPrimeNGModules, FormsModule]
 })
 export class PropertyDetailsComponent implements OnInit, AfterViewInit {
   propertyId:any;

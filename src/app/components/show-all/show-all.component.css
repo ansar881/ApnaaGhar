@@ -205,20 +205,20 @@
 ::ng-deep .searched-container .p-inputgroup-addon,
 ::ng-deep .searched-container .p-inputtext,
 ::ng-deep .type-container .p-inputtext,
-::ng-deep .type-container .p-dropdown,
-::ng-deep .type-container .p-dropdown .p-dropdown-trigger {
+::ng-deep .type-container .p-select,
+::ng-deep .type-container .p-select-dropdown {
     background: #f8fafc;
     box-shadow: none;
 }
 
 ::ng-deep .searched-container .p-inputtext,
-::ng-deep .type-container .p-dropdown {
+::ng-deep .type-container .p-select {
     width: 100%;
 }
 
 ::ng-deep .searched-container .p-inputtext,
 ::ng-deep .searched-container .p-inputgroup-addon,
-::ng-deep .type-container .p-dropdown {
+::ng-deep .type-container .p-select {
     border-color: rgba(148, 163, 184, 0.18);
 }
 
@@ -513,7 +513,7 @@
     box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14);
 }
 
-::ng-deep .filter-overlay-panel .p-overlaypanel-content {
+::ng-deep .filter-overlay-panel .p-popover-content {
     padding: 1rem;
 }
 
